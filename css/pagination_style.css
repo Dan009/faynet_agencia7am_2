@@ -1,0 +1,46 @@
+#nvPagination{
+	margin: 25px 0;
+    position: relative;
+    top: 16px;
+    width: 60%;
+
+}
+
+	#nvPagination label{
+		font-size: 16px;
+		font-weight: bold;
+
+	}
+
+	#nvPagination a{
+		padding: 8px 16px;
+		text-decoration: none;
+		border: 1px solid #ddd;
+		font-size: 15px;
+		transition: background-color 0.2s linear;
+
+	}
+
+	#nvPagination .active{
+		padding: 8px 16px;
+		text-decoration: none;
+		border: 1px solid #ddd;
+		background-color: #337AB7; 
+		color: #fff;
+
+	}
+
+	#nvPagination a:hover:not(.active){
+		background-color: #ddd;
+
+	}
+
+.previuos, .next{
+	border-radius: 29px;
+
+}
+
+#dvPagination{
+	margin: 27px 0;
+
+}
