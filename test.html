@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TEST-FORM</title>
+<script src="http://localhost/faynet/js/jquery.js"></script>
+<script>
+
+///////////////////////////////////////////////////////////////////////
+	// AGREGANDO GENERAL INFORMATION Y DEMAS VENTANAS
+	//////////////////////////////////////////////////////////////////////
+  
+	/*$(document).on('submit','#uno',function(){
+		
+		$(".exito_insert").fadeIn(200);
+	   var formData = new FormData(this);  
+	  // alert("estoy haciendo submit");
+		$.ajax({
+			type: 'POST',
+			url: $(this).attr("action"),
+			data: formData,
+			mimeType:"multipart/form-data",
+			contentType: false,
+			cache: false,
+			processData:false,				
+			success: function(data) {    
+				$("body").append(data);
+				if($(".ejecuta_insert").attr("id")=="ejecuto"){
+					//var id_print= $(".ejecuta_insert").attr("name");
+					//$(".loader_request").fadeOut(0);
+					//$(".text_exito_insert").fadeIn(100);
+						
+					////// ESTE CODIGO ES PARA PONER LA PANTALLA DE IMPRIMIR AL AGREGARSE LOS DATOS
+
+					//var x = screen.width/2 - 1000/2;
+					//var y = screen.height/2 - 600/2;
+                    //var ventana=window.open('print.php?id='+id_print+'','_blank','height='+screen.height+',width='+screen.width); 
+					//alert("imprimiendo formulario");
+					
+				}
+				
+			}
+		})  
+		
+	   return false;
+	}); */
+
+	$(".exito_insert").click(function(){
+		
+		location.reload();
+	});
+	
+	
+	
+
+	
+	
+
+	
+</script>
+</head>
+
+<body>
+
+<script>
+
+$(document).ready(function() {
+    $("#subbut").click(function() {
+        $.post($("#firstform").attr("action"), $("#firstform").serialize(),
+          function(data) {
+            $("#msg").append(data);
+            $.post($("#secondform").attr("action"), $("#secondform").serialize(),
+              function(data) {
+                $("#msg").append(data);
+              });
+          });
+      });
+  });
+
+</script>
+<button id="subbut">Submit both forms</button>
+<form id="firstform" action="test.php">
+</form>
+<form id="secondform" action="test2.php">
+</form>
+
+
+<div id="msg"></div>
+</body>
+
+
+
+
+
+<div class="exito_insert"></div>
+
+</body>
+</html>
