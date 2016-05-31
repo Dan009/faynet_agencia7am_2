@@ -1,3 +1,15 @@
+<?php 
+
+// BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
+    $consulta_property_tenant = "SELECT * FROM tenants_contact WHERE id_request='$id_request'";
+    $resultado_property_tenant = mysqli_query($conexion,$consulta_property_tenant);
+    $fila_property_tenant = mysqli_fetch_array($resultado_property_tenant);
+
+       // var_dump($fila_property_tenant);
+
+
+?>
+
 <!-- COMPANY CUSTOMER CONTACT-->
     <div class="div_form_request" >
 
@@ -70,19 +82,19 @@
 
                     </div>
 
-                       <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 2%;">
+                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 10px;">
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="809" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],0,3);*/ ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],3,-6);*/ ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],6,-1); */?>" disabled="disabled" />
 
                         </div>
 
@@ -94,20 +106,20 @@
                         [Company Initials] Cell Phone
 
                     </div>
-
-                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 2%;">
+ 
+                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 10px;">
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="809" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],0,3);*/ ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],3,-6);*/ ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php /*echo substr($fila_property_manager['contact_office_phone'],6,-1); */?>" disabled="disabled" />
 
                         </div>
 
@@ -119,7 +131,6 @@
         </div>
 
     </div>                    
-
 
 <!-- TENANT INFO -->
 
@@ -149,9 +160,20 @@
 
                     </div>
 
-                    <input type="text" placeholder="ENTER CUSTOMER COMPANY NAME ..." style="width: 94%;height: 33px;position: relative;margin: 12px 0 -7px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" />
+                        <?php 
 
-                    <input type="text" placeholder="ENTER CUSTOMER COMPANY NAME ..." style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" />
+                            // BUSCAMOS EL NOMBRE DE LA COMPAÑIA
+                                $consulta_company_name = "SELECT user_name FROM usuarios WHERE id='".$fila_property_tenant['company']."'";
+                                $resultado_company_name = mysqli_query($conexion,$consulta_company_name);
+                                $fila_company_name = mysqli_fetch_array($resultado_company_name);/**/
+
+                                    //var_dump($fila_company_name);
+
+                        ?>
+
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 -7px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" disabled="disabled" value="<?php echo strtoupper($fila_company_name['user_name']); ?>" />
+
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" disabled="disabled" />
 
 
                 </div>
@@ -163,9 +185,9 @@
 
                     </div>
 
-                    <input type="text" placeholder="ENTER COMPANY CUSTOMER EMAIL ..." style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" />
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo strtoupper($fila_property_tenant['contact_email']); ?>" disabled />
 
-                    <input type="text" placeholder="ENTER COMPANY CUSTOMER EMAIL ..." style="width: 94%;height: 33px;position: relative;margin: -12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" />
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: -12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" disabled="disabled" />
 
 
                 </div>   
@@ -177,7 +199,7 @@
 
                     </div>
 
-                      <input type="text" placeholder="ENTER PROPERTY MANAGEMENT EMAIL ..." style="width: 94%;height: 33px;position: relative;margin: 15px 0 0 8px;padding: 7px;bottom: 10px;border: 2px solid #000;" /> 
+                      <input type="text" placeholder="ENTER PROPERTY MANAGEMENT EMAIL ..." style="width: 94%;height: 33px;position: relative;margin: 15px 0 0 8px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo strtoupper($fila_property_tenant['contact_name']); ?>" disabled /> 
 
 
                 </div>
@@ -203,19 +225,19 @@
 
                     </div>
 
-                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 2%;">
+                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 10px;">
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="809" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],3,-4); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 
@@ -228,19 +250,19 @@
 
                     </div>
 
-                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 2%;">
+                        <div class="container_contact_number" style="width: 56%;height: 81px;position: relative;left: 10px;">
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="809" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],3,-4); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 

@@ -346,8 +346,8 @@
     </div>
 
 <!-- PROPERTY MANAGEMENT INFO -->
-
     <div class="div_form_request">
+    
         <div class="container_cpe_box_property_management_data">
 
             <div class="header-info" style="border: 0; margin-top: -0.5%;">
@@ -425,19 +425,19 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],3,-6); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 
-                 </div>  
+                </div>  
 
                 <div class="container_second_property_number">
 
@@ -450,15 +450,15 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],3,-5); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 
