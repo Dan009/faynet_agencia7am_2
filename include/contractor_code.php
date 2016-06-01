@@ -15,7 +15,11 @@
 
     
 	//INSERTA LOS DATOS DEL TENANT'S CONTACT
+<<<<<<< HEAD
 		/*if(intval($_POST['company_tenant']) > 0){
+=======
+		if(intval($_POST['company_tenant']) > 0){
+>>>>>>> origin/master
 			
 			$consulta_tenant ="INSERT INTO tenants_contact (company,contact_name,contact_office_number,contact_cell_number,contact_email,id_request,type) VALUES('".$company_tenant."','".$contact_name_tenant."','".$contact_office_number_tenant."','".$contact_cell_number_tenant."','".$contact_email_tenant."','".$last_id."','".$type."')";	
 			

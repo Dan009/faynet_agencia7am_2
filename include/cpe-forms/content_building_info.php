@@ -459,7 +459,11 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
+<<<<<<< HEAD
                              <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
+=======
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-1); ?>" disabled="disabled" />
+>>>>>>> origin/master
 
                         </div>
 

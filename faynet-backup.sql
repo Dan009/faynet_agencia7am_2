@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 01-06-2016 a las 20:34:24
+=======
+-- Tiempo de generación: 31-05-2016 a las 20:41:07
+>>>>>>> origin/master
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -632,7 +636,73 @@ INSERT INTO `general_information` (`id`, `time_code`, `engineering_id`, `custome
 
 CREATE TABLE IF NOT EXISTS `highway_request_civil_plans` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
   `servicey_eng_isp_plans_no_survey` int(16) NOT NULL,
+=======
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `task_request_highway_civil` varchar(255) NOT NULL,
+  `date_task_request_highway_civil` varchar(255) NOT NULL,
+  `expected_return_highway_civil` varchar(255) NOT NULL,
+  `traffic_proposed_highway_civil` varchar(255) NOT NULL,
+  `from_highway_civil` varchar(255) NOT NULL,
+  `to_highway_civil` varchar(255) NOT NULL,
+  `scope_work_highway_civil` varchar(255) NOT NULL,
+  `engineering_stamped_highway` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `highway_request_civil_plans`
+--
+
+INSERT INTO `highway_request_civil_plans` (`id`, `service_number`, `id_request`, `task_request_highway_civil`, `date_task_request_highway_civil`, `expected_return_highway_civil`, `traffic_proposed_highway_civil`, `from_highway_civil`, `to_highway_civil`, `scope_work_highway_civil`, `engineering_stamped_highway`) VALUES
+(1, '', '5', 'asdfasdf', 'asdfasdf', 'sdfasdf', 'no', 'asdfasd', 'fasdfasdf', 'asdfasdfasdf', 'si');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `highway_traffic_pole_plan`
+--
+
+CREATE TABLE IF NOT EXISTS `highway_traffic_pole_plan` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `other_highway_task_request_number` varchar(255) NOT NULL,
+  `other_highway_date_task` varchar(255) NOT NULL,
+  `other_highway_expected_date` varchar(255) NOT NULL,
+  `other_highway_proposed_tmp` varchar(255) NOT NULL,
+  `other_highway_traffic` varchar(255) NOT NULL,
+  `other_highway_from` varchar(255) NOT NULL,
+  `other_highway_to` varchar(255) NOT NULL,
+  `other_highway_scope` varchar(255) NOT NULL,
+  `other_highway_engineering_plans_pole` varchar(250) NOT NULL,
+  `designerid` int(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `highway_traffic_pole_plan`
+--
+
+INSERT INTO `highway_traffic_pole_plan` (`id`, `service_number`, `id_request`, `other_highway_task_request_number`, `other_highway_date_task`, `other_highway_expected_date`, `other_highway_proposed_tmp`, `other_highway_traffic`, `other_highway_from`, `other_highway_to`, `other_highway_scope`, `other_highway_engineering_plans_pole`, `designerid`) VALUES
+(1, '', '5', 'sdfdf', 'dsafsdf', 'sdfsdf', 'dsfsdf', 'si', 'sdfs', 'fsdfs', 'sdfsdf', 'si', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inside_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `inside_plans` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `assigned_company_site_survey_building` int(16) NOT NULL,
+  `contact_site_survey_building` int(16) NOT NULL,
+  `assigned_company_isp_eng_plans_building` int(16) NOT NULL,
+  `assigned_company_eng_isp_plans_no_survey` int(16) NOT NULL,
+>>>>>>> origin/master
   `assigned_company_site_survey_isp_as_built` int(250) NOT NULL,
   `contact_site_survey_isp_as_built` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_isp_as_built` int(16) NOT NULL,
@@ -1230,7 +1300,11 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+>>>>>>> origin/master
 
 --
 -- Volcado de datos para la tabla `temp`
@@ -1258,6 +1332,7 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (86, 'file-1464374973.jpg', '0000-00-00', '1464374949-2', 'inside_plan', '', '1433778601-1.jpg'),
 (87, 'file-1464376323.jpg', '0000-00-00', '1464376014-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (88, 'file-1464378434.jpg', '0000-00-00', '1464378403-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+<<<<<<< HEAD
 (89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (91, 'file-1464794902.jpg', '0000-00-00', '1464793162-2', 'inside_plan', 'canvas-14647956852.png', 'libros-de-la-biblia.jpg'),
 (95, 'file-1464802959.jpg', '0000-00-00', '1464802950-2', 'inside_plan', '', 'food-and-drinks.jpg'),
@@ -1300,6 +1375,9 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (132, 'file-1464811419.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
 (133, 'file-1464811483.jpg', '0000-00-00', '1464811460-3', 'inside_plan', '', '5077_021.jpg'),
 (134, 'file-1464812405.jpg', '0000-00-00', '1464812390-3', 'inside_plan', '', 'libros-de-la-biblia.jpg');
+=======
+(89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -1330,6 +1408,7 @@ INSERT INTO `tenants_contact` (`id`, `company`, `contact_name`, `contact_office_
 
 --
 -- Estructura de tabla para la tabla `underground_outsite_manhole_plan`
+<<<<<<< HEAD
 --
 
 CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
@@ -1438,3 +1517,110 @@ INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page
 
 0
 
+=======
+--
+
+CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `company_underground_manhole` varchar(255) NOT NULL,
+  `contact_underground_manhole` varchar(255) NOT NULL,
+  `cust_cable_count_underground_manhole` varchar(255) NOT NULL,
+  `cust_tie_loc_underground_manhole` varchar(255) NOT NULL,
+  `scope_work_underground_manhole` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `underground_outsite_manhole_plan`
+--
+
+INSERT INTO `underground_outsite_manhole_plan` (`id`, `service_number`, `id_request`, `company_underground_manhole`, `contact_underground_manhole`, `cust_cable_count_underground_manhole`, `cust_tie_loc_underground_manhole`, `scope_work_underground_manhole`) VALUES
+(1, '', '1458155698-2', '2', '1', 'asdfasdf', 'asdfasdfasdf', 'asdfasdfasdf'),
+(2, '', '5', '2', '1', 'sdfgsdfgsdfg', 'sdfgsdfgsdfg', 'fdgsdfgsdfgsdfg'),
+(3, '', '36', '2', '1', 'asdfasdf', 'dfasdfasd', 'fasdfasdfasdfasdfa');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `uploaded_file`
+--
+
+CREATE TABLE IF NOT EXISTS `uploaded_file` (
+  `id` int(250) NOT NULL AUTO_INCREMENT,
+  `type` varchar(250) NOT NULL,
+  `estado` int(250) NOT NULL,
+  `file` varchar(250) NOT NULL,
+  `canvas` varchar(250) NOT NULL,
+  `code` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Volcado de datos para la tabla `uploaded_file`
+--
+
+INSERT INTO `uploaded_file` (`id`, `type`, `estado`, `file`, `canvas`, `code`) VALUES
+(10, 'manhole', 1, 'file-1458228578.jpeg', 'canvas-14582285842.png', '1458228563-2'),
+(11, 'civil_plan', 1, 'file-1458247314.jpg', 'canvas-14582473212.png', '1458247293-2'),
+(12, 'inside_plan', 1, 'file-1459565458.jpg', 'canvas-1459565458.png', '1459565458-2');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `fecha` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `estado` int(1) NOT NULL,
+  `company` int(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `user_name`, `password`, `nombre`, `apellido`, `fecha`, `foto`, `email`, `estado`, `company`) VALUES
+(1, 'admin', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'admin', '', '', '', '', 1, 0),
+(2, 'lightower', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'lightower', 'empresa', '', '', '', 2, 0),
+(3, 'gulinc', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'gulinc', 'contratista', '', '', '', 3, 2),
+(4, '7am', '538dfc17d6139d53b06d3a1b52f81d7f', 'agencia7am', 'contratista', '04-05-2016', '', 'desarrollo@agencia7am.com', 3, 0),
+(5, 'clarodom', '9679014f0b355e4ae53c9a9297cd18a0', 'Claro Dominicano', 'empresa', '05-05-2016', '', 'clarodom@claro.do', 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `utility_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `utility_plans` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `redline_page_utility` varchar(255) NOT NULL,
+  `redline_file_utility` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `utility_plans`
+--
+
+INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page_utility`, `redline_file_utility`) VALUES
+(1, '32165412', '1', 'red_line_page_utility_1454616907.jpg', 'red_line_file_utility_1454616907.jpg'),
+(2, '65656', '2', 'red_line_page_utility_1454704352.jpg', 'red_line_file_utility_1454704352.jpg');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+>>>>>>> origin/master

@@ -299,6 +299,7 @@ $(document).ready(function() {
 								<label for="no_sp_eng_plans" > No </label>
 							</div>
 						
+<<<<<<< HEAD
 						</div>
 					</div>
 					<div class="container_click_option_inside" >
@@ -323,6 +324,32 @@ $(document).ready(function() {
 							</select>
 						
 						</div>
+=======
+						</div>
+					</div>
+					<div class="container_click_option_inside" >
+					<div class="container_option_survey" >
+						
+						<div class="title_container_option_survey" >
+							<div class="text_title_container_option_survey"> ENG. ISP PLANS </div>
+							<input type="checkbox" name="active_eng_isp_plans" class="click_check" />
+						</div>
+						<div class="container_click_check_inside" >
+						<div class="div_select_survey">
+							
+							<select name="company_eng_isp_plans_no_survey" >
+								<option> Assigned company </option>
+								<?php 
+									$consulta_company="SELECT * FROM company WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['company']; ?></option>
+								<?php } ?>										
+							</select>
+						
+						</div>
+>>>>>>> origin/master
 	
 						</div>
 						
@@ -353,6 +380,38 @@ $(document).ready(function() {
 						<div class="title_container_option_survey" >
 							<div class="text_title_container_option_survey"> SITE SURVEY </div>
 							<input type="checkbox" name="active_site_survey_as_built" class="click_check" />
+<<<<<<< HEAD
+						</div>
+						<div class="container_click_check_inside" >
+						<div class="div_select_survey">
+							
+							<select name="company_site_survey_isp_as_built" >
+								<option> Assigned company </option>
+								<?php 
+									$consulta_company="SELECT * FROM company WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['company']; ?></option>
+								<?php } ?>										
+							</select>
+						
+						</div>
+						<div class="div_select_survey">
+							
+							<select name="contact_site_survey_isp_as_built" >
+								<option> Contact</option>
+								<?php 
+									$consulta_company="SELECT * FROM contact WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['contact']; ?></option>
+								<?php } ?>										
+							</select>
+						
+=======
+>>>>>>> origin/master
 						</div>
 						<div class="container_click_check_inside" >
 						<div class="div_select_survey">
@@ -383,7 +442,10 @@ $(document).ready(function() {
 							</select>
 						
 						</div>
+<<<<<<< HEAD
+=======
 						</div>
+>>>>>>> origin/master
 						
 					</div>
 					<div class="container_option_survey" >
@@ -428,6 +490,8 @@ $(document).ready(function() {
 								<label for="no_passive_filter" > No </label>
 							</div>
 						
+<<<<<<< HEAD
+=======
 						</div>
 					</div>
 					<div class="container_click_option_inside" >
@@ -489,8 +553,73 @@ $(document).ready(function() {
 								<?php } ?>										
 							</select>
 						
+>>>>>>> origin/master
+						</div>
+					</div>
+					<div class="container_click_option_inside" >
+					<div class="container_option_survey" >
+						
+						<div class="title_container_option_survey" >
+							<div class="text_title_container_option_survey"> SITE SURVEY </div>
+							<input type="checkbox" name="active_site_survey_passive_filter" class="click_check" />
+						</div>
+						<div class="container_click_check_inside" >
+						<div class="div_select_survey">
+							
+							<select name="company_site_survey_passive_filter_survey" >
+								<option> Assigned company </option>
+								<?php 
+									$consulta_company="SELECT * FROM company WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['company']; ?></option>
+								<?php } ?>										
+							</select>
+						
+						</div>
+<<<<<<< HEAD
+						<div class="div_select_survey">
+							
+							<select name="contact_site_survey_passive_filter_survey" >
+								<option> Contact</option>
+								<?php 
+									$consulta_company="SELECT * FROM contact WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['contact']; ?></option>
+								<?php } ?>										
+							</select>
+						
 						</div>
 						</div>
+						
+					</div>
+					<div class="container_option_survey" >
+						
+						<div class="title_container_option_survey" >
+							<div class="text_title_container_option_survey"> ENG. ISP PLANS </div>
+							<input type="checkbox" name="active_eng_isp_plans_passive_filter" class="click_check" />
+						</div>
+						<div class="container_click_check_inside" >
+						<div class="div_select_survey">
+							
+							<select name="company_eng_isp_plans_passive_filter_survey" >
+								<option> Assigned company </option>
+								<?php 
+									$consulta_company="SELECT * FROM company WHERE estado='1' ";
+									$resultado_company= mysqli_query($conexion,$consulta_company);
+									while($fila_company= mysqli_fetch_array($resultado_company)){
+								?>										
+									<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['company']; ?></option>
+								<?php } ?>										
+							</select>
+						
+						</div>
+						</div>
+=======
+>>>>>>> origin/master
 				
 						
 					</div>
