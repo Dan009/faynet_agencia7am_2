@@ -359,7 +359,7 @@
         .container_cpe_box_property_management_data{
             width: 100%;
             margin: 0 auto; 
-            height: 527px; 
+            height: 511px; 
             border: 2px solid #000;
           
 
@@ -458,12 +458,10 @@
 /*----      LIT EQUIP CLASSES AND IDS   ------*/
 /*-------------------------------------------*/
     .container_power_panel_photo1{
-        width: 100%;
-        height: inherit;
-        float: left;
-        background: url('../images/power_panel.jpg') no-repeat;
-        background-size: 100% 100%;
-
+         background: rgba(0, 0, 0, 0) url("../images/power_panel.jpg") no-repeat scroll 0 0 / 100% 100%;
+            float: left;
+            height: 271px;
+            width: 217px;
     }
     .container_power_panel_photo2{
         width: 100%;

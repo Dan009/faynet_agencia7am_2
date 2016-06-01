@@ -13,6 +13,7 @@
     
 
 ?>
+     
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
         <div class="container_cpe_service_info">
@@ -159,7 +160,7 @@
 
                 </div>
 
-                  <input type="text" style="width: 83%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 2px solid #000;" value="<?php echo $fila_information['city']; ?>" disabled />
+                  <input type="text" style="width: 83%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 2px solid #000;"  />
 
                 <div class="container_state_building_info1">
                     <span> STATE </span>
@@ -243,11 +244,11 @@
 
                         <span> Start Time: </span>
 
-                           <input type="text" value="08" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
+                           <input type="text" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" value="00" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">AM</sup>
 
@@ -257,11 +258,11 @@
 
                          <span style="display: block;"> End Time: </span>
 
-                           <input type="text" value="04" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
+                           <input type="text" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" value="00" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">PM</sup>
                        
@@ -339,15 +340,40 @@
 
            </div>
 
-           <div id="dvBuildingPicture"></div>
+           <div id="dvBuildingPicture">
+			
+				<div class="containerprueba">
+
+						<form action="javascript:void(0);" id="form_archivo">
+							<div class="div_file_inside" >
+								<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
+							   <input type="file" name="archivo" id="archivo" />
+							   Yo soy <?php echo $time_code; ?>
+							</div>  
+							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>"/>
+							   <input type="hidden" name="inside" id="type" value="building_picture"/>
+							   <input type="submit" id="boton_subir" value="Subir" class="btn btn-success" />
+							   <progress id="barra_de_progreso" value="0" max="100"></progress>
+						</form>
+						
+					<div id="archivos_subidos"></div>
+					<div id="respuesta" class="alert"></div>
+					<input type="button" class="copypaste_b" value="Copy Paste">
+					
+					<div class="closeVentanaCopyPaste"></div>	
+				
+				</div>
+           
+
+           </div>
 
        </div>
 
     </div>
 
 <!-- PROPERTY MANAGEMENT INFO -->
-
     <div class="div_form_request">
+    
         <div class="container_cpe_box_property_management_data">
 
             <div class="header-info" style="border: 0; margin-top: -0.5%;">
@@ -425,23 +451,23 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],3,-6); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
 
                         </div>
 
-                 </div>  
+                </div>  
 
                 <div class="container_second_property_number">
 
-                    <div class="name" style="width: 34%;margin: 0 auto;margin-right: 20%;">
+                    <div class="name" style="width: 263px;margin: 0 auto;margin-right: 20%;">
                         Property Management Cell Phone
 
                     </div>
@@ -450,15 +476,15 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],3,-5); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 

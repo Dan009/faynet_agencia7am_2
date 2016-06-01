@@ -4,10 +4,13 @@ include("../confi/conf.inc.php");
 
 			
 			  //$time_code ="1457107892-2";
-			  $consulta_imagen="SELECT * FROM temp WHERE code='".$_SESSION['time_code']."' ORDER BY id DESC ";
+			  //$consulta_imagen="SELECT * FROM temp WHERE code='".$_SESSION['time_code']."' ORDER BY id DESC ";
+			  $consulta_imagen="SELECT * FROM temp WHERE code='1464810064-3' ORDER BY id DESC ";
 			  $resultado_imagen= mysqli_query($conexion,$consulta_imagen);	
 			  $fila_imagen= mysqli_fetch_array($resultado_imagen);
-			  
+					
+					var_dump($consulta_imagen);
+					
 			  $imagen_file = $fila_imagen['file'];
 			  $type_plan = $fila_imagen['type'];
 			  $file = "../archivos/temp/".$imagen_file;  // Dirección de la imagen
