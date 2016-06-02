@@ -3,7 +3,15 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 31-05-2016 a las 20:41:07
+=======
+<<<<<<< HEAD
+-- Tiempo de generación: 01-06-2016 a las 20:34:24
+=======
+-- Tiempo de generación: 31-05-2016 a las 20:41:07
+>>>>>>> origin/master
+>>>>>>> origin/master
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -632,6 +640,12 @@ INSERT INTO `general_information` (`id`, `time_code`, `engineering_id`, `custome
 
 CREATE TABLE IF NOT EXISTS `highway_request_civil_plans` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  `servicey_eng_isp_plans_no_survey` int(16) NOT NULL,
+=======
+>>>>>>> origin/master
   `service_number` varchar(250) NOT NULL,
   `id_request` varchar(250) NOT NULL,
   `task_request_highway_civil` varchar(255) NOT NULL,
@@ -695,6 +709,10 @@ CREATE TABLE IF NOT EXISTS `inside_plans` (
   `contact_site_survey_building` int(16) NOT NULL,
   `assigned_company_isp_eng_plans_building` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_no_survey` int(16) NOT NULL,
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
   `assigned_company_site_survey_isp_as_built` int(250) NOT NULL,
   `contact_site_survey_isp_as_built` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_isp_as_built` int(16) NOT NULL,
@@ -1292,7 +1310,15 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+=======
+<<<<<<< HEAD
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 --
 -- Volcado de datos para la tabla `temp`
@@ -1320,7 +1346,56 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (86, 'file-1464374973.jpg', '0000-00-00', '1464374949-2', 'inside_plan', '', '1433778601-1.jpg'),
 (87, 'file-1464376323.jpg', '0000-00-00', '1464376014-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (88, 'file-1464378434.jpg', '0000-00-00', '1464378403-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+<<<<<<< HEAD
 (89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
+=======
+<<<<<<< HEAD
+(89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(91, 'file-1464794902.jpg', '0000-00-00', '1464793162-2', 'inside_plan', 'canvas-14647956852.png', 'libros-de-la-biblia.jpg'),
+(95, 'file-1464802959.jpg', '0000-00-00', '1464802950-2', 'inside_plan', '', 'food-and-drinks.jpg'),
+(96, 'file-1464803010.jpg', '0000-00-00', '1464803000-2', 'inside_plan', '', 'food-and-drinks.jpg'),
+(97, 'file-1464803196.jpg', '0000-00-00', '1464803186-2', 'inside_plan', '', 'hd-1080p-wallpaper-1080p-backgrounds-hd-backgrounds-29099.jpg'),
+(98, 'file-1464803613.jpg', '0000-00-00', '1464803562-2', 'inside_plan', '', '1027_021.jpg'),
+(99, 'file-1464803700.jpg', '0000-00-00', '1464803661-3', 'inside_plan', '', '1027_021.jpg'),
+(100, 'file-1464803720.jpg', '0000-00-00', '1464803700-3', 'inside_plan', '', '5077_021.jpg'),
+(101, 'file-1464804699.jpg', '0000-00-00', '1464803720-3', 'inside_plan', '', '5077_021.jpg'),
+(102, 'file-1464805318.jpg', '0000-00-00', '1464805293-3', 'inside_plan', '', '1027_021.jpg'),
+(103, 'file-1464805500.jpg', '0000-00-00', '1464805490-3', 'inside_plan', '', '5077_021.jpg'),
+(104, 'file-1464805662.jpg', '0000-00-00', '1464805656-3', 'inside_plan', '', '5077_021.jpg'),
+(105, 'file-1464805662.jpg', '0000-00-00', '1464805656-3', 'inside_plan', '', '5077_021.jpg'),
+(106, 'file-1464805670.jpg', '0000-00-00', '1464805662-3', 'inside_plan', '', '5077_021.jpg'),
+(107, 'file-1464805670.jpg', '0000-00-00', '1464805662-3', 'inside_plan', '', '5077_021.jpg'),
+(108, 'file-1464806251.jpg', '0000-00-00', '1464806243-3', 'inside_plan', '', '5077_021.jpg'),
+(109, 'file-1464806262.jpg', '0000-00-00', '1464806251-3', 'inside_plan', '', '5077_021.jpg'),
+(110, 'file-1464806478.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
+(111, 'file-1464806699.jpg', '0000-00-00', '1464806689-3', 'inside_plan', '', '5077_021.jpg'),
+(112, 'file-1464806737.jpg', '0000-00-00', '1464806699-3', 'inside_plan', '', '5077_021.jpg'),
+(113, 'file-1464807481.jpg', '0000-00-00', '1464807048-2', 'inside_plan', '', '1077_006.jpg'),
+(114, 'file-1464808021.jpg', '0000-00-00', '1464808010-3', 'inside_plan', '', '5077_021.jpg'),
+(115, 'file-1464808234.jpg', '0000-00-00', '1464808228-3', 'inside_plan', '', '5077_021.jpg'),
+(116, 'file-1464808331.jpg', '0000-00-00', '1464808315-3', 'inside_plan', '', '5077_021.jpg'),
+(117, 'file-1464808646.jpg', '0000-00-00', '1464808627-3', 'inside_plan', '', '5077_021.jpg'),
+(118, 'file-1464808779.jpg', '0000-00-00', '1464808769-3', 'inside_plan', '', '5077_021.jpg'),
+(119, 'file-1464808874.jpg', '0000-00-00', '1464808769-3', 'inside_plan', '', '5077_021.jpg'),
+(120, 'file-1464809699.jpg', '0000-00-00', '1464809673-3', 'inside_plan', '', '5077_021.jpg'),
+(121, 'file-1464809835.jpg', '0000-00-00', '1464809805-3', 'inside_plan', '', '5077_021.jpg'),
+(122, 'file-1464809903.jpg', '0000-00-00', '1464809896-3', 'inside_plan', '', '5077_021.jpg'),
+(123, 'file-1464810064.jpg', '0000-00-00', '1464810064-3', 'inside_plan', '', '5077_021.jpg'),
+(124, 'file-1464810365.jpg', '0000-00-00', '1464810350-3', 'inside_plan', '', '5077_021.jpg'),
+(125, 'file-1464810473.jpg', '0000-00-00', '1464810467-3', 'inside_plan', '', '5077_021.jpg'),
+(126, 'file-1464810516.jpg', '0000-00-00', '1464810509-3', 'inside_plan', '', '5077_021.jpg'),
+(127, 'file-1464810743.jpg', '0000-00-00', '1464810724-3', 'inside_plan', '', '5077_021.jpg'),
+(128, 'file-1464810994.jpg', '0000-00-00', '1464810981-3', 'inside_plan', '', '5077_021.jpg'),
+(129, 'file-1464811210.jpg', '0000-00-00', '1464811193-3', 'inside_plan', '', '5077_021.jpg'),
+(130, 'file-1464811290.jpg', '0000-00-00', '1464811284-3', 'inside_plan', '', '5077_021.jpg'),
+(131, 'file-1464811348.jpg', '0000-00-00', '1464811339-3', 'inside_plan', '', '5077_021.jpg'),
+(132, 'file-1464811419.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
+(133, 'file-1464811483.jpg', '0000-00-00', '1464811460-3', 'inside_plan', '', '5077_021.jpg'),
+(134, 'file-1464812405.jpg', '0000-00-00', '1464812390-3', 'inside_plan', '', 'libros-de-la-biblia.jpg');
+=======
+(89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -1351,6 +1426,9 @@ INSERT INTO `tenants_contact` (`id`, `company`, `contact_name`, `contact_office_
 
 --
 -- Estructura de tabla para la tabla `underground_outsite_manhole_plan`
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 --
 
 CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
@@ -1456,3 +1534,117 @@ INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+0
+
+=======
+>>>>>>> origin/master
+--
+
+CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `company_underground_manhole` varchar(255) NOT NULL,
+  `contact_underground_manhole` varchar(255) NOT NULL,
+  `cust_cable_count_underground_manhole` varchar(255) NOT NULL,
+  `cust_tie_loc_underground_manhole` varchar(255) NOT NULL,
+  `scope_work_underground_manhole` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `underground_outsite_manhole_plan`
+--
+
+INSERT INTO `underground_outsite_manhole_plan` (`id`, `service_number`, `id_request`, `company_underground_manhole`, `contact_underground_manhole`, `cust_cable_count_underground_manhole`, `cust_tie_loc_underground_manhole`, `scope_work_underground_manhole`) VALUES
+(1, '', '1458155698-2', '2', '1', 'asdfasdf', 'asdfasdfasdf', 'asdfasdfasdf'),
+(2, '', '5', '2', '1', 'sdfgsdfgsdfg', 'sdfgsdfgsdfg', 'fdgsdfgsdfgsdfg'),
+(3, '', '36', '2', '1', 'asdfasdf', 'dfasdfasd', 'fasdfasdfasdfasdfa');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `uploaded_file`
+--
+
+CREATE TABLE IF NOT EXISTS `uploaded_file` (
+  `id` int(250) NOT NULL AUTO_INCREMENT,
+  `type` varchar(250) NOT NULL,
+  `estado` int(250) NOT NULL,
+  `file` varchar(250) NOT NULL,
+  `canvas` varchar(250) NOT NULL,
+  `code` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Volcado de datos para la tabla `uploaded_file`
+--
+
+INSERT INTO `uploaded_file` (`id`, `type`, `estado`, `file`, `canvas`, `code`) VALUES
+(10, 'manhole', 1, 'file-1458228578.jpeg', 'canvas-14582285842.png', '1458228563-2'),
+(11, 'civil_plan', 1, 'file-1458247314.jpg', 'canvas-14582473212.png', '1458247293-2'),
+(12, 'inside_plan', 1, 'file-1459565458.jpg', 'canvas-1459565458.png', '1459565458-2');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `fecha` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `estado` int(1) NOT NULL,
+  `company` int(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `user_name`, `password`, `nombre`, `apellido`, `fecha`, `foto`, `email`, `estado`, `company`) VALUES
+(1, 'admin', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'admin', '', '', '', '', 1, 0),
+(2, 'lightower', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'lightower', 'empresa', '', '', '', 2, 0),
+(3, 'gulinc', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'gulinc', 'contratista', '', '', '', 3, 2),
+(4, '7am', '538dfc17d6139d53b06d3a1b52f81d7f', 'agencia7am', 'contratista', '04-05-2016', '', 'desarrollo@agencia7am.com', 3, 0),
+(5, 'clarodom', '9679014f0b355e4ae53c9a9297cd18a0', 'Claro Dominicano', 'empresa', '05-05-2016', '', 'clarodom@claro.do', 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `utility_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `utility_plans` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `redline_page_utility` varchar(255) NOT NULL,
+  `redline_file_utility` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `utility_plans`
+--
+
+INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page_utility`, `redline_file_utility`) VALUES
+(1, '32165412', '1', 'red_line_page_utility_1454616907.jpg', 'red_line_file_utility_1454616907.jpg'),
+(2, '65656', '2', 'red_line_page_utility_1454704352.jpg', 'red_line_file_utility_1454704352.jpg');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master

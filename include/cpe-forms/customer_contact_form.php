@@ -1,5 +1,13 @@
 <?php 
+<<<<<<< HEAD
     
+=======
+<<<<<<< HEAD
+    
+=======
+
+>>>>>>> origin/master
+>>>>>>> origin/master
 // BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
     $consulta_property_tenant = "SELECT * FROM tenants_contact WHERE id_request='$id_request'";
     $resultado_property_tenant = mysqli_query($conexion,$consulta_property_tenant);
@@ -237,7 +245,15 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
+<<<<<<< HEAD
                              <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],5,-1); ?>" disabled="disabled" />
+=======
+<<<<<<< HEAD
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],5,-1); ?>" disabled="disabled" />
+=======
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_office_number'],6,-1); ?>" disabled="disabled" />
+>>>>>>> origin/master
+>>>>>>> origin/master
 
                         </div>
 
@@ -262,7 +278,15 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
+<<<<<<< HEAD
                              <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],5,-1); ?>" disabled="disabled" />
+=======
+<<<<<<< HEAD
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],5,-1); ?>" disabled="disabled" />
+=======
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_tenant['contact_cell_number'],6,-1); ?>" disabled="disabled" />
+>>>>>>> origin/master
+>>>>>>> origin/master
 
                         </div>
 

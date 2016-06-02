@@ -13,6 +13,7 @@
 
 
 ?>
+<<<<<<< HEAD
 
 <script type="text/javascript">
 
@@ -193,6 +194,8 @@ $(document).ready(function() {
 
 </script>
 
+=======
+>>>>>>> origin/master
      
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
@@ -528,16 +531,30 @@ $(document).ready(function() {
 							<div class="div_file_inside" >
 								<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
 							   <input type="file" name="archivo" id="archivo" />
+<<<<<<< HEAD
 					
 							</div>  
 							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>" />
 							   <input type="hidden" name="inside" id="type" value="building_picture"/>
 							   <input type="button" id="boton_subir" value="Subir" class="btn btn-success" />
+=======
+							   Yo soy <?php echo $time_code; ?>
+							</div>  
+							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>"/>
+							   <input type="hidden" name="inside" id="type" value="building_picture"/>
+							   <input type="submit" id="boton_subir" value="Subir" class="btn btn-success" />
+>>>>>>> origin/master
 							   <progress id="barra_de_progreso" value="0" max="100"></progress>
 						</form>
 						
 					<div id="archivos_subidos"></div>
 					<div id="respuesta" class="alert"></div>
+<<<<<<< HEAD
+=======
+					<input type="button" class="copypaste_b" value="Copy Paste">
+					
+					<div class="closeVentanaCopyPaste"></div>	
+>>>>>>> origin/master
 				
 				</div>
            
@@ -635,7 +652,15 @@ $(document).ready(function() {
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
+<<<<<<< HEAD
                              <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
+=======
+<<<<<<< HEAD
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
+=======
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-1); ?>" disabled="disabled" />
+>>>>>>> origin/master
+>>>>>>> origin/master
 
                         </div>
 
