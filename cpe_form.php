@@ -14,7 +14,164 @@
 
  ?>
 
- <script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
+<script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
+
+<script type="text/javascript">
+
+    /////////////////////////////////////////////////////////////
+    //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
+    ///////////////////////////////////////////////////////////
+ 
+        function subirArchivos() {
+           /* var nombreArchivo = $("#nombre_archivo").val();
+            var code = $("#code").val();
+            var type = $("#type").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "include/subir_archivo.php",
+                    data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
+                    success: function(data){
+                        $(".temp").append(data);
+
+                    }
+
+                });*/
+
+            $("#archivo").upload('include/subir_archivo.php',
+            {
+                nombre_archivo: $("#nombre_archivo").val(),
+                code: $("#code").val(),
+                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+
+            },
+            
+          function(respuesta) {
+                //Subida finalizada.
+                $("#barra_de_progreso").val(0);
+
+                    if (respuesta === 0) {
+                        mostrarRespuesta('El archivo NO se ha podido subir.', false);
+                        $("#nombre_archivo, #archivo").val('');
+                    } else {
+                        var type =  $("#type").val()
+                        
+                        $.post("include/select_temp.php",
+                            {
+                                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+
+                            } , function (data) {
+                         $(".temp").append(data);
+                        });/**/
+
+                        /*$.get("include/select_temp.php", function (data) {
+                         $(".temp").append(data);
+                        });*/
+                        
+                        $(".editor_imagenes").fadeIn(200);
+                        mostrarRespuesta('Subido Correctamente.', true);
+                        mostrarArchivos();
+                        
+                        $.get("include/editor.php", function (data) {
+                            $(".editor_imagenes_content").append(data);
+                            
+                        });
+                        
+                        $("body").css({ 'overflow': "hidden" });
+                        
+                        window.stop();
+                    }
+                        
+                }, function(progreso, valor) {
+                    //Barra de progreso.
+                    $("#barra_de_progreso").val(valor);
+
+                });
+
+
+        }
+
+    /////////////////////////////////////////////////////////////
+    //////////        PARA ELIMINAR ARCHIVOS       /////////////
+    ///////////////////////////////////////////////////////////
+                function eliminarArchivos() {
+                    var id = $(".eliminar_archivo").attr('id')
+                    alert(id);  
+        
+                    $.ajax({
+                        url: 'include/eliminar_archivo.php',
+                        type: 'POST',
+                        timeout: 10000,
+                        data: {id: id},
+                        error: function() {
+                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);
+                        },
+                        success: function(respuesta) {
+                            if (respuesta == 1) {
+                                mostrarRespuesta('El archivo ha sido eliminado.', true);
+                                
+                            } else {
+                                 
+                                mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
+                                                       
+                            }
+                            
+                        }
+                    });
+                }
+
+    /////////////////////////////////////////////////////////////
+    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+    ///////////////////////////////////////////////////////////
+
+        function mostrarArchivos() {
+            code = $("#code").val()
+            type =  $("#type").val()
+            
+            $.ajax({
+                url: 'include/mostrar_archivos.php',
+                type: 'POST',
+                data: {type:type, code:code},
+                success: function(data) {
+                        
+                        $("#archivos_subidos").append(data);
+                    
+                }
+            });
+        }
+
+    /////////////////////////////////////////////////////////////
+    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+    ///////////////////////////////////////////////////////////
+        function mostrarRespuesta(mensaje, ok){
+            $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
+            if(ok){
+                $("#respuesta").addClass('alert-success');
+            }else{
+                $("#respuesta").addClass('alert-danger');
+            }
+        }
+
+    /////////////////////////////////////////////////////////////
+    ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
+    ///////////////////////////////////////////////////////////
+
+            $(document).ready(function() {
+                mostrarArchivos();
+                $("#boton_subir").on('click', function() {
+                    var name = $(this).attr('name');
+                    //alert(name)
+                    subirArchivos();
+                });
+                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+                    var archivo = $(this).parents('.row').eq(0).find('span').text();
+                    archivo = $.trim(archivo);
+                    eliminarArchivos(archivo);
+                });
+            });
+
+
+</script>
  
 <!--MUESTRA EL EDITOR DE IMAGENES-->
     <div id="copypaste">
@@ -159,157 +316,7 @@
 
 </script>
 
-<<<<<<< HEAD
 
-=======
-<script type="text/javascript">
-	/////////////////////////////////////////////////////////////
-	//////////PARA SUBIR ARCHIVOS /////////////
-	///////////////////////////////////////////////////////////
- 
-		function subirArchivos() {
-			$("#archivo").upload('include/subir_archivo.php',
-            {
-               	nombre_archivo: $("#nombre_archivo").val(),
-				code: $("#code").val(),
-				type: $("#type").val()
-				
-			},
-			
-	        function(respuesta) {
-	            //Subida finalizada.
-	            $("#barra_de_progreso").val(0);
-
-	                if (respuesta === 0) {
-	                    mostrarRespuesta('El archivo NO se ha podido subir.', false);
-	                    $("#nombre_archivo, #archivo").val('');
-	                } else {
-						var type =  $("#type").val();
-							
-								console.log("Comienza el select temp");
-							
-							/*$.ajax({
-								url: 'include/select_temp.php',
-								type: 'POST',
-								error: function() {
-									mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-								},
-								success: function(respuesta) {
-									alert("Llegue");
-									
-									if (respuesta == 1) {
-										mostrarRespuesta('Realizo algo.', true);
-										$(".temp").append(data);
-										
-									}else {
-										 
-										mostrarRespuesta('No hizo nada.', false);  
-															   
-									}
-									
-								}
-								
-							});*/
-						
-						$.get("include/select_temp.php", function (data) {
-						
-							$(".temp").append(data);
-						 
-	            		});/**/
-						
-						
-						$(".editor_imagenes").fadeIn(200);
-	                    mostrarRespuesta('Subido Correctamente.', true);
-						mostrarArchivos();
-	
-						$.get("include/editor.php", function (data) {
-							$(".editor_imagenes_content").append(data);
-	            		});
-						
-						$("body").css({ 'overflow': "hidden" });
-						
-						window.stop();
-						
-						
-	                }
-	                    
-	        	}, function(progreso, valor) {
-	                //Barra de progreso.
-	                $("#barra_de_progreso").val(valor);
-
-	            });
-
-    	}
-
-			//Eliminar archivo
-	            function eliminarArchivos() {
-					var id = $(".eliminar_archivo").attr('id')
-					alert(id);  
-		
-	                $.ajax({
-	                    url: 'include/eliminar_archivo.php',
-	                    type: 'POST',
-	                    timeout: 10000,
-	                    data: {id: id},
-	                    error: function() {
-	                        mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-	                    },
-	                    success: function(respuesta) {
-	                        if (respuesta == 1) {
-	                            mostrarRespuesta('El archivo ha sido eliminado.', true);
-								
-	                        } else {
-								 
-	                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
-								                       
-	                        }
-							
-	                    }
-						
-	                });
-	            }
-
-            function mostrarArchivos() {
-				code = $("#code").val()
-				type =  $("#type").val()
-				
-                $.ajax({
-                    url: 'include/mostrar_archivos.php',
-                    type: 'POST',
-					data: {type:type, code:code},
-                    success: function(data) {
-                            
-                            $("#archivos_subidos").append(data);
-                        
-                    }
-                });
-            }
-
-            function mostrarRespuesta(mensaje, ok){
-                $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
-                if(ok){
-                    $("#respuesta").addClass('alert-success');
-                }else{
-                    $("#respuesta").addClass('alert-danger');
-                }
-            }
-
-            $(document).ready(function() {
-                mostrarArchivos();
-                $("#boton_subir").on('click', function() {
-					var name = $(this).attr('name');
-					//alert(name)
-                    subirArchivos();
-                });
-                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-                    var archivo = $(this).parents('.row').eq(0).find('span').text();
-                    archivo = $.trim(archivo);
-                    eliminarArchivos(archivo);
-                });
-            });
-
-</script>
->>>>>>> origin/master
 		
     <div class="temp"></div>  
   			

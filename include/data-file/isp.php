@@ -91,31 +91,10 @@
 				
 				$last_id_request=mysqli_insert_id($conexion);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 				
 				//Inserta el inside plan	
->>>>>>> origin/master
 				
 					$consulta_inside_plan="INSERT INTO inside_plans (service_number,assigned_company_eng_isp_plans_no_survey,assigned_company_site_survey_isp_as_built,contact_site_survey_isp_as_built,assigned_company_eng_isp_plans_isp_as_built,assigned_company_site_survey_passive_filter,contact_site_survey_passive_filter,assigned_company_eng_isp_plans_passive_filter,floor_site_survey_research_floor,assigned_company_site_survey_research_floor,scope_work_inside_plans,new_building,existing_building,id_request) VALUES('".mysqli_real_escape_string($conexion,htmlspecialchars($_POST['service_number']))."','".$company_eng_isp_plans_no_survey."','".$company_site_survey_isp_as_built."','".$contact_site_survey_isp_as_built."','".$company_eng_isp_plans_isp_as_built."','".$company_site_survey_passive_filter_survey."','".$contact_site_survey_passive_filter_survey."','".$company_eng_isp_plans_passive_filter_survey."','".$floor_research_floor."','".$company_site_surve_research_floor."','".$scope_work_inside_plans."','".$new_building."','".$last_id_request."') ";	
-=======
-					var_dump($consulta_request);
-
-				//Inserta el inside plan	
-				
-<<<<<<< HEAD
-					$consulta_inside_plan="INSERT INTO inside_plans (service_number,assigned_company_eng_isp_plans_no_survey,assigned_company_site_survey_isp_as_built,contact_site_survey_isp_as_built,assigned_company_eng_isp_plans_isp_as_built,assigned_company_site_survey_passive_filter,contact_site_survey_passive_filter,assigned_company_eng_isp_plans_passive_filter,floor_site_survey_research_floor,assigned_company_site_survey_research_floor,scope_work_inside_plans,new_building,existing_building,id_request) VALUES('".mysqli_real_escape_string($conexion,htmlspecialchars($_POST['service_number']))."','".$company_eng_isp_plans_no_survey."','".$company_site_survey_isp_as_built."','".$contact_site_survey_isp_as_built."','".$company_eng_isp_plans_isp_as_built."','".$company_site_survey_passive_filter_survey."','".$contact_site_survey_passive_filter_survey."','".$company_eng_isp_plans_passive_filter_survey."','".$floor_research_floor."','".$company_site_surve_research_floor."','".$scope_work_inside_plans."','".$new_building."','".$last_id_request."') ";	
-=======
-				$consulta_inside_plan="INSERT INTO inside_plans (service_number,assigned_company_eng_isp_plans_no_survey,assigned_company_site_survey_isp_as_built,contact_site_survey_isp_as_built,assigned_company_eng_isp_plans_isp_as_built,assigned_company_site_survey_passive_filter,contact_site_survey_passive_filter,assigned_company_eng_isp_plans_passive_filter,floor_site_survey_research_floor,assigned_company_site_survey_research_floor,scope_work_inside_plans,new_building,existing_building,id_request) VALUES('".mysqli_real_escape_string($conexion,htmlspecialchars($_POST['service_number']))."','".$company_eng_isp_plans_no_survey."','".$company_site_survey_isp_as_built."','".$contact_site_survey_isp_as_built."','".$company_eng_isp_plans_isp_as_built."','".$company_site_survey_passive_filter_survey."','".$contact_site_survey_passive_filter_survey."','".$company_eng_isp_plans_passive_filter_survey."','".$floor_research_floor."','".$company_site_surve_research_floor."','".$scope_work_inside_plans."','".$new_building."','".$last_id_request."') ";	
-			
-				$resultado_inside_plan= mysqli_query($conexion,$consulta_inside_plan);
-				
-				$type="inside_plan";
-				$last_id = $last_id_request;
-				//include('../contractor_code.php');
->>>>>>> origin/master
->>>>>>> origin/master
 				
 					$resultado_inside_plan= mysqli_query($conexion,$consulta_inside_plan);
 					

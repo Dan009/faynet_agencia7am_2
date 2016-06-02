@@ -13,15 +13,13 @@
 
 
 ?>
-<<<<<<< HEAD
-
 <script type="text/javascript">
 
-	/////////////////////////////////////////////////////////////
-	//////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
-	///////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
+    ///////////////////////////////////////////////////////////
  
-		function subirArchivos() {
+        function subirArchivos() {
            /* var nombreArchivo = $("#nombre_archivo").val();
             var code = $("#code").val();
             var type = $("#type").val();
@@ -45,91 +43,94 @@
 
             },
             
-            function(respuesta) {       
+          function(respuesta) {
                 //Subida finalizada.
                 $("#barra_de_progreso").val(0);
-                        window.stop();
+
                     if (respuesta === 0) {
                         mostrarRespuesta('El archivo NO se ha podido subir.', false);
                         $("#nombre_archivo, #archivo").val('');
                     } else {
-                            var type =  $("#type").val()                
-                            console.log("Comienza el select temp");
-                            console.log("prueba.php");
-            
-                        $.get("include/select_temp.php", function (data) {
-                                alert(data);
-                            
-                            $(".temp").append(data);
-                         
-                        });
+                        var type =  $("#type").val()
                         
+                        $.post("include/select_temp.php",
+                            {
+                                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+
+                            } ,
+                            function (data) {
+                                $(".temp").append(data);
+
+                        });/**/
+
+                        /*$.get("include/select_temp.php", function (data) {
+                         $(".temp").append(data);
+                        });*/
                         
                         $(".editor_imagenes").fadeIn(200);
+                        mostrarRespuesta('Subido Correctamente.', true);
+                        mostrarArchivos();
                         
-                            mostrarRespuesta('Subido Correctamente.', true);
-                            mostrarArchivos();
-        
                         $.get("include/editor.php", function (data) {
                             $(".editor_imagenes_content").append(data);
+                            
                         });
                         
                         $("body").css({ 'overflow': "hidden" });
                         
                         window.stop();
-                        
-                        
                     }
                         
                 }, function(progreso, valor) {
                     //Barra de progreso.
                     $("#barra_de_progreso").val(valor);
 
-                });/**/
+                });
+
 
         }
 
     /////////////////////////////////////////////////////////////
     //////////        PARA ELIMINAR ARCHIVOS       /////////////
     ///////////////////////////////////////////////////////////
-	            function eliminarArchivos() {
-					var id = $(".eliminar_archivo").attr('id')
-					alert(id);  
-		
-	                $.ajax({
-	                    url: 'include/eliminar_archivo.php',
-	                    type: 'POST',
-	                    timeout: 10000,
-	                    data: {id: id},
-	                    error: function() {
-	                        mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-	                    },
-	                    success: function(respuesta) {
-	                        if (respuesta == 1) {
-	                            mostrarRespuesta('El archivo ha sido eliminado.', true);
-								
-	                        } else {
-								 
-	                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
-								                       
-	                        }
-							
-	                    }
-	                });
-	            }
+                function eliminarArchivos() {
+                    var id = $(".eliminar_archivo").attr('id')
+                    alert(id);  
+        
+                    $.ajax({
+                        url: 'include/eliminar_archivo.php',
+                        type: 'POST',
+                        timeout: 10000,
+                        data: {id: id},
+                        error: function() {
+                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);
+                        },
+                        success: function(respuesta) {
+                            if (respuesta == 1) {
+                                mostrarRespuesta('El archivo ha sido eliminado.', true);
+                                
+                            } else {
+                                 
+                                mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
+                                                       
+                            }
+                            
+                        }
+                    });
+                }
 
     /////////////////////////////////////////////////////////////
     //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
     ///////////////////////////////////////////////////////////
 
         function mostrarArchivos() {
-			code = $("#code").val()
-			type =  $("#type").val()
-			
+            code = $("#code").val()
+            type =  $("#type").val()
+            
             $.ajax({
                 url: 'include/mostrar_archivos.php',
                 type: 'POST',
-				data: {type:type, code:code},
+                data: {type:type, code:code},
                 success: function(data) {
                         
                         $("#archivos_subidos").append(data);
@@ -157,8 +158,8 @@
             $(document).ready(function() {
                 mostrarArchivos();
                 $("#boton_subir").on('click', function() {
-					var name = $(this).attr('name');
-					//alert(name)
+                    var name = $(this).attr('name');
+                    //alert(name)
                     subirArchivos();
                 });
                 $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
@@ -194,8 +195,6 @@ $(document).ready(function() {
 
 </script>
 
-=======
->>>>>>> origin/master
      
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
@@ -531,30 +530,16 @@ $(document).ready(function() {
 							<div class="div_file_inside" >
 								<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
 							   <input type="file" name="archivo" id="archivo" />
-<<<<<<< HEAD
 					
 							</div>  
 							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>" />
 							   <input type="hidden" name="inside" id="type" value="building_picture"/>
 							   <input type="button" id="boton_subir" value="Subir" class="btn btn-success" />
-=======
-							   Yo soy <?php echo $time_code; ?>
-							</div>  
-							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>"/>
-							   <input type="hidden" name="inside" id="type" value="building_picture"/>
-							   <input type="submit" id="boton_subir" value="Subir" class="btn btn-success" />
->>>>>>> origin/master
 							   <progress id="barra_de_progreso" value="0" max="100"></progress>
 						</form>
 						
 					<div id="archivos_subidos"></div>
 					<div id="respuesta" class="alert"></div>
-<<<<<<< HEAD
-=======
-					<input type="button" class="copypaste_b" value="Copy Paste">
-					
-					<div class="closeVentanaCopyPaste"></div>	
->>>>>>> origin/master
 				
 				</div>
            
@@ -652,15 +637,7 @@ $(document).ready(function() {
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-<<<<<<< HEAD
                              <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
-=======
-<<<<<<< HEAD
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
-=======
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-1); ?>" disabled="disabled" />
->>>>>>> origin/master
->>>>>>> origin/master
 
                         </div>
 

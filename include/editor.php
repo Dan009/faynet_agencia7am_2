@@ -19,7 +19,7 @@
 
     <!-- kick it off -->
     <script>
-		console.log("sdfsfsd");
+	
         // Look ma, no jQuery!
         LC.init(
 		

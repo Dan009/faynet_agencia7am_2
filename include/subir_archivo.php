@@ -49,11 +49,8 @@ if (isset($_FILES['archivo'])) {
 
 		    }
 
-<<<<<<< HEAD
 	}
 
 }/**/
 
-=======
->>>>>>> origin/master
 ?>
