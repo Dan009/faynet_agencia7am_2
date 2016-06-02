@@ -52,7 +52,7 @@
 	<!-- CPE FORM BUTTON -->
 
 	<?php  if($fila_estatus_job['estatus_job'] == 2 && $_SESSION['estado'] != 2){ ?>
-		<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>cpe_form.php?id_information=<?php echo $fila_general['id']; ?>&id_request=<?php echo $_POST['id_request']; ?>">
+		<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>cpe_form.php?id_information=<?php echo $fila_general['id']; ?>&id_request=<?php echo $_POST['id_tipo']; ?>">
 			<input class="div_file_inside div_button_cpeform" type="button" id="btnCPE" value="OPEN CPE QUOTE" title="VIEW_PDF_QUOTE "  /> 
 
 		</a>

@@ -1,5 +1,5 @@
 <?php include('include/head.php');
-    $_SESSION['time_code']=$time_code;
+    //$_SESSION['time_code'] = $time_code;
 
     $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 2px solid #000;";
 
@@ -158,6 +158,8 @@
     }
 
 </script>
+
+
 		
     <div class="temp"></div>  
   			
@@ -166,11 +168,13 @@
             	
             	<input type="button" value="Export and Upload Screenshot" onClick="exportAndSaveCanvas()" >
             </div>
+			
         	<div class="editor_imagenes_content" style="width:100%; height:800px; margin:auto;">
 		
 		<!-- AQUI CARGA EL EDITOR-->
 			
 		</div>
+		
 	</div>
     
 <body>
@@ -235,7 +239,7 @@
     					$(".literally").remove();    
     					$(".editor_imagenes").css({ 'display': "none" });
     					$("body").css({ 'overflow': "auto" });
-    					//$(".temp").empty();
+    				
     					 
     				}
     			

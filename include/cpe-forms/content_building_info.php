@@ -10,9 +10,190 @@
             $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
 
                 //var_dump($fila_property_manager);
-    
+
 
 ?>
+
+<script type="text/javascript">
+
+	/////////////////////////////////////////////////////////////
+	//////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
+	///////////////////////////////////////////////////////////
+ 
+		function subirArchivos() {
+           /* var nombreArchivo = $("#nombre_archivo").val();
+            var code = $("#code").val();
+            var type = $("#type").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "include/subir_archivo.php",
+                    data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
+                    success: function(data){
+                        $(".temp").append(data);
+
+                    }
+
+                });*/
+
+            $("#archivo").upload('include/subir_archivo.php',
+            {
+                nombre_archivo: $("#nombre_archivo").val(),
+                code: $("#code").val(),
+                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+
+            },
+            
+            function(respuesta) {       
+                //Subida finalizada.
+                $("#barra_de_progreso").val(0);
+                        window.stop();
+                    if (respuesta === 0) {
+                        mostrarRespuesta('El archivo NO se ha podido subir.', false);
+                        $("#nombre_archivo, #archivo").val('');
+                    } else {
+                            var type =  $("#type").val()                
+                            console.log("Comienza el select temp");
+                            console.log("prueba.php");
+            
+                        $.get("include/select_temp.php", function (data) {
+                                alert(data);
+                            
+                            $(".temp").append(data);
+                         
+                        });
+                        
+                        
+                        $(".editor_imagenes").fadeIn(200);
+                        
+                            mostrarRespuesta('Subido Correctamente.', true);
+                            mostrarArchivos();
+        
+                        $.get("include/editor.php", function (data) {
+                            $(".editor_imagenes_content").append(data);
+                        });
+                        
+                        $("body").css({ 'overflow': "hidden" });
+                        
+                        window.stop();
+                        
+                        
+                    }
+                        
+                }, function(progreso, valor) {
+                    //Barra de progreso.
+                    $("#barra_de_progreso").val(valor);
+
+                });/**/
+
+        }
+
+    /////////////////////////////////////////////////////////////
+    //////////        PARA ELIMINAR ARCHIVOS       /////////////
+    ///////////////////////////////////////////////////////////
+	            function eliminarArchivos() {
+					var id = $(".eliminar_archivo").attr('id')
+					alert(id);  
+		
+	                $.ajax({
+	                    url: 'include/eliminar_archivo.php',
+	                    type: 'POST',
+	                    timeout: 10000,
+	                    data: {id: id},
+	                    error: function() {
+	                        mostrarRespuesta('Error al intentar eliminar el archivo.', false);
+	                    },
+	                    success: function(respuesta) {
+	                        if (respuesta == 1) {
+	                            mostrarRespuesta('El archivo ha sido eliminado.', true);
+								
+	                        } else {
+								 
+	                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
+								                       
+	                        }
+							
+	                    }
+	                });
+	            }
+
+    /////////////////////////////////////////////////////////////
+    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+    ///////////////////////////////////////////////////////////
+
+        function mostrarArchivos() {
+			code = $("#code").val()
+			type =  $("#type").val()
+			
+            $.ajax({
+                url: 'include/mostrar_archivos.php',
+                type: 'POST',
+				data: {type:type, code:code},
+                success: function(data) {
+                        
+                        $("#archivos_subidos").append(data);
+                    
+                }
+            });
+        }
+
+    /////////////////////////////////////////////////////////////
+    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+    ///////////////////////////////////////////////////////////
+        function mostrarRespuesta(mensaje, ok){
+            $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
+            if(ok){
+                $("#respuesta").addClass('alert-success');
+            }else{
+                $("#respuesta").addClass('alert-danger');
+            }
+        }
+
+    /////////////////////////////////////////////////////////////
+    ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
+    ///////////////////////////////////////////////////////////
+
+            $(document).ready(function() {
+                mostrarArchivos();
+                $("#boton_subir").on('click', function() {
+					var name = $(this).attr('name');
+					//alert(name)
+                    subirArchivos();
+                });
+                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+                    var archivo = $(this).parents('.row').eq(0).find('span').text();
+                    archivo = $.trim(archivo);
+                    eliminarArchivos(archivo);
+                });
+            });
+
+
+</script>
+     
+      
+<script>
+
+$(document).ready(function() {
+    $("#submit_request").click(function() {
+
+		$.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
+          function(data) {
+
+            $(".hola").append(data);
+            
+			
+        });
+
+
+    });
+
+
+});
+
+
+</script>
+
+     
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
         <div class="container_cpe_service_info">
@@ -159,7 +340,7 @@
 
                 </div>
 
-                  <input type="text" style="width: 83%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 2px solid #000;" value="<?php echo $fila_information['city']; ?>" disabled />
+                  <input type="text" style="width: 83%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 2px solid #000;"  />
 
                 <div class="container_state_building_info1">
                     <span> STATE </span>
@@ -243,11 +424,11 @@
 
                         <span> Start Time: </span>
 
-                           <input type="text" value="08" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
+                           <input type="text" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" value="00" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">AM</sup>
 
@@ -257,11 +438,11 @@
 
                          <span style="display: block;"> End Time: </span>
 
-                           <input type="text" value="04" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
+                           <input type="text" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" value="00" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">PM</sup>
                        
@@ -339,15 +520,37 @@
 
            </div>
 
-           <div id="dvBuildingPicture"></div>
+           <div id="dvBuildingPicture">
+			
+				<div class="containerprueba">
+
+						<form action="javascript:void(0);" id="form_archivo">
+							<div class="div_file_inside" >
+								<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
+							   <input type="file" name="archivo" id="archivo" />
+					
+							</div>  
+							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>" />
+							   <input type="hidden" name="inside" id="type" value="building_picture"/>
+							   <input type="button" id="boton_subir" value="Subir" class="btn btn-success" />
+							   <progress id="barra_de_progreso" value="0" max="100"></progress>
+						</form>
+						
+					<div id="archivos_subidos"></div>
+					<div id="respuesta" class="alert"></div>
+				
+				</div>
+           
+
+           </div>
 
        </div>
 
     </div>
 
 <!-- PROPERTY MANAGEMENT INFO -->
-
     <div class="div_form_request">
+    
         <div class="container_cpe_box_property_management_data">
 
             <div class="header-info" style="border: 0; margin-top: -0.5%;">
@@ -381,7 +584,6 @@
 
                 </div>
 
-                    <?php  ?>
                 <div class="container_property_data_inputs">
 
                     <div class="name" style="width: 39%;">
@@ -425,23 +627,23 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],3,-6); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_office_phone'],6,-2); ?>" disabled="disabled" />
 
                         </div>
 
-                 </div>  
+                </div>  
 
                 <div class="container_second_property_number">
 
-                    <div class="name" style="width: 34%;margin: 0 auto;margin-right: 20%;">
+                    <div class="name" style="width: 263px;margin: 0 auto;margin-right: 20%;">
                         Property Management Cell Phone
 
                     </div>
@@ -450,15 +652,15 @@
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">(</span> 
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],0,3); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],0,3); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">)</span>
 
-                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_number'],3,-6); ?>" disabled="disabled" />
+                             <input type="text" style="width: 8%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],3,-5); ?>" disabled="disabled" />
 
                              <span style="padding: 0 10px 0 10px;position: relative; top: 7px;font-size: 25px; width: 5%;">-</span>
 
-                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_number'],6,-1); ?>" disabled="disabled" />
+                             <input type="text" style="width: 10%;height: 22px;font-size: 20px;position: relative;top: 5px;padding: 6px 9px 6px 6px;" value="<?php echo substr($fila_property_manager['contact_cell_number'],6,-1); ?>" disabled="disabled" />
 
                         </div>
 
