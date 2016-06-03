@@ -269,6 +269,51 @@
               });
     		 
           });
+
+            /////////////////////////////////////////////////////////////
+            //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
+            ///////////////////////////////////////////////////////////
+ 
+                function subirArchivos() {
+                        
+                    $.get("include/select_temp.php", function (data) {
+                         $(".temp").append(data);
+                    });
+                        
+                    $(".editor_imagenes").fadeIn(200);
+                    mostrarRespuesta('Subido Correctamente.', true);
+                    mostrarArchivos();
+                    
+                    $.get("include/editor.php", function (data) {
+                        $(".editor_imagenes_content").append(data);
+                        
+                    });
+                    
+                    $("body").css({ 'overflow': "hidden" });
+                    
+                    window.stop();
+
+
+                }
+
+            /////////////////////////////////////////////////////////////
+            ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
+            ///////////////////////////////////////////////////////////
+
+            /**/$(document).ready(function() {
+                //mostrarArchivos();
+                $("#boton_subir").on('click', function() {
+                    var name = $(this).attr('name');
+                    //alert(name)
+                    subirArchivos();
+                });
+                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+                    var archivo = $(this).parents('.row').eq(0).find('span').text();
+                    archivo = $.trim(archivo);
+                    eliminarArchivos(archivo);
+                });
+
+            }); 
     	  
       });
       

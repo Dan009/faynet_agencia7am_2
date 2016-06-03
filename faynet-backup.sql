@@ -3,15 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
-<<<<<<< HEAD
--- Tiempo de generación: 31-05-2016 a las 20:41:07
-=======
-<<<<<<< HEAD
--- Tiempo de generación: 01-06-2016 a las 20:34:24
-=======
--- Tiempo de generación: 31-05-2016 a las 20:41:07
->>>>>>> origin/master
->>>>>>> origin/master
+-- Tiempo de generación: 03-06-2016 a las 20:30:41
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -640,12 +632,6 @@ INSERT INTO `general_information` (`id`, `time_code`, `engineering_id`, `custome
 
 CREATE TABLE IF NOT EXISTS `highway_request_civil_plans` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  `servicey_eng_isp_plans_no_survey` int(16) NOT NULL,
-=======
->>>>>>> origin/master
   `service_number` varchar(250) NOT NULL,
   `id_request` varchar(250) NOT NULL,
   `task_request_highway_civil` varchar(255) NOT NULL,
@@ -709,10 +695,6 @@ CREATE TABLE IF NOT EXISTS `inside_plans` (
   `contact_site_survey_building` int(16) NOT NULL,
   `assigned_company_isp_eng_plans_building` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_no_survey` int(16) NOT NULL,
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
->>>>>>> origin/master
   `assigned_company_site_survey_isp_as_built` int(250) NOT NULL,
   `contact_site_survey_isp_as_built` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_isp_as_built` int(16) NOT NULL,
@@ -1310,15 +1292,7 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
-=======
-<<<<<<< HEAD
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
-=======
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
->>>>>>> origin/master
->>>>>>> origin/master
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=315 ;
 
 --
 -- Volcado de datos para la tabla `temp`
@@ -1346,10 +1320,6 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (86, 'file-1464374973.jpg', '0000-00-00', '1464374949-2', 'inside_plan', '', '1433778601-1.jpg'),
 (87, 'file-1464376323.jpg', '0000-00-00', '1464376014-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (88, 'file-1464378434.jpg', '0000-00-00', '1464378403-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
-<<<<<<< HEAD
-(89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
-=======
-<<<<<<< HEAD
 (89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (91, 'file-1464794902.jpg', '0000-00-00', '1464793162-2', 'inside_plan', 'canvas-14647956852.png', 'libros-de-la-biblia.jpg'),
 (95, 'file-1464802959.jpg', '0000-00-00', '1464802950-2', 'inside_plan', '', 'food-and-drinks.jpg'),
@@ -1391,11 +1361,185 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (131, 'file-1464811348.jpg', '0000-00-00', '1464811339-3', 'inside_plan', '', '5077_021.jpg'),
 (132, 'file-1464811419.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
 (133, 'file-1464811483.jpg', '0000-00-00', '1464811460-3', 'inside_plan', '', '5077_021.jpg'),
-(134, 'file-1464812405.jpg', '0000-00-00', '1464812390-3', 'inside_plan', '', 'libros-de-la-biblia.jpg');
-=======
-(89, 'file-1464378594.jpg', '0000-00-00', '1464378565-2', 'inside_plan', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
->>>>>>> origin/master
->>>>>>> origin/master
+(134, 'file-1464812405.jpg', '0000-00-00', '1464812390-3', 'inside_plan', '', 'libros-de-la-biblia.jpg'),
+(135, 'file-1464874862.jpg', '0000-00-00', '1464874742-3', 'building_picture', '', '5077_021.jpg'),
+(136, 'file-1464875183.jpg', '0000-00-00', '1464875177-3', 'building_picture', '', '5077_021.jpg'),
+(137, 'file-1464875320.jpg', '0000-00-00', '1464875315-3', 'building_picture', '', '5077_021.jpg'),
+(138, 'file-1464875376.jpg', '0000-00-00', '1464875370-3', 'building_picture', '', '5077_021.jpg'),
+(139, 'file-1464875418.jpg', '0000-00-00', '1464875414-3', 'building_picture', '', '5077_021.jpg'),
+(140, 'file-1464875873.jpg', '0000-00-00', '1464875811-3', 'building_picture', '', '5077_021.jpg'),
+(141, 'file-1464875938.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
+(142, 'file-1464876281.jpg', '0000-00-00', '1464876275-3', 'building_picture', '', '5077_021.jpg'),
+(143, 'file-1464876774.jpg', '0000-00-00', '1464876767-3', 'building_picture', '', '5077_021.jpg'),
+(144, 'file-1464877004.jpg', '0000-00-00', '1464876998-3', 'building_picture', '', '5077_021.jpg'),
+(145, 'file-1464877079.jpg', '0000-00-00', '1464877068-3', 'building_picture', '', '5077_021.jpg'),
+(146, 'file-1464877230.jpg', '0000-00-00', '1464877221-3', 'building_picture', '', '5077_021.jpg'),
+(147, 'file-1464877269.jpg', '0000-00-00', '1464877264-3', 'building_picture', '', '5077_021.jpg'),
+(148, 'file-1464877408.jpg', '0000-00-00', '1464877403-3', 'building_picture', '', '5077_021.jpg'),
+(149, 'file-1464877901.jpg', '0000-00-00', '1464877887-3', 'building_picture', '', '5077_021.jpg'),
+(150, 'file-1464877968.jpg', '0000-00-00', '1464876583-2', 'inside_plan', '', '5077_021.jpg'),
+(151, 'file-1464877968.jpg', '0000-00-00', '1464876583-2', 'inside_plan', '', '5077_021.jpg'),
+(152, 'file-1464878390.jpg', '0000-00-00', '', '', '', '5077_021.jpg'),
+(153, 'file-1464878447.jpg', '0000-00-00', '1464878439-3', 'building_picture', '', '5077_021.jpg'),
+(154, 'file-1464878512.jpg', '0000-00-00', '1464878505-3', 'building_picture', '', '5077_021.jpg'),
+(155, 'file-1464878536.jpg', '0000-00-00', '1464878531-3', 'building_picture', '', '5077_021.jpg'),
+(156, 'file-1464878604.jpg', '0000-00-00', '1464878582-3', 'building_picture', '', '5077_021.jpg'),
+(157, 'file-1464878676.jpg', '0000-00-00', '1464878671-3', 'building_picture', '', '5077_021.jpg'),
+(158, 'file-1464878697.jpg', '0000-00-00', '1464878693-3', 'building_picture', '', '5077_021.jpg'),
+(159, 'file-1464878845.jpg', '0000-00-00', '1464878841-3', 'building_picture', '', '5077_021.jpg'),
+(160, 'file-1464878912.jpg', '0000-00-00', '1464878907-3', 'building_picture', '', '5077_021.jpg'),
+(161, 'file-1464878943.jpg', '0000-00-00', '1464878937-3', 'building_picture', '', '5077_021.jpg'),
+(162, 'file-1464882581.jpg', '0000-00-00', '1464882433-3', 'building_picture', '', '5027_021.jpg'),
+(163, 'file-1464882845.jpg', '0000-00-00', '1464882803-3', 'building_picture', '', '5027_021.jpg'),
+(164, 'file-1464882918.jpg', '0000-00-00', '1464882910-3', 'building_picture', '', '5027_021.jpg'),
+(165, 'file-1464882961.jpg', '0000-00-00', '1464882948-3', 'building_picture', '', '5027_021.jpg'),
+(166, 'file-1464883031.jpg', '0000-00-00', '1464883024-3', 'building_picture', '', '5027_021.jpg'),
+(167, 'file-1464883209.jpg', '0000-00-00', '1464883203-3', 'building_picture', '', '5027_021.jpg'),
+(168, 'file-1464883235.jpg', '0000-00-00', '1464883230-3', 'building_picture', '', '5027_021.jpg'),
+(169, 'file-1464883481.jpg', '0000-00-00', '1464883476-3', 'building_picture', '', '5027_021.jpg'),
+(170, 'file-1464883501.jpg', '0000-00-00', '1464883496-3', 'building_picture', '', '5027_021.jpg'),
+(171, 'file-1464883980.jpg', '0000-00-00', '1464883959-3', 'building_picture', '', 'facebook-marcador-de-posicion-para-localizar-lugares-en-mapas_318-50488.jpg'),
+(172, 'file-1464884007.png', '0000-00-00', '1464883995-3', 'building_picture', '', 'Captura de pantalla 2016-05-23 a las 6.14.44 p.m..png'),
+(173, 'file-1464884092.png', '0000-00-00', '1464884081-3', 'building_picture', '', 'Captura de pantalla 2016-05-23 a las 6.14.44 p.m..png'),
+(174, 'file-1464888930.jpg', '0000-00-00', '1464888910-3', 'building_picture', '', '5027_021.jpg'),
+(175, 'file-1464888930.jpg', '0000-00-00', '1464888910-3', '', '', '5027_021.jpg'),
+(176, 'file-1464889352.jpg', '0000-00-00', '1464889345-3', 'building_picture', '', '5027_021.jpg'),
+(177, 'file-1464889352.jpg', '0000-00-00', '', '', '', '5027_021.jpg'),
+(178, 'file-1464889400.jpg', '0000-00-00', '1464889393-3', 'building_picture', '', '5027_021.jpg'),
+(179, 'file-1464889400.jpg', '0000-00-00', '1464889393-3', 'building_picture', '', '5027_021.jpg'),
+(180, 'file-1464889702.jpg', '0000-00-00', '1464889694-3', 'building_picture', '', '5027_021.jpg'),
+(181, 'file-1464889702.jpg', '0000-00-00', '1464889694-3', 'building_picture', '', '5027_021.jpg'),
+(182, 'file-1464889761.jpg', '0000-00-00', '1464889742-3', 'building_picture', '', '5027_021.jpg'),
+(183, 'file-1464889761.jpg', '0000-00-00', '1464889742-3', 'building_picture', '', '5027_021.jpg'),
+(184, 'file-1464889810.jpg', '0000-00-00', '1464889798-3', 'building_picture', '', '5027_021.jpg'),
+(185, 'file-1464889810.jpg', '0000-00-00', '', '', '', '5027_021.jpg'),
+(186, 'file-1464889845.jpg', '0000-00-00', '1464889837-3', 'building_picture', '', '5027_021.jpg'),
+(187, 'file-1464889845.jpg', '0000-00-00', '1464889837-3', 'building_picture', '', '5027_021.jpg'),
+(188, 'file-1464890082.jpg', '0000-00-00', '1464890073-3', 'building_picture', '', '5027_021.jpg'),
+(189, 'file-1464890082.jpg', '0000-00-00', '1464890073-3', 'building_picture', '', '5027_021.jpg'),
+(190, 'file-1464890138.jpg', '0000-00-00', '1464890126-3', 'building_picture', '', '5027_021.jpg'),
+(191, 'file-1464890138.jpg', '0000-00-00', '1464890126-3', 'building_picture', 'canvas-14648901563.png', '5027_021.jpg'),
+(192, 'file-1464891362.jpg', '0000-00-00', '1464891355-3', 'building_picture', '', '5027_021.jpg'),
+(193, 'file-1464891362.jpg', '0000-00-00', '1464891355-3', 'building_picture', 'canvas-14648913703.png', '5027_021.jpg'),
+(194, 'file-1464891487.jpg', '0000-00-00', '1464891474-3', 'building_picture', '', 'libros-de-la-biblia.jpg'),
+(195, 'file-1464891487.jpg', '0000-00-00', '1464891474-3', 'building_picture', 'canvas-14648915173.png', 'libros-de-la-biblia.jpg'),
+(196, 'file-1464895383.jpg', '0000-00-00', '1464895376-3', 'building_picture', '', '5027_021.jpg'),
+(197, 'file-1464895383.jpg', '0000-00-00', '1464895376-3', 'building_picture', '', '5027_021.jpg'),
+(200, 'file-1464895810.jpg', '0000-00-00', '1464895804-3', 'building_picture', '', '1077_001.jpg'),
+(201, 'file-1464895810.jpg', '0000-00-00', '1464895804-3', 'building_picture', '', '1077_001.jpg'),
+(202, 'file-1464895980.jpg', '0000-00-00', '1464895962-3', 'building_picture', '', '1077_001.jpg'),
+(203, 'file-1464897404.jpg', '0000-00-00', '1464897396-3', 'building_picture', '', '1077_001.jpg'),
+(204, 'file-1464897477.jpg', '0000-00-00', '1464897472-31', 'building_picture', '', '1077_001.jpg'),
+(205, 'file-1464897787.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(206, 'file-1464899165.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(207, 'file-1464899217.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(208, 'file-1464899270.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(209, 'file-1464899291.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(210, 'file-1464899425.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(211, 'file-1464899489.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(212, 'file-1464899615.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(213, 'file-1464900185.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(214, 'file-1464900223.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(215, 'file-1464900256.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(216, 'file-1464900314.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(217, 'file-1464900560.jpg', '0000-00-00', '1464900553-3', 'building_picture', '', '1077_001.jpg'),
+(218, 'file-1464900560.jpg', '0000-00-00', '1464900553-3', 'building_picture', '', '1077_001.jpg'),
+(219, 'file-1464900605.jpg', '0000-00-00', '1464900600-3', 'building_picture', '', '1077_006.jpg'),
+(220, 'file-1464900606.jpg', '0000-00-00', '1464900600-3', 'building_picture', '', '1077_006.jpg'),
+(221, 'file-1464900759.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(222, 'file-1464900759.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(223, 'file-1464900885.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(224, 'file-1464900885.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(225, 'file-1464900928.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(226, 'file-1464900928.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(227, 'file-1464901086.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(228, 'file-1464901155.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(229, 'file-1464901306.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(230, 'file-1464901307.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(231, 'file-1464901434.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(232, 'file-1464901499.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(233, 'file-1464901514.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(234, 'file-1464901514.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(235, 'file-1464902829.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(236, 'file-1464902829.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(237, 'file-1464903017.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(238, 'file-1464903017.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(239, 'file-1464903111.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(240, 'file-1464903111.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(241, 'file-1464903155.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(242, 'file-1464903155.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(243, 'file-1464903291.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(244, 'file-1464903291.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(245, 'file-1464903337.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(246, 'file-1464903338.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(247, 'file-1464903392.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(248, 'file-1464903393.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(249, 'file-1464903448.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(250, 'file-1464903448.jpg', '0000-00-00', '1', 'building_picture', '', '1077_001.jpg'),
+(251, 'file-1464903479.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(252, 'file-1464903479.jpg', '0000-00-00', '1', 'building_picture', '', '1077_006.jpg'),
+(253, 'file-1464962856.jpg', '0000-00-00', '1464962505-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(254, 'file-1464962856.jpg', '0000-00-00', '1464962505-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(255, 'file-1464965090.jpg', '0000-00-00', '1464965082-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(256, 'file-1464965090.jpg', '0000-00-00', '1464965082-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(257, 'file-1464965153.jpg', '0000-00-00', '1464965145-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(258, 'file-1464965307.jpg', '0000-00-00', '1464965301-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(259, 'file-1464965376.jpg', '0000-00-00', '1464965369-3', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(260, 'file-1464965708.jpg', '0000-00-00', '1464965700-2', 'inside_plan', '', 'casa2.jpg'),
+(261, 'file-1464966133.jpg', '0000-00-00', '1464966124-2', 'inside_plan', '', 'casa2.jpg'),
+(262, 'file-1464966314.jpg', '0000-00-00', '1464966306-2', 'inside_plan', '', 'casa2.jpg'),
+(263, 'file-1464966395.jpg', '0000-00-00', '1464966387-2', 'inside_plan', '', 'casa2.jpg'),
+(264, 'file-1464967003.jpg', '0000-00-00', '1464966978-2', 'inside_plan', '', 'casa1.jpg'),
+(265, 'file-1464967692.jpg', '0000-00-00', '1464967682-2', 'inside_plan', '', 'casa2.jpg'),
+(266, 'file-1464967808.jpg', '0000-00-00', '1464967796-2', 'inside_plan', '', '1433778601-1.jpg'),
+(267, 'file-1464967908.jpg', '0000-00-00', '1464967900-2', 'inside_plan', '', '1433778601-1.jpg'),
+(268, 'file-1464968009.jpg', '0000-00-00', '1464967998-2', 'inside_plan', '', 'Alimentacion_Buenos dias.jpg'),
+(269, 'file-1464968220.jpg', '0000-00-00', '1464968207-2', 'inside_plan', '', 'casa5.jpg'),
+(270, 'file-1464968244.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(271, 'file-1464968395.jpg', '0000-00-00', '1464968388-3', 'building_picture', '', 'casa2.jpg'),
+(272, 'file-1464968727.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(273, 'file-1464968906.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(274, 'file-1464968939.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(275, 'file-1464968986.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(276, 'file-1464969079.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(277, 'file-1464969221.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(278, 'file-1464969252.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(279, 'file-1464969288.jpg', '0000-00-00', '1', 'building_picture', '', 'casa6.jpg'),
+(280, 'file-1464969345.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(281, 'file-1464969597.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(282, 'file-1464969597.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(283, 'file-1464970017.jpg', '0000-00-00', '1464970001-2', 'inside_plan', '', 'casa2.jpg'),
+(284, 'file-1464970103.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg'),
+(285, 'file-1464970112.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(286, 'file-1464970112.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(287, 'file-1464970265.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(288, 'file-1464970266.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(289, 'file-1464970296.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg'),
+(290, 'file-1464970296.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg'),
+(291, 'file-1464970510.jpg', '0000-00-00', '1464970481-2', 'inside_plan', '', 'casa1.jpg'),
+(292, 'file-1464970586.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(293, 'file-1464970587.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(294, 'file-1464970615.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(295, 'file-1464970633.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(296, 'file-1464970633.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(297, 'file-1464970711.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(298, 'file-1464970711.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(299, 'file-1464970764.jpg', '0000-00-00', '1464970757-2', 'inside_plan', '', 'casa1.jpg'),
+(300, 'file-1464970798.jpg', '0000-00-00', '1464970790-2', 'inside_plan', '', 'casa5.jpg'),
+(301, 'file-1464978975.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(302, 'file-1464978975.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(303, 'file-1464979135.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(304, 'file-1464979135.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(305, 'file-1464979183.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(306, 'file-1464979183.png', '0000-00-00', '1', 'building_picture', '', 'fancybox_sprite.png'),
+(307, 'file-1464979327.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(308, 'file-1464979327.jpg', '0000-00-00', '1', 'building_picture', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(309, 'file-1464984868.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(310, 'file-1464984922.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(311, 'file-1464985183.jpg', '0000-00-00', '1', 'building_picture', '', 'IMG_20151216_120523_608.jpg'),
+(312, 'file-1464985431.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg'),
+(313, 'file-1464985511.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg'),
+(314, 'file-1464985512.jpg', '0000-00-00', '1', 'building_picture', '', 'logo_error.jpg');
 
 -- --------------------------------------------------------
 
@@ -1426,9 +1570,6 @@ INSERT INTO `tenants_contact` (`id`, `company`, `contact_name`, `contact_office_
 
 --
 -- Estructura de tabla para la tabla `underground_outsite_manhole_plan`
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 --
 
 CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
@@ -1534,117 +1675,3 @@ INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-0
-
-=======
->>>>>>> origin/master
---
-
-CREATE TABLE IF NOT EXISTS `underground_outsite_manhole_plan` (
-  `id` int(16) NOT NULL AUTO_INCREMENT,
-  `service_number` varchar(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  `company_underground_manhole` varchar(255) NOT NULL,
-  `contact_underground_manhole` varchar(255) NOT NULL,
-  `cust_cable_count_underground_manhole` varchar(255) NOT NULL,
-  `cust_tie_loc_underground_manhole` varchar(255) NOT NULL,
-  `scope_work_underground_manhole` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Volcado de datos para la tabla `underground_outsite_manhole_plan`
---
-
-INSERT INTO `underground_outsite_manhole_plan` (`id`, `service_number`, `id_request`, `company_underground_manhole`, `contact_underground_manhole`, `cust_cable_count_underground_manhole`, `cust_tie_loc_underground_manhole`, `scope_work_underground_manhole`) VALUES
-(1, '', '1458155698-2', '2', '1', 'asdfasdf', 'asdfasdfasdf', 'asdfasdfasdf'),
-(2, '', '5', '2', '1', 'sdfgsdfgsdfg', 'sdfgsdfgsdfg', 'fdgsdfgsdfgsdfg'),
-(3, '', '36', '2', '1', 'asdfasdf', 'dfasdfasd', 'fasdfasdfasdfasdfa');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `uploaded_file`
---
-
-CREATE TABLE IF NOT EXISTS `uploaded_file` (
-  `id` int(250) NOT NULL AUTO_INCREMENT,
-  `type` varchar(250) NOT NULL,
-  `estado` int(250) NOT NULL,
-  `file` varchar(250) NOT NULL,
-  `canvas` varchar(250) NOT NULL,
-  `code` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
-
---
--- Volcado de datos para la tabla `uploaded_file`
---
-
-INSERT INTO `uploaded_file` (`id`, `type`, `estado`, `file`, `canvas`, `code`) VALUES
-(10, 'manhole', 1, 'file-1458228578.jpeg', 'canvas-14582285842.png', '1458228563-2'),
-(11, 'civil_plan', 1, 'file-1458247314.jpg', 'canvas-14582473212.png', '1458247293-2'),
-(12, 'inside_plan', 1, 'file-1459565458.jpg', 'canvas-1459565458.png', '1459565458-2');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(16) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `apellido` varchar(255) NOT NULL,
-  `fecha` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `estado` int(1) NOT NULL,
-  `company` int(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `user_name`, `password`, `nombre`, `apellido`, `fecha`, `foto`, `email`, `estado`, `company`) VALUES
-(1, 'admin', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'admin', '', '', '', '', 1, 0),
-(2, 'lightower', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'lightower', 'empresa', '', '', '', 2, 0),
-(3, 'gulinc', '10470c3b4b1fed12c3baac014be15fac67c6e815', 'gulinc', 'contratista', '', '', '', 3, 2),
-(4, '7am', '538dfc17d6139d53b06d3a1b52f81d7f', 'agencia7am', 'contratista', '04-05-2016', '', 'desarrollo@agencia7am.com', 3, 0),
-(5, 'clarodom', '9679014f0b355e4ae53c9a9297cd18a0', 'Claro Dominicano', 'empresa', '05-05-2016', '', 'clarodom@claro.do', 2, 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `utility_plans`
---
-
-CREATE TABLE IF NOT EXISTS `utility_plans` (
-  `id` int(16) NOT NULL AUTO_INCREMENT,
-  `service_number` varchar(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  `redline_page_utility` varchar(255) NOT NULL,
-  `redline_file_utility` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `utility_plans`
---
-
-INSERT INTO `utility_plans` (`id`, `service_number`, `id_request`, `redline_page_utility`, `redline_file_utility`) VALUES
-(1, '32165412', '1', 'red_line_page_utility_1454616907.jpg', 'red_line_file_utility_1454616907.jpg'),
-(2, '65656', '2', 'red_line_page_utility_1454704352.jpg', 'red_line_file_utility_1454704352.jpg');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
->>>>>>> origin/master

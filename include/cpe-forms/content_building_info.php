@@ -9,10 +9,11 @@
             $resultado_property_manager = mysqli_query($conexion,$consulta_property_manager);
             $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
 
-                //var_dump($fila_property_manager);
+                //var_dump($consulta_property_manager);
 
 
 ?>
+
 <script type="text/javascript">
 
     /////////////////////////////////////////////////////////////
@@ -34,38 +35,40 @@
                     }
 
                 });*/
+                  alert("Hallo CPE FORM");
+                $(".containerprueba").css("z-index","0");
 
-            $("#archivo").upload('include/subir_archivo.php',
+            $("#archivo").upload('include/cpe_photos_manager.php',
             {
-                nombre_archivo: $("#nombre_archivo").val(),
-                code: $("#code").val(),
-                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+                type: $("#type").val(),
+                tipo_ejecucion: $("#tipo_ejecucion").val()<?php echo ",\nid_information: $id_information"; ?>
 
             },
             
-          function(respuesta) {
+            function(respuesta) {
                 //Subida finalizada.
                 $("#barra_de_progreso").val(0);
 
                     if (respuesta === 0) {
                         mostrarRespuesta('El archivo NO se ha podido subir.', false);
                         $("#nombre_archivo, #archivo").val('');
+
                     } else {
                         var type =  $("#type").val()
                         
-                        $.post("include/select_temp.php",
-                            {
-                                type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+                            $.post("include/cpe_photos_manager.php",
+                                {
+                                    type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
 
-                            } ,
-                            function (data) {
-                                $(".temp").append(data);
+                                } ,
+                                function (data) {
+                                    $(".temp").append(data);
 
-                        });/**/
+                            });
 
-                        /*$.get("include/select_temp.php", function (data) {
-                         $(".temp").append(data);
-                        });*/
+                        // $.get("include/select_temp.php", function (data) {
+                        //  $(".temp").append(data);
+                        // });
                         
                         $(".editor_imagenes").fadeIn(200);
                         mostrarRespuesta('Subido Correctamente.', true);
@@ -157,17 +160,35 @@
 
             $(document).ready(function() {
                 mostrarArchivos();
-                $("#boton_subir").on('click', function() {
-                    var name = $(this).attr('name');
-                    //alert(name)
+
+                $("#archivo").change(function (){
+                
                     subirArchivos();
+
                 });
+
                 $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
                     var archivo = $(this).parents('.row').eq(0).find('span').text();
                     archivo = $.trim(archivo);
                     eliminarArchivos(archivo);
+
                 });
+
+                    /////////////////////////////////////////////////////////////
+                    ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
+                    ///////////////////////////////////////////////////////////
+
+                        $("#archivo").mouseenter(function(){
+                            $(".text_select_image").fadeIn(150);
+
+
+                        }).mouseleave(function(){
+                            $(".text_select_image").fadeOut(150);
+
+                        });
+
             });
+
 
 
 </script>
@@ -175,22 +196,22 @@
       
 <script>
 
-$(document).ready(function() {
-    $("#submit_request").click(function() {
+    $(document).ready(function() {
+        $("#submit_request").click(function() {
 
-		$.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
-          function(data) {
+    		$.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
+              function(data) {
 
-            $(".hola").append(data);
-            
-			
+                $(".hola").append(data);
+                
+    			
+            });
+
+
         });
 
 
     });
-
-
-});
 
 
 </script>
@@ -524,25 +545,31 @@ $(document).ready(function() {
 
            <div id="dvBuildingPicture">
 			
-				<div class="containerprueba">
+				<div class="containerprueba" style="float: left;position: relative;z-index: 999999;">
 
-						<form action="javascript:void(0);" id="form_archivo">
-							<div class="div_file_inside" >
-								<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
-							   <input type="file" name="archivo" id="archivo" />
-					
+						<form action="javascript:void(0);" id="form_archivo" >
+
+							<div class="div_file_inside">
+
+							   <input type="file" name="archivo" id="archivo" accept="image/x-png, image/gif, image/jpeg"/>
+					           
+                               <h3 class="text_select_image"> Click here to upload and draw an image </h3>
+
 							</div>  
+
 							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>" />
-							   <input type="hidden" name="inside" id="type" value="building_picture"/>
-							   <input type="button" id="boton_subir" value="Subir" class="btn btn-success" />
-							   <progress id="barra_de_progreso" value="0" max="100"></progress>
+                               <input type="hidden" name="inside" id="type" value="building_picture"/>
+							   <input type="hidden" name="inside" id="tipo_ejecucion" value="subir_archivo"/>
+	
 						</form>
 						
 					<div id="archivos_subidos"></div>
 					<div id="respuesta" class="alert"></div>
 				
 				</div>
-           
+                
+                <div id="dvPictureImage"></div>
+                <div id="dvCanvaImage"></div>
 
            </div>
 

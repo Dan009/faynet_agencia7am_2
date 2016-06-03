@@ -2,8 +2,9 @@
 include("../confi/conf.inc.php");
 $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-			
-	if (isset($_POST['id_information'])) {
+		echo "dsfsdf";
+
+	/*if (isset($_POST['id_information'])) {
 
 	  $consulta_imagen="SELECT * FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1,1";
 	  $resultado_imagen= mysqli_query($conexion,$consulta_imagen);	

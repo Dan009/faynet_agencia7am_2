@@ -1,7 +1,6 @@
 <?php
 include("../confi/conf.inc.php");
 
-
 $type = $_POST['type']; //PARA HACER LA CONSULTA Y SABER CUAL ES LA IMAGEN
 $code = $_POST['code']; //PARA HACER LA CONSULTA Y SABER CUAL ES LA IMAGEN
 

@@ -4,7 +4,6 @@
 	
 	$conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-        
 		if (!empty($_POST['id_tipo'])) {
 		 	$consulta_search ="SELECT * FROM property_managers WHERE id_request = '".$_POST['id_tipo']."'";
             $resultado_search= mysqli_query($conexion,$consulta_search);
@@ -119,7 +118,7 @@
             }
 
             $(document).ready(function() {
-                mostrarArchivos();
+                //mostrarArchivos();
                 $("#boton_subir").on('click', function() {
 					var name = $(this).attr('name');
 					//alert(name)
