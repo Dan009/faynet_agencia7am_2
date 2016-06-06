@@ -27,7 +27,7 @@
 /*----          GENERAL ELEMENTS          ----*/
 /*-------------------------------------------*/
     .container_cpe_box{
-        border: 2px solid #000;
+        border: 1px solid #000;
 
     }
         .container_cpe_orange_box span:nth-child(1){
@@ -36,7 +36,7 @@
         }
 
     .container_cpe_black_box{
-        border: 2px solid #000;
+        border: 1px solid #000;
 
     }
 
@@ -59,7 +59,7 @@
         width: 94%;
         float: left;
         margin: 0 auto;
-        border: 2px solid #000;
+        border: 1px solid #000;
 
 
     }
@@ -70,7 +70,7 @@
         bottom: 5px;
         width: 29%;
         float: left;
-        border: 2px solid #000;
+        border: 1px solid #000;
 
     }
     .container_building_info{
@@ -86,13 +86,13 @@
 
     }
     .container_cpe_service_info{
-        border: 2px solid #000;
+        border: 1px solid #000;
         margin: 0 auto; 
         height: 187px; 
 
     }
     .container_cpe_orange_box container_type_service{
-        border: 2px solid #000;
+        border: 1px solid #000;
 
     } 
         .container_cpe_orange_box .name .txtConstructionEngiBI{
@@ -197,7 +197,7 @@
                 width: 35px;
                 position: relative;
                 bottom: 1px;
-                border: 2px solid #000;
+                border: 1px solid #000;
                 padding: 11px 0px 10px 13px;
                 font-size: 18px;
                 margin-top: 3px;
@@ -206,7 +206,6 @@
         .container_state_building_info1{
             float: left;
             width: 7%;
-            margin-left: 10px;
             position: relative;
             bottom: 31px;
 
@@ -223,7 +222,7 @@
                padding: 5px 0px 4px 12px;
                width: 34%;
                float: left;
-               border: 2px solid #000;
+               border: 1px solid #000;
 
             }
 
@@ -232,7 +231,7 @@
                margin: 0 4px 0 11px;
                width: 18%;
                float: left;
-               border: 2px solid #000;
+               border: 1px solid #000;
 
             }
             .container_service_info_type3 .container_cpe_orange_box_floor_plans{ 
@@ -240,7 +239,7 @@
                margin: 0 14px 0 3px;
                width: 26%;
                float: left;
-               border: 2px solid #000;
+               border: 1px solid #000;
 
             }
             .container_service_info_type3 .container_state_building_info{
@@ -250,7 +249,7 @@
             }
 
         .container_cpe_box_working_hours_building_picture{
-            border: 2px solid #000;
+            border: 1px solid #000;
             height: 206px;
             margin: 0 auto;
             width: 100%;
@@ -336,7 +335,7 @@
                 padding: 2px 5px 1px 12px;
                 width: 100%;
                 font-size: 13px;
-                border: 2px solid #000;
+                border: 1px solid #000;
                 margin-bottom: 4px;
 
             }
@@ -346,7 +345,7 @@
             }
 
         .container_project_lit_orange_box{
-            border: 2px solid #000;
+            border: 1px solid #000;
             padding: 5px 6px 3px 12px;
             width: 100%;
             float: left;
@@ -361,7 +360,7 @@
             width: 100%;
             margin: 0 auto; 
             height: 511px; 
-            border: 2px solid #000;
+            border: 1px solid #000;
           
 
         }
@@ -406,23 +405,36 @@
 
         }
         #dvPictureImage{
-            width: 276px;
-            height: 205px;
+            width: 275px;
+            height: 206px;
             z-index: 9999;
             position: relative;   
+            display: none;
+            background-size: 100% 100%;
 
         }
         #dvCanvaImage{
-            width: 276px;
-            height: 205px;
-            position: relative;  
+            width: 275px;
+            height: 206px;
+            position: relative;
             z-index: 99999;
-            bottom: 204px;
+            bottom: 206px;
+            display: none; 
+            background-size: 100% 100%;
 
+        }
+        #archivoCPEPhotos{
+            position: absolute;
+            left: -2px;
+            width: 272px;
+            height: 195px;
+            cursor: pointer;
+            opacity: 0;
         }
 /*---------------------------------------------*/
 /*----   LIT EQUIP INFO CLASSES AND IDS  ------*/
 /*-------------------------------------------*/
+
     /**/.container_pictures{
         height: 89px;
         margin-top: 34px;
@@ -513,7 +525,7 @@
 
 #btnPanelButton{
     padding: 10px;
-    border: 2px solid #000;
+    border: 1px solid #000;
     margin-top: 7px;
     text-align: center;
     background-color: rgb(140, 205, 209);
@@ -683,10 +695,10 @@
 
 }
 #dvBuildingPicture{
-    width: 30%;
+    width: 275px;
     height: inherit;
     float: left;
-    background-size: 100% 100%;
+    border-left: 1px solid #000;
 
 }
 .input_cpe_orange{

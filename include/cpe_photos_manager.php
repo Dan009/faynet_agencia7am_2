@@ -4,10 +4,8 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 	//echo $code = $_POST['code'];
 	//echo $type = $_POST['type'];
 
-		echo "Hallo";
-
 	// REALIZAR EL CODIGO QUE ESTA EN SUBIR_ARCHIVO.PHP
-		if ($_POST['tipo_ejecucion'] == "subir_archivo") {
+		if ($_POST['tipo_ejecucion'] == "subir_archivo" && $_POST['cantidad_ejecucion'] <= 1) {
 				
 			if (isset($_FILES['archivo'])) {
 				$archivo = $_FILES['archivo'];
@@ -33,8 +31,9 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 			}
 
 	// REALIZAR EL CODIGO QUE ESTA SELECT_TEMP.PHP
-		}else{
-			$consulta_imagen="SELECT * FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1,1";
+		}else if($_POST['tipo_ejecucion'] == "select_image"){
+
+			$consulta_imagen="SELECT file,type FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1";
 			$resultado_imagen= mysqli_query($conexion,$consulta_imagen);	
 			$fila_imagen= mysqli_fetch_array($resultado_imagen);
 
@@ -70,7 +69,25 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 			//			echo '<input type="hidden" name="type_plan" id="type_plan'.'" value="'.$type_plan.'"/>';
 						
 			//		} 
+			  
+	// BUSCAR LA IMAGEN QUE SE SOLICITA
+		}else if($_POST['tipo_ejecucion'] == "select_picture"){
 
+			$consulta_imagen="SELECT file FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1";
+			$resultado_imagen= mysqli_query($conexion,$consulta_imagen);	
+			$fila_imagen= mysqli_fetch_array($resultado_imagen);
+
+				echo $fila_imagen['file'];
+
+	// BUSCAR LA IMAGEN QUE SE SOLICITA
+		}else if($_POST['tipo_ejecucion'] == "select_canva"){
+
+			$consulta_imagen="SELECT canvas FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1";
+
+			$resultado_imagen= mysqli_query($conexion,$consulta_imagen);	
+			$fila_imagen= mysqli_fetch_array($resultado_imagen);
+
+				echo $fila_imagen['canvas'];
 
 		} /**/
 

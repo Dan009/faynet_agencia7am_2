@@ -20,11 +20,12 @@
 	$consulta_id="SELECT * FROM temp WHERE code='".$code."' AND type='".$type."' ORDER BY id DESC ";
  	$resultado_id= mysqli_query($conexion,$consulta_id);	
  	$fila_id= mysqli_fetch_array($resultado_id);
-	
+
 	$id = $fila_id['id'];
 	
 	$sql = "UPDATE temp SET canvas='$img' WHERE id='$id'";
    	$result = mysqli_query($conexion,$sql);
+
 
 	
 ?>

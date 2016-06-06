@@ -11,10 +11,15 @@
 
                 //var_dump($consulta_property_manager);
 
+        // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA 
+            $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 1px solid #000;";
+
+            $estiloCSSBuilding = "width: 90%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;border: 1px solid #000;"; 
 
 ?>
 
 <script type="text/javascript">
+    var contador = 0;
 
     /////////////////////////////////////////////////////////////
     //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
@@ -35,13 +40,15 @@
                     }
 
                 });*/
-                  alert("Hallo CPE FORM");
+    
                 $(".containerprueba").css("z-index","0");
+                contador++;
 
-            $("#archivo").upload('include/cpe_photos_manager.php',
+            $("#archivoCPEPhotos").upload('include/cpe_photos_manager.php',
             {
                 type: $("#type").val(),
-                tipo_ejecucion: $("#tipo_ejecucion").val()<?php echo ",\nid_information: $id_information"; ?>
+                tipo_ejecucion: $("#tipo_ejecucion").val(),
+                cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information"; ?>
 
             },
             
@@ -54,11 +61,15 @@
                         $("#nombre_archivo, #archivo").val('');
 
                     } else {
-                        var type =  $("#type").val()
+                        var type =  $("#type").val();
+                        var select_temp_type = "select_image";
+
+
                         
                             $.post("include/cpe_photos_manager.php",
                                 {
-                                    type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
+                                    type: $("#type").val(),
+                                    tipo_ejecucion:select_temp_type<?php echo ",\nid_information: $id_information"; ?>
 
                                 } ,
                                 function (data) {
@@ -78,7 +89,8 @@
                             $(".editor_imagenes_content").append(data);
                             
                         });
-                        
+
+
                         $("body").css({ 'overflow': "hidden" });
                         
                         window.stop();
@@ -96,31 +108,31 @@
     /////////////////////////////////////////////////////////////
     //////////        PARA ELIMINAR ARCHIVOS       /////////////
     ///////////////////////////////////////////////////////////
-                function eliminarArchivos() {
-                    var id = $(".eliminar_archivo").attr('id')
-                    alert(id);  
-        
-                    $.ajax({
-                        url: 'include/eliminar_archivo.php',
-                        type: 'POST',
-                        timeout: 10000,
-                        data: {id: id},
-                        error: function() {
-                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-                        },
-                        success: function(respuesta) {
-                            if (respuesta == 1) {
-                                mostrarRespuesta('El archivo ha sido eliminado.', true);
-                                
-                            } else {
-                                 
-                                mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
-                                                       
-                            }
-                            
-                        }
-                    });
+        function eliminarArchivos() {
+            var id = $(".eliminar_archivo").attr('id')
+            alert(id);  
+
+            $.ajax({
+                url: 'include/eliminar_archivo.php',
+                type: 'POST',
+                timeout: 10000,
+                data: {id: id},
+                error: function() {
+                    mostrarRespuesta('Error al intentar eliminar el archivo.', false);
+                },
+                success: function(respuesta) {
+                    if (respuesta == 1) {
+                        mostrarRespuesta('El archivo ha sido eliminado.', true);
+                        
+                    } else {
+                         
+                        mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
+                                               
+                    }
+                    
                 }
+            });
+        }
 
     /////////////////////////////////////////////////////////////
     //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
@@ -158,65 +170,144 @@
     ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
     ///////////////////////////////////////////////////////////
 
-            $(document).ready(function() {
-                mostrarArchivos();
+        $(document).ready(function() {
+            mostrarArchivos();
 
-                $("#archivo").change(function (){
-                
-                    subirArchivos();
-
-                });
-
-                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-                    var archivo = $(this).parents('.row').eq(0).find('span').text();
-                    archivo = $.trim(archivo);
-                    eliminarArchivos(archivo);
-
-                });
-
-                    /////////////////////////////////////////////////////////////
-                    ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
-                    ///////////////////////////////////////////////////////////
-
-                        $("#archivo").mouseenter(function(){
-                            $(".text_select_image").fadeIn(150);
-
-
-                        }).mouseleave(function(){
-                            $(".text_select_image").fadeOut(150);
-
-                        });
+            $("#archivo").change(function (){
+                //subirArchivos();
+                subirArchivos();
 
             });
 
+            $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+                var archivo = $(this).parents('.row').eq(0).find('span').text();
+                archivo = $.trim(archivo);
+                eliminarArchivos(archivo);
 
-
-</script>
-     
-      
-<script>
-
-    $(document).ready(function() {
-        $("#submit_request").click(function() {
-
-    		$.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
-              function(data) {
-
-                $(".hola").append(data);
-                
-    			
             });
 
+                /////////////////////////////////////////////////////////////
+                ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
+                ///////////////////////////////////////////////////////////
+
+                    $("#archivo").mouseenter(function(){
+                        $(".text_select_image").fadeIn(150);
+
+
+                    }).mouseleave(function(){
+                        $(".text_select_image").fadeOut(150);
+
+                    });
 
         });
 
+    /////////////////////////////////////////////////////////////////////
+    ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
+    ///////////////////////////////////////////////////////////////////
+        function setearFotoCPE(){
+            var type_ejecucion = "select_picture";
 
-    });
+                $.ajax({ 
+                    type: "POST", 
+                    url: "include/cpe_photos_manager.php",
+                    data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                    success: function(data) {
+                        $("#dvPictureImage").css("background-image","url(archivos/temp/"+data+"");
+
+                    }
+
+                });
+
+        }
+
+    /////////////////////////////////////////////////////////////////////
+    ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
+    ///////////////////////////////////////////////////////////////////
+
+        function setearCanvasCPE(){
+            var type_ejecucion = "select_canva";
+
+                $.ajax({ 
+                    type: "POST", 
+                    url: "include/cpe_photos_manager.php",
+                    data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                    success: function(data) {
+                        $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data+"");
+  
+                             
+                    }
+
+
+                });
+
+        }
+          
+    ////////////////////////////////////////////////////////////
+    ///     FUNCION QUE SETEA LOS DIVS CON LAS IMAGENES     ///
+    //////////////////////////////////////////////////////////
+
+      var canvas;
+
+      function exportAndSaveCanvas()  {
+            setearFotoCPE();
+    
+          canvas = document.getElementById("canvas");
+
+            // Get the canvas screenshot as PNG
+                var screenshot = Canvas2Image.saveAsPNG(canvas, true);
+
+            // This is a little trick to get the SRC attribute from the generated <img> screenshot
+                canvas.parentNode.appendChild(screenshot);
+                screenshot.id = "canvasimage";      
+                type_plan = $("#type").val();
+                data = $('#canvasimage').attr('src');
+                code = <?php echo $id_information; ?>;
+            
+            
+            //alert(type_plan);
+            
+            canvas.parentNode.removeChild(screenshot);
+
+
+            // Send the screenshot to PHP to save it on the server
+                var url = 'include/export.php';
+
+                    $.ajax({ 
+                        type: "POST", 
+                        url: url,
+                        dataType: 'text',
+                        data: {
+                            base64data : data, codesend : code, type:type
+                        },
+                        success: function(data) {
+
+                            setearCanvasCPE();
+                            $("#dvPictureImage").fadeIn(100);
+                            $("#dvCanvaImage").fadeIn(100);
+                            $(".containerprueba").css("z-index","999999999999999");
+                            $(".text_select_image").css({
+                                zIndex:"-999999",
+                                top: "139px",
+                                color: "white"
+
+                            });
+
+                                $(".literally").remove();    
+                                $(".editor_imagenes").css({ 'display': "none" });
+                                $("body").css({ 'overflow': "auto" });
+                            
+                                 
+                        }
+ 
+                        
+                    });
+
+
+       }
 
 
 </script>
-
-     
+ 
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
         <div class="container_cpe_service_info">
@@ -234,7 +325,7 @@
 
                 </div>
 
-                <input type="text" placeholder="ENTER SERVICE WO" style="width: 20%;height: 39px;position: relative;bottom: 15px;margin-left: 2px;float: left;border: 2px solid #000;" value="<?php echo $fila_information['service_number']; ?>" disabled  />
+                <input type="text" placeholder="ENTER SERVICE WO" style="width: 20%;height: 39px;position: relative;bottom: 15px;margin-left: 2px;float: left;border: 1px solid #000;" value="<?php echo $fila_information['service_number']; ?>" disabled  />
 
                 <div class="container_cpe_orange_box container_type_service"> 
 
@@ -308,7 +399,7 @@
 
                     </div>
 
-                    <input type="text" style="width: 74%;height: 16px;float: left;margin-top: -4px;text-align: right;padding: 11px;font-size: 18px;border: 2px solid #000;" value="<?php echo $fila_information['bldg_number']; ?>" disabled />
+                    <input type="text" style="width: 74%;height: 16px;float: left;margin-top: -4px;text-align: right;padding: 11px;font-size: 18px;border: 1px solid #000;" value="<?php echo $fila_information['bldg_number']; ?>" disabled />
 
                 </div>
 
@@ -350,9 +441,9 @@
 
                 </div>
 
-                <input type="text"  style="width: 100%;height: 33px;position: relative;margin: 15px 0 16px 0;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo $fila_information['street_number']; ?>" disabled />
+                <input type="text"  style="width: 100%;height: 33px;position: relative;margin: 15px 0 16px 0;padding: 7px;bottom: 10px;border: 1px solid #000;" value="<?php echo $fila_information['street_number']; ?>" disabled />
 
-                <input type="text" style="width: 100%;height: 33px;position: relative;padding: 7px;margin-top: -21px;border: 2px solid #000;" disabled />
+                <input type="text" style="width: 100%;height: 33px;position: relative;padding: 7px;margin-top: -21px;border: 1px solid #000;" disabled />
 
             </div>
 
@@ -363,12 +454,12 @@
 
                 </div>
 
-                  <input type="text" style="width: 83%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 2px solid #000;"  />
+                  <input type="text" style="width: 84%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 1px solid #000;"  />
 
                 <div class="container_state_building_info1">
                     <span> STATE </span>
 
-                    <input type="text" style="width: 64%;height:41px;position: relative;top: 4px; padding-left: 11px;border: 2px solid #000;" value="<?php echo strtoupper(substr($fila_information['state'],0,2)) ;?>" disabled />
+                    <input type="text" style="width: 64%;height:41px;position: relative;top: 4px; padding-left: 11px;border: 1px solid #000;" value="<?php echo strtoupper(substr($fila_information['state'],0,2)) ;?>" disabled />
 
                 </div>
     
@@ -551,7 +642,7 @@
 
 							<div class="div_file_inside">
 
-							   <input type="file" name="archivo" id="archivo" accept="image/x-png, image/gif, image/jpeg"/>
+							   <input type="file" name="archivo" id="archivoCPEPhotos" accept="image/x-png, image/gif, image/jpeg"/>
 					           
                                <h3 class="text_select_image"> Click here to upload and draw an image </h3>
 
@@ -564,7 +655,7 @@
 						</form>
 						
 					<div id="archivos_subidos"></div>
-					<div id="respuesta" class="alert"></div>
+				<!-- 	<div id="respuesta" class="alert"></div> -->
 				
 				</div>
                 
@@ -608,7 +699,7 @@
 
                     </div>
 
-                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo strtoupper($fila_company_name['user_name']); ?>" disabled="disabled" />
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 1px solid #000;" value="<?php echo strtoupper($fila_company_name['user_name']); ?>" disabled="disabled" />
 
 
                 </div>
@@ -620,7 +711,7 @@
 
                     </div>
 
-                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo strtoupper($fila_property_manager['contact_name']); ?>" disabled="disabled" />
+                    <input type="text" style="width: 94%;height: 33px;position: relative;margin: 12px 0 20px 9px;padding: 7px;bottom: 10px;border: 1px solid #000;" value="<?php echo strtoupper($fila_property_manager['contact_name']); ?>" disabled="disabled" />
 
 
                 </div>   
@@ -632,7 +723,7 @@
 
                     </div>
 
-                      <input type="text" style="width: 94%;height: 33px;position: relative;margin: 15px 0 0 0;padding: 7px;bottom: 10px;border: 2px solid #000;" value="<?php echo strtoupper($fila_property_manager['contact_email']); ?>" disabled="disabled" />
+                      <input type="text" style="width: 94%;height: 33px;position: relative;margin: 15px 0 0 0;padding: 7px;bottom: 10px;border: 1px solid #000;" value="<?php echo strtoupper($fila_property_manager['contact_email']); ?>" disabled="disabled" />
 
 
                 </div>

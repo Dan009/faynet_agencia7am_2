@@ -4,10 +4,6 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
     //$_SESSION['time_code'] = $time_code;
 
-    $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 2px solid #000;";
-
-    $estiloCSSBuilding = "width: 90%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;border: 2px solid #000;"; 
-
         if (isset($_GET)) {
             $id_information = $_GET['id_information'];
             $id_request = $_GET['id_request'];
@@ -41,8 +37,6 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
                 });*/
 
-                alert("Hallo CPE FORM");
-
                     $.post("include/cpe_photos_manager.php",
                         {
                             type: $("#type").val()<?php if(isset($_GET['id_information'])){echo ",\nid_information: $id_information";} ?>
@@ -71,7 +65,7 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
     ///////////////////////////////////////////////////////////
 
             $(document).ready(function() {
-                mostrarArchivos();
+                //mostrarArchivos();
 
                 $("#archivo").change(function (){
                 
@@ -248,23 +242,24 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
 </script>
 
+<!--  DIVS PARA HABILITAR EL EDITOR  -->
 
-		
     <div class="temp"></div>  
-  			
-    	<div class="editor_imagenes" style="overflow:auto">
-        	<div class="cont-button-editor">
-            	
-            	<input type="button" value="Save current image" onClick="exportAndSaveCanvas()" >
+            
+        <div class="editor_imagenes" style="overflow:auto">
+            <div class="cont-button-editor">
+                
+                <input type="button" value="Save current image" onClick="exportAndSaveCanvas()" style="padding: 22px;width: 15%;">
+
             </div>
-			
-        	<div class="editor_imagenes_content" style="width:100%; height:800px; margin:auto;">
-		
-		          <!-- AQUI CARGA EL EDITOR-->
-			
-		      </div>
-		
-	    </div>
+            
+            <div class="editor_imagenes_content" style="width:100%; height:800px; margin:auto;">
+        
+                  <!-- AQUI CARGA EL EDITOR-->
+            
+              </div>
+        
+    </div>
     
 <body>
 	
@@ -273,7 +268,8 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
 
 
-    <script>
+<script>
+
         $(document).ready(function() {
             $("#submit_request").click(function() {
                 $.post($("#form_request").attr("action"), $("#form_request").serialize(),
@@ -288,61 +284,9 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
         	  
           });
           
-      
-      
-      
-      var canvas;
-      var stage;
-      
-      function exportAndSaveCanvas()  {
-    	  
-    	  canvas = document.getElementById("canvas");
-
-    		// Get the canvas screenshot as PNG
-    		var screenshot = Canvas2Image.saveAsPNG(canvas, true);
-
-    		// This is a little trick to get the SRC attribute from the generated <img> screenshot
-    		canvas.parentNode.appendChild(screenshot);
-    		screenshot.id = "canvasimage";		
-    		type_plan = $("#type_plan").val();
-    		data = $('#canvasimage').attr('src');
-    		code = $("#code").val();
-    		
-    		
-    		//alert(type_plan);
-    		
-    		canvas.parentNode.removeChild(screenshot);
 
 
-    		// Send the screenshot to PHP to save it on the server
-    		var url = 'include/export.php';
-    		$.ajax({ 
-    		    type: "POST", 
-    		    url: url,
-    		    dataType: 'text',
-    		    data: {
-    		        base64data : data, codesend : code, type:type
-    		    },
-    			
-    			success: function(data) {
-					$(".literally").remove();    
-					$(".editor_imagenes").css({ 'display': "none" });
-					$("body").css({ 'overflow': "auto" });
-
-                        
-    				
-    					 
-    			}
-
-    			
-    			
-    		});
-
-
-
-       }
-
-    </script>
+</script>
 
 <form id="form_request" name="form_request" method="post" enctype="multipart/form-data" >
 
