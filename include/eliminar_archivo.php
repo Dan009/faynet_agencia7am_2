@@ -1,5 +1,6 @@
 <?php
 include("../confi/conf.inc.php");
+
 if(isset($_POST['id']))
 {
  $id = $_POST['id']; 

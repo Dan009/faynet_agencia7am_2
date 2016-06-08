@@ -29,15 +29,13 @@
         <link type="text/css" rel="stylesheet" href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>css/request.css" />
         <link type="text/css" rel="stylesheet" href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>css/square.css" />
 		<link rel="stylesheet" href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>css/jquery-ui.css">
-		<link rel="stylesheet" href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>css/pagination_style.css">
 		 
-        
-  	 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-  	 	
+         <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/icheck.js"></script>
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/main.js"></script>
 
-
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script>
 			   $.datepicker.regional['es'] = {
 				 closeText: 'Cerrar',

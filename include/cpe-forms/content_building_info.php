@@ -155,7 +155,7 @@
         }
 
     /////////////////////////////////////////////////////////////
-    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+    //////////  PARA MOSTRAR LAS RESPUESTAS DE LAS ACCIONES  ///
     ///////////////////////////////////////////////////////////
         function mostrarRespuesta(mensaje, ok){
             $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
@@ -642,7 +642,7 @@
 
 							<div class="div_file_inside">
 
-							   <input type="file" name="archivo" id="archivoCPEPhotos" accept="image/x-png, image/gif, image/jpeg"/>
+							   <input type="file" name="archivo" id="archivoCPEPhotos" accept="image/x-png, image/gif, image/jpeg" />
 					           
                                <h3 class="text_select_image"> Click here to upload and draw an image </h3>
 

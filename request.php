@@ -2,93 +2,12 @@
     $_SESSION['time_code']=$time_code;
 
         if(isset($_GET['id'])){
-        
             // CARGA LA INFORMACIÓN GENERAL DE SEARCH
-                $idArray = explode(",", $_GET['id']);
-
-                $consulta_search="SELECT STREET_NUMBER,CITY, STATE FROM GENERAL_INFORMATION WHERE TIME_CODE = '".$idArray[0]."' AND USUARIO_ID = '".$_SESSION['id']."' ";
+                $consulta_search="SELECT STREET_NUMBER,CITY, STATE FROM GENERAL_INFORMATION WHERE TIME_CODE = '".$_GET['id']."' AND USUARIO_ID = '".$_SESSION['id']."' ";
                 $resultado_search= mysqli_query($conexion,$consulta_search);
                 $fila_search= mysqli_fetch_array($resultado_search);
 
-            // DEJA QUE APAREZCAN SOLAMENTE LAS VENTANAS DE LOS SERVICIOS QUE NO SE SOLICITEN
-
-                // Contadores para cada ventana
-                    $nVentanaInside = 0;   
-                    $nVentanasPole = 0; 
-                    $nVentanasManhole = 0;  
-                    $nVentanasCivil = 0;    
-                    $nVentanasABpole = 0;   
-
-                // Encontrar la primera ventana a mostrar
-                    $cons_inside="SELECT * FROM request WHERE id_request='$idArray[0]' AND usuario_id='".$_SESSION['id']."' ";
-                    $res_inside= mysqli_query($conexion,$cons_inside);
-                    $row_inside = mysqli_fetch_array($res_inside);
-
-                        while ($fila = mysqli_fetch_array($res_inside)) {
-                            if ($fila['tipo'] == 'inside_plan' or 
-                                $fila['tipo'] == 'building_site_survey') {
-                                    if ($nVentanaInside == 0) {
-                                         $nVentanaInside++;
-
-                                    }
-                               
-                            }else if ($fila['tipo'] == 'proposed_pole_plan_task' or
-                            $fila['tipo'] == 'as_built_pole_plan_task'or
-                            $fila['tipo'] == 'outside_utility_pole_plan'or
-                            $fila['tipo'] == 'highway_traffic_pole_plan' or
-                            $fila['tipo'] == 'railroad_crossing_pole_plan') {
-                                if ($nVentanasPole == 0) {
-                                    $nVentanasPole++;
-
-                                }
-                            
-                            }else if ($fila['tipo'] == 'breakout_manhole' or
-                            $fila['tipo'] == 'electric_proposed_manhole_plan' or
-                            $fila['tipo'] == 'telephone_proposed_manhole_plan' or
-                            $fila['tipo'] == 'private_proposed_manhole_plan' or
-                            $fila['tipo'] == 'outsite_utility_manhole_plan' or
-                            $fila['tipo'] == 'underground_outsite_manhole_plan'or
-                            $fila['tipo'] == 'aerial_outsite_manhole_plan') {
-                                if ($nVentanasManhole == 0) {
-                                     $nVentanasManhole++;
-
-                                }
-                                
-                            }else if ($fila['tipo'] == 'highway_request_civil_plans' or
-                            $fila['tipo'] == 'permit_request_civil_plans' or
-                            $fila['tipo'] == 'civil_plans' or
-                            $fila['tipo'] == 'mwra_request_civil_plans' or
-                            $fila['tipo'] == 'railroad_request_civil_plans') {
-                                if ($nVentanasCivil == 0) {
-                                     $nVentanasCivil++;
-
-                                }
-
-                            }else if ($fila['tipo'] == 'electric_request_utility_plans' or 
-                                $fila['tipo'] == 'telephone_request_utility_plans' or 
-                                $fila['tipo'] == 'private_request_utility_plans' or 
-                                $fila['tipo'] == 'all_request_utility_plans' or 
-                                $fila['tipo'] == 'find_request_utility_plans') {
-                                if ($nVentanasABpole == 0) {  
-                                    $nVentanasABpole++;
-
-                                }
-
-
-                            }
-
-                        }
-
-                    /*var_dump($nVentanaInside, 
-                            $nVentanasPole,
-                            $nVentanasManhole,
-                            $nVentanasCivil,
-                            $nVentanasABpole); */
-
-
-
         }
-
 
  ?>
  <script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
@@ -236,7 +155,7 @@
 
 </script>
 		
-    <div class="temp"></div>  
+  <div class="temp"></div>  
   			
     	<div class="editor_imagenes" style="overflow:auto">
         	<div class="cont-button-editor">
@@ -258,65 +177,20 @@
 
 
 <script>
-    $(document).ready(function() {
-        $("#submit_request").click(function() {
-            $.post($("#form_request").attr("action"), $("#form_request").serialize(),
-              function(data) {
-    			$(".exito_insert").fadeIn(200);
-                $(".hola").append(data);
-                
-    			
-              });
-    		 
+$(document).ready(function() {
+    $("#submit_request").click(function() {
+        $.post($("#form_request").attr("action"), $("#form_request").serialize(),
+          function(data) {
+			$(".exito_insert").fadeIn(200);
+            $(".hola").append(data);
+            
+			
           });
-
-            /////////////////////////////////////////////////////////////
-            //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
-            ///////////////////////////////////////////////////////////
- 
-                function subirArchivos() {
-                        
-                    $.get("include/select_temp.php", function (data) {
-                         $(".temp").append(data);
-                    });
-                        
-                    $(".editor_imagenes").fadeIn(200);
-                    mostrarRespuesta('Subido Correctamente.', true);
-                    mostrarArchivos();
-                    
-                    $.get("include/editor.php", function (data) {
-                        $(".editor_imagenes_content").append(data);
-                        
-                    });
-                    
-                    $("body").css({ 'overflow': "hidden" });
-                    
-                    window.stop();
-
-
-                }
-
-            /////////////////////////////////////////////////////////////
-            ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
-            ///////////////////////////////////////////////////////////
-
-            /**/$(document).ready(function() {
-                //mostrarArchivos();
-                $("#boton_subir").on('click', function() {
-                    var name = $(this).attr('name');
-                    //alert(name)
-                    subirArchivos();
-                });
-                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-                    var archivo = $(this).parents('.row').eq(0).find('span').text();
-                    archivo = $.trim(archivo);
-                    eliminarArchivos(archivo);
-                });
-
-            }); 
-    	  
+		 
       });
-      
+	  
+  });
+  
   
   
   
@@ -386,46 +260,13 @@
 				<span> ADD NEW REQUEST </span> <div class="icon_fleca_request" ></div> 
 			
 				<!-- MENU DESPLEGABLE  -->
-    				<ul class="desplegable_btn_request" >
-
-                        <!-- VENTANA CIVIL PLAN-->
-                            <?php //if($nVentanaInside == 0) { ?>
-
-        					   <li class="add_ventana" name="inside_plan" dir="<?php echo $idArray[1]; ?>"> INSIDE PLAN </li>
-
-                            <?php //  } ?>
-
-                        <!-- VENTANA POLE PLAN -->
-
-                            <?php  if ($nVentanasPole == 0) { ?>
-
-        					   <li class="add_ventana" name="pole_plan" dir="<?php echo $idArray[1]; ?>"> POLE PLAN </li>
-
-                            <?php   } ?>
-
-                        <!-- VENTANA POLE PLAN -->
-                            <?php  if ($nVentanasABpole == 0) {  ?>
-
-        				    	<li class="add_ventana" name="utility_ab_record" dir="<?php echo $idArray[1]; ?>"> UTILITY AB RECORD </li>
-
-
-                            
-                            <?php } ?>
-
-                        <!-- VENTANA MANHOLE PROP -->
-                            <?php if ($nVentanasManhole == 0) { ?>
-
-        				    	<li class="add_ventana" name="manhole_prop" dir="<?php echo $idArray[1]; ?>"> MANHOLE PROP  </li>
-
-                            <?php  } ?>
-
-                        <!-- VENTANA CIVIL PLAN-->
-
-                            <?php if ($nVentanasCivil == 0) { ?>
-
-        					   <li class="add_ventana" name="civil_plan" dir="<?php echo $idArray[1]; ?>"> CIVIL PLAN </li>
-
-                            <?php }?>
+    				<ul class="desplegable_btn_request" >		
+    					<li class="add_ventana" name="inside_plan" > INSIDE PLAN </li>
+    					<li class="add_ventana" name="pole_plan" > POLE PLAN </li>
+    					<li class="add_ventana" name="utility_ab_record" > UTILITY AB RECORD </li>
+    					<li class="add_ventana" name="manhole_prop" > MANHOLE PROP  </li>
+    					<li class="add_ventana" name="civil_plan" > CIVIL PLAN  </li>
+                     
  
     				</ul>
 				

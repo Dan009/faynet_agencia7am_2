@@ -1,0 +1,53 @@
+<IfModule mod_rewrite.c>
+RewriteCond %{HTTP_HOST} ^quiropractico.com.do [NC]
+RewriteRule ^(.*)$ http://www.quiropractico.com.do/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_gzip.c>
+  mod_gzip_on Yes
+  mod_gzip_dechunk Yes
+  mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_include mime ^text/.*
+  mod_gzip_item_include mime ^application/x-javascript.*
+  mod_gzip_item_exclude mime ^image/.*
+  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+# Compresión GZIP con mod_deflate
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/css text/javascript application/x-javascript application/javascript    text/x-component text/html text/richtext image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon     application/json
+</IfModule>
+
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|js|xml|txt|css)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+
+
+
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-d 
+RewriteCond %{SCRIPT_FILENAME} !-f 
+
+#   ---- MISSION LIFE -----
+
+
+#PAGINAS dominio.com/missionlife/blog
+Rewriterule ^blog$ blog.php [NC,L]
+
+#PAGINAS dominio.com/lulu/NOMBREPAGINA
+Rewriterule ^blog/(.+)/(.+)\.html$ detalle_blog.php?id=$1&nombre=$2 [NC,L]
+
+#PAGINAS dominio.com/missionlife/noticias
+Rewriterule ^noticias$ noticias.php [NC,L]
+
+#PAGINAS dominio.com/lulu/NOMBREPAGINA
+Rewriterule ^noticias/(.+)/(.+)\.html$ detalle_noticias.php?id=$1&nombre=$2 [NC,L]
+
+#PAGINAS dominio.com/missionlife/
+Rewriterule ^home$ index.php [NC,L]
+
+
+
+

@@ -14,7 +14,6 @@
 	}else{
 		$consulta="SELECT * FROM request  ";		
 	}
-
 	$resultado= mysqli_query($conexion,$consulta);
 	$rows= mysqli_num_rows($resultado);	
 	
@@ -90,18 +89,18 @@
 					<div class="content_active_jobs"> 
 						<div>
 							<?php
-							
+							//	echo $fila['street_number'];
 								$consulta_city="SELECT * FROM city WHERE id='".$fila_general['city_id']."' ";
 								$resultado_city= mysqli_query($conexion,$consulta_city);
 								$fila_city=mysqli_fetch_array($resultado_city);
-							
+								//echo ", ".$fila_city['city'];
+								
 								$consulta_state="SELECT * FROM state WHERE id='".$fila_general['state_id']."' ";
 								$resultado_state= mysqli_query($conexion,$consulta_state);
 								$fila_state=mysqli_fetch_array($resultado_state);
-							
+								//echo ", ".$fila_city['state'];
 								$text=$fila_general['street_number'].", ".$fila_city['city'].", ".$fila_state['state'];
 								$tamano = strlen($fila_general['street_number'].", ".$fila_city['city'].", ".$fila_state['state']);
-
 								if($tamano >=15){
 									echo "<span title='$text'>".substr($text, 0, 15)."..."."</span>"; 
 								}else{
@@ -157,14 +156,13 @@
                                     <?php if ($_SESSION['estado'] == 3) {  ?>
                                     	<li class="open_designer" id="<?php echo $fila['id']; ?>"  name="designer">Designer</li> 
                                     	
-                                    <?php  }?> 
+                                    <?php  }?>
 
-                                    <?php if ($_SESSION['estado'] != 2) {  ?>
+                                     <?php if ($_SESSION['estado'] != 2) {  ?>
                                     	  <li class="open_job_progress" id="">View Progress</li>
                                     	
                                     <?php  }?>
-
-
+                                    
                         		</ul>     				
 						
 					 	</ul>    
@@ -194,10 +192,9 @@
 	
 	<!--	ESTE ES LIGHTBOX -->
 	<div class="fondo_list_job" >
-		<div class="fancy_list_job"></div>
-
-	</div>	
-
+		<div class="fancy_list_job" ></div>
+	</div>
+    
     <div class="exito_insert" >
 		
 		<div class="div_exito_insert" >

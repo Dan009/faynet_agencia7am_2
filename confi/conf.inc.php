@@ -8,12 +8,12 @@ $directorio = "/faynet/";
 
 	
     $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
-	$link = mysql_connect('localhost','root',$contrasena); 
+	$link = mysql_connect('localhost','root','llego_el_pavo01'); 
 	mysql_select_db('faynet') or die ('Error al seleccionar la Base de Datos: '.mysql_error());
 	if (!class_exists('Conectar')) {
 	class Conectar{
 		public static function con(){
-			$con = mysql_connect("localhost","root", $contrasena) or die("conexiÃ³n incorrecta");
+			$con = mysql_connect("localhost","root", "llego_el_pavo01") or die("conexiÃ³n incorrecta");
 			mysql_select_db("faynet") or die("base de datos incorrecta");
 			mysql_query("SET NAMES 'utf8'");
 			return $con;
@@ -86,7 +86,6 @@ function sanear_string($string)
 }
 }
 
+$t=time(); $time_code = $t."-".$_SESSION['id'];
 
-$t=time(); 
-$time_code = $t."-".$_SESSION['id'];
 ?>

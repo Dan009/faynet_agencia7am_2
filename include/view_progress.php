@@ -14,7 +14,8 @@
  ?>
 <div class="header-overview">
 	<div class="title-windows"> 
-	 	<?php echo $fila_diseñador['name_designer']." ".$fila_diseñador['lastname']; ?>  /
+	 	<?php if (isset($fila_diseñador)) { echo $fila_diseñador['name_designer']." ".$fila_diseñador['lastname']."/"; } ?>  
+
 	 	PROGRESS 
 
 	</div>

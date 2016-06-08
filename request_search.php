@@ -1,8 +1,6 @@
 <?php include('include/head.php');
 	$_SESSION['time_code']=$time_code;
-
-	$idsGet = explode(",",$_GET['id']);
-	$idsearch = $idsGet[0];
+	$idsearch = $_GET['id'];
 	
 	if(isset($_GET['id'])){
 		// CARGA LA INFORMACIÓN GENERAL DE SEARCH
@@ -118,7 +116,6 @@
 			$nVentanasManhole = 0;	
 			$nVentanasCivil = 0;	
 			$nVentanasABpole = 0;	
-
 		// Encontrar la primera ventana a mostrar
 			$cons_inside="SELECT * FROM request WHERE id_request='$idsearch' AND usuario_id='".$_SESSION['id']."' ";
 			$res_inside= mysqli_query($conexion,$cons_inside);
@@ -129,7 +126,6 @@
 						$fila['tipo'] == 'building_site_survey') {
 							if ($nVentanaInside == 0) {
 								llamarVentana('inside_plan',$idsearch);
-
 							}
 						$nVentanaInside++;
 
@@ -153,10 +149,9 @@
 					$fila['tipo'] == 'underground_outsite_manhole_plan'or
 					$fila['tipo'] == 'aerial_outsite_manhole_plan') {
 						if ($nVentanasManhole == 0) {
-							llamarVentana('manhole_prop',$idsearch);
+								llamarVentana('manhole_prop',$idsearch);
 
 						}
-						
 						$nVentanasManhole++;
 
 					}else if ($fila['tipo'] == 'highway_request_civil_plans' or
@@ -165,10 +160,9 @@
 					$fila['tipo'] == 'mwra_request_civil_plans' or
 					$fila['tipo'] == 'railroad_request_civil_plans') {
 						if ($nVentanasCivil == 0) {
-							llamarVentana('civil_plan',$idsearch);
+								llamarVentana('civil_plan',$idsearch);
 
 						}
-
 						$nVentanasCivil++;
 
 					}else if ($fila['tipo'] == 'electric_request_utility_plans' or 
@@ -177,10 +171,9 @@
 						$fila['tipo'] == 'all_request_utility_plans' or 
 						$fila['tipo'] == 'find_request_utility_plans') {
 						if ($nVentanasABpole== 0) {
-							llamarVentana('utility_ab_record',$idsearch);
+								llamarVentana('utility_ab_record',$idsearch);
 
 						}
-
 						$nVentanasABpole++;
 
 					}
@@ -215,7 +208,7 @@
     
 
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
     $("#submit_request").click(function() {
         $.post($("#form_request").attr("action"), $("#form_request").serialize(),
           function(data) {
@@ -298,13 +291,14 @@
 				<!-- MENU DESPLEGABLE  -->
 				
 					<ul class="desplegable_btn_request" >
-						 <li class="open_new_plan" name="inside_plan"> <a href="request.php?id=<?php echo $idsearch.",".$idsGet[1];?>"> INSIDE PLAN</a> </li>
-						<li class="open_new_plan" name="pole_plan"> <a href="request.php?id=<?php echo $idsearch.",".$idsGet[1]; ?>"> POLE PLAN</a> </li>
-						<li class="open_new_plan" name="utility_ab_record"> <a href="request.php?id=<?php $idsearch.",".$idsGet[1]; ?>"> UTILITY AB RECORD</a> </li>
-						<li class="open_new_plan" name="manhole_prop"> <a href="request.php?id=<?php echo $idsearch.",".$idsGet[1]; ?>"> MANHOLE PROP</a>  </li>
-						<li class="open_new_plan" name="civil_plan"><a href="request.php?id=<?php echo $idsearch.",".$idsGet[1]; ?>"> CIVIL PLAN </a> </li>
-
-	              
+						<li class="add_ventana" name="inside_plan"> <a href="request.php?id=<?php echo $idsearch; ?>"> INSIDE PLAN</a> </li>
+						<li class="add_ventana" name="pole_plan"> <a href="request.php?id=<?php echo $idsearch; ?>"> POLE PLAN</a> </li>
+						<li class="add_ventana" name="utility_ab_record"> <a href="request.php?id=<?php $idsearch; ?>"> UTILITY AB RECORD</a> </li>
+						<li class="add_ventana" name="manhole_prop"> <a href="request.php?id=<?php echo $idsearch; ?>"> MANHOLE PROP</a>  </li>
+						<li class="add_ventana" name="civil_plan"><a href="request.php?id=<?php echo $idsearch; ?>"> CIVIL PLAN </a> </li>
+	                 
+					
+					
 					</ul>
 				
 				<!-- FIN MENU DESPLEGABLE  -->

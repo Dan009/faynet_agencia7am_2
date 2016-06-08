@@ -160,91 +160,155 @@
 				<div class="header-info"><strong>BUILDING SITE SURVEY</strong></div>
 	   				<div class="container_form">
 
-					<div class="center_form" >
-					
+						<div class="center_form" >
+						
+							<div class="content_option_inside"  style="width: 86.5%;">
+										
+										<div class="title_content_option_inside"> 
 
-					<div class="content_option_inside"  style="width: 86.5%;">
-								
-								<div class="title_content_option_inside"> 
+											<div class="div_title_content_option_inside"  >
+												BUILDING SITE SURVEY 
 
-									<div class="div_title_content_option_inside"  >
-										BUILDING SITE SURVEY 
-
-										<div class="div_option_radio_inside" >
-											<input type="radio" name="si_survey" id="si_survey" value="si" disabled="disabled" class="radio_click" <?php if(isset($fila_building)){ echo "checked"; }?> />
-											<label for="si_survey" > Yes </label>
+												<div class="div_option_radio_inside" >
+													<input type="radio" name="si_survey" id="si_survey" value="si" disabled="disabled" class="radio_click" <?php if(isset($fila_building)){ echo "checked"; }?> />
+													<label for="si_survey" > Yes </label>
+													
+													<input type="radio" name="si_survey" id="no_survey" value="no" disabled="disabled" class="radio_click" disabled="disabled" <?php if(!isset($fila_building)){ echo "checked"; }?>/>
+													<label for="no_survey" > No </label>
+												</div>
 											
-											<input type="radio" name="si_survey" id="no_survey" value="no" disabled="disabled" class="radio_click" disabled="disabled" <?php if(!isset($fila_building)){ echo "checked"; }?>/>
-											<label for="no_survey" > No </label>
+											</div>
 										</div>
-									
-									</div>
-								</div>
-								
-								<div class="container_click_option_inside" <?php if(isset($fila_building)){ echo 'style="height:auto"'; }?> >
-								<div class="container_option_survey" >
-									
-									<div class="title_container_option_survey" >
-										<div class="text_title_container_option_survey"> SITE SURVEY </div>
-										<input type="checkbox" name="active_survey" disabled="disabled" <?php if($fila_building['site_survey_company'] > 0){ echo 'checked' ;}?> />
-									</div>
-									<div class="container_click_check_inside" <?php if($fila_building['site_survey_company'] > 0){ echo 'style="height:auto"' ;}?>>
-									<div class="div_select_survey">
-												<?php 
-												// BUSCA EL NOMBRE DE LA COMPANIA
-												$consulta_company="SELECT * FROM company WHERE id='".$fila_building['site_survey_company']."' ";
-												$resultado_company= mysqli_query($conexion,$consulta_company);
-												$fila_company= mysqli_fetch_array($resultado_company);
+										
+										<div class="container_click_option_inside" <?php if(isset($fila_building)){ echo 'style="height:auto"'; }?> >
+										<div class="container_option_survey" >
 											
-												?>	
-		                                
-										<select name="company_survey" disabled="disabled">
-											<option><?php echo $fila_company['company']; ?></option>
-										</select>
-									
-									</div>
-									<div class="div_select_survey">
-										
-		                                <?php 	
-										// BUSCA EL NOMBRE DEL CONTACTO
-										$consulta_contact="SELECT * FROM contact WHERE id='".$fila_building['site_survey_contact']."' ";
-										$resultado_contact= mysqli_query($conexion,$consulta_contact);
-										$fila_contact= mysqli_fetch_array($resultado_contact);
-										?>
-		                                	
-										<select name="contact_survey" disabled="disabled" >
-											<option><?php echo $fila_contact['contact']; ?></option>
-										</select>
-									
-									</div>
-									</div>
-									
-								</div>
-								<div class="container_option_survey" >
-									
-									<div class="title_container_option_survey" >
-										<div class="text_title_container_option_survey"> ISP ENG. PLANS </div>
-										<input type="checkbox" name="active_isp_eng_plans" class="click_check" disabled="disabled" <?php if($fila_building['isp_eng_plans_company'] > 0){ echo 'checked';}?>  />
-									</div>
-									<div class="container_click_check_inside" <?php if($fila_building['isp_eng_plans_company'] > 0){ echo 'style="height:auto"' ;}?>>
-									<div class="div_select_survey">
-										
-										<select name="company_isp_eng_plans_site_survey" disabled="disabled">
-											<?php 
-												$consulta_company="SELECT * FROM company WHERE id='".$fila_building['isp_eng_plans_company']."' ";
-												$resultado_company= mysqli_query($conexion,$consulta_company);
-												$fila_company= mysqli_fetch_array($resultado_company);
+											<div class="title_container_option_survey" >
+												<div class="text_title_container_option_survey"> SITE SURVEY </div>
+												<input type="checkbox" name="active_survey" disabled="disabled" <?php if($fila_building['site_survey_company'] > 0){ echo 'checked' ;}?> />
+											</div>
+											<div class="container_click_check_inside" <?php if($fila_building['site_survey_company'] > 0){ echo 'style="height:auto"' ;}?>>
+											<div class="div_select_survey">
+														<?php 
+														// BUSCA EL NOMBRE DE LA COMPANIA
+														$consulta_company="SELECT * FROM company WHERE id='".$fila_building['site_survey_company']."' ";
+														$resultado_company= mysqli_query($conexion,$consulta_company);
+														$fila_company= mysqli_fetch_array($resultado_company);
+													
+														?>	
+				                                
+												<select name="company_survey" disabled="disabled">
+													<option><?php echo $fila_company['company']; ?></option>
+												</select>
+											
+											</div>
+											<div class="div_select_survey">
+												
+				                                <?php 	
+												// BUSCA EL NOMBRE DEL CONTACTO
+												$consulta_contact="SELECT * FROM contact WHERE id='".$fila_building['site_survey_contact']."' ";
+												$resultado_contact= mysqli_query($conexion,$consulta_contact);
+												$fila_contact= mysqli_fetch_array($resultado_contact);
+												?>
+				                                	
+												<select name="contact_survey" disabled="disabled" >
+													<option><?php echo $fila_contact['contact']; ?></option>
+												</select>
+											
+											</div>
+											</div>
+											
+										</div>
+										<div class="container_option_survey" >
+											
+											<div class="title_container_option_survey" >
+												<div class="text_title_container_option_survey"> ISP ENG. PLANS </div>
+												<input type="checkbox" name="active_isp_eng_plans" class="click_check" disabled="disabled" <?php if($fila_building['isp_eng_plans_company'] > 0){ echo 'checked';}?>  />
+											</div>
+											<div class="container_click_check_inside" <?php if($fila_building['isp_eng_plans_company'] > 0){ echo 'style="height:auto"' ;}?>>
+											<div class="div_select_survey">
+												
+												<select name="company_isp_eng_plans_site_survey" disabled="disabled">
+													<?php 
+														$consulta_company="SELECT * FROM company WHERE id='".$fila_building['isp_eng_plans_company']."' ";
+														$resultado_company= mysqli_query($conexion,$consulta_company);
+														$fila_company= mysqli_fetch_array($resultado_company);
 
-											?>										
-												<option><?php echo $fila_company['company']; ?></option>									
-										</select>
-									
-									</div>
+													?>										
+														<option><?php echo $fila_company['company']; ?></option>									
+												</select>
+											
+											</div>
 
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
+
+									<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
+					<div class="container_attach_center">
+						<h3>Attached Files</h3>
+
+								<!-- FILES ATTACHED -->
+									<div style="margin-left: 4%;">
+										<h3>FILES ATTACHED</h3>
+
+										<?php 
+
+											$consulta_archivos = "SELECT file,canvas FROM uploaded_file WHERE type ='".$fila['tipo']."' AND code ='".$fila['id_request']."'";
+
+											$resultado_archivos = mysqli_query($conexion,$consulta_archivos);
+											
+											while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)) {   
+
+												?>
+
+												
+													
+
+													<div class="container_attach_info" value="<?php echo $fila_archivos["file"]."_".$fila_archivos["canvas"]; ?>">
+														<span> <?php echo $fila_archivos['file']; ?> CLICK TO VIEW THE FILE</span>
+
+
+													</div>
+												
+
+										<?php  }?>
+								</div>
+
+								<!-- PO# DOC ATTACHED -->
+								<div style="margin-left: 4%;">
+									<h3>PO# DOC ATTACHED</h3>
+
+									<?php  
+										$consulta_po_doc = "SELECT po_doc_title FROM general_information WHERE time_code='".$_POST['id_request']."'";
+
+											
+										$resultado_po_doc = mysqli_query($conexion,$consulta_po_doc);
+
+										while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
+										
+									?>
+
+										<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
+
+											<div class="container_attach_info2" >
+													<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
+
+
+											</div>
+
+										</a>
+								
+
+									<?php } ?>
+							</div>
+						
 					</div>
+				
+
+				</div>
+
 				</div>
 			</div>
 		</div>

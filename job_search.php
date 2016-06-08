@@ -100,8 +100,6 @@
 			    						<li id="li_request" >MORE 
 											<ul class="ul_desplegable" >
 				                                <li class="open_detail_job" id="<?php echo $fila_trabajo['id_request'].".".$fila_trabajo['id'].".diseñador"; ?>"  name="ver_request" title="<?php echo $fila_trabajo['tipo']; ?>">View Request</li>
-
-				                                <li class="open_job_progress" id="<?php echo $fila_trabajo['id']; ?>">View Progress</li>
 				               
 				                        
 			                        		</ul>     				

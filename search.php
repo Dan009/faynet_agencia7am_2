@@ -17,13 +17,11 @@
 
 		// }
 
-	//COMIENZA SEARCH AVANZADO
 	    $filtros = array(
             "service_number", 
             "solomon_number",
             "state",
             "city",
-            "street_number",
             "bldg_number"
         );
 
@@ -31,7 +29,7 @@
  
         foreach ($filtros as $filtro) {
             if(isset($_GET[$filtro]) && !empty($_GET[$filtro])){
-                $consulta .= $filtro." WHERE LIKE '%".$_GET[$filtro]."%' AND ";
+                $consulta .= $filtro."WHERE LIKE '%".$_GET[$filtro]."%' AND ";
 
             }
         }
@@ -42,20 +40,14 @@
         }
 
 	    	if ($_GET){
+	    		//var_dump($_GET);
 
-		      	 //COMIENZA PAGINACION
-		      		 include("include/pagination.php");
-
-		      	//$sql = "SELECT * FROM general_information $consulta";
+		        $sql = "SELECT * FROM general_information $consulta"; 
 				$resultado= mysqli_query($conexion,$sql);	
-	
-
-				//var_dump($sql);	      	
+			
+				//var_dump($sql);
 
 			}
-
-
-	$contador_vueltas = 0;
 
 
 ?>
@@ -72,24 +64,19 @@
 
 			<div style="float:right;">
 
-			    <form method="GET" action="" style="margin-top: 3%;"> 
+			    <form method="GET" action=""> 
 
 				  <!--  <input type="text" name="search" placeholder="Find job" id="search_text">
 				    <select name="campo">
 					  <option value="city">city</option>
 					  <option value="state">state</option>
 					  <option value="street_number">street</option>
-					</select> -->	
-
-					<!-- SEARCH AVANZADO-->
+					</select> -->
+										
 						<label for="id">ID REQUEST</label> <input type="number" id="id" name="id" placeholder="ID REQUEST" />	
-
 						<label for="service_number">SERVICE #</label> <input type="number" id="service_number" name="service_number" placeholder="SERVICE #" />	
 
-
-
-						<label for="solomon_number">SOLOMON #</label> <input type="number" id="solomon_number" name="solomon_number" placeholder="SOLOMON #" />	
-
+						<label for="solomon_number">SOLOMON #</label> <input type="number" id="solomon_number" name="solomon_number" placeholder="SOLOMON #" />		
 
 						<!-- STATE SELECT -->
 							<label for="state">STATE</label>
@@ -100,6 +87,7 @@
 									$consulta_states = "SELECT * FROM state";
 									$resultado_states = mysqli_query($conexion,$consulta_states);
 																		
+						
 										if (isset($resultado_states)) {
 											while ($fila_states = mysqli_fetch_array($resultado_states)) {
 												
@@ -114,24 +102,24 @@
 						<!-- CITY SELECT -->
 							<label for="state">CITY</label>
 							<select name="city" id="city" disabled>
+								<option value="">Se generara dependiendo del campo city</option>
 								
 							</select>
 						
 						<!-- STREET SELECT -->
 							<label for="street_number">STREET</label>
 							<select name="street_number" id="street_number" disabled>
-
+								<option value="">Se generara dependiendo del campo street</option>
+						
 							</select>
 
 						<label for="bldg_number">BUILDING #</label> <input type="number" id="bldg_number" name="bldg_number" placeholder="BUILDING #" />		
 
-						<label for="keyword">STREET KEYWORD</label> <input id="keyword" type="text" placeholder="Add a keyword to your search"></input>
+						<label for="keyword">KEYWORD</label> <input id="keyword" type="text" placeholder="Add a keyword to your search"></input>
 
 
 
-						<input type="submit" class="div_buttom" style="margin: 7px 9px; font-size: 16px;"  value="BUSCAR" /> 
-
-					<!-- FIN DEL SEARCH AVANZADO-->
+						<input type="submit" class="div_buttom" style="margin: 7px 9px; font-size: 16px;"  value="BUSCAR" /> <!---->
 
 			    </form>
 	  	  	</div>
@@ -175,27 +163,25 @@
 				 
 					// BUSCO LOS REQUEST QUE ESTAN EN LA INFORMACION GENERAL ASIGNADA
 					//if(isset($fila["time_code"])){
-
 					while($fila= mysqli_fetch_array($resultado)){
 
-						/*$consulta_request="SELECT * FROM request WHERE id_request='".$fila['time_code']."'";
+					$consulta_request="SELECT * FROM request WHERE id_request='".$fila['time_code']."'";
+					$resultado_request= mysqli_query($conexion,$consulta_request);	
 
-						$resultado_request= mysqli_query($conexion,$consulta_request);	
-
-							while($fila_request= mysqli_fetch_array($resultado_request)){*/
-							//$consulta_request="SELECT * FROM request WHERE id_request='".$fila['time_code']."'";
-							//}
-							//$resultado_request= mysqli_query($conexion,$consulta_request);
-							//$fila_request=mysqli_fetch_array($resultado_request);
-							//$fila_request= mysqli_fetch_array($resultado_request)
-						
+					while($fila_request= mysqli_fetch_array($resultado_request)){
+					//$consulta_request="SELECT * FROM request WHERE id_request='".$fila['time_code']."'";
+					//}
+					//$resultado_request= mysqli_query($conexion,$consulta_request);
+					//$fila_request=mysqli_fetch_array($resultado_request);
+					//$fila_request= mysqli_fetch_array($resultado_request)
+					
 					
 						
 				?>
 					<!-- open_detail_job -->
 				<div class="container_text_active_jobs " id="<?php echo $fila['id']; ?>"  name="<?php if($_SESSION['estado'] ==3 ){ echo "ver_request";}else{echo "ver_cotizacion"; } ?>"  >
 				
-					<div class="content_active_jobs"> <div> <?php echo $fila['kick_off_date']; ?> </div> </div>
+					<div class="content_active_jobs"> <div> <?php echo $fila['time_code']; ?> </div> </div>
 					<div class="content_active_jobs"> <div> <?php echo $fila['service_number']; ?> </div> </div>
 					<div class="content_active_jobs"> 
 						<div>
@@ -206,12 +192,12 @@
 						?>
 						</div> 
 					</div>
-					<div class="content_active_jobs" title="<?php echo $fila['tipo']; ?>" > 
+					<div class="content_active_jobs" title="<?php echo $fila_request['tipo']; ?>" > 
 						<div> 
 							<?php 
 								
-								$text_name= $fila['tipo'];
-								$tamano_name = strlen($fila['tipo']);
+								$text_name=$fila_request['tipo'];
+								$tamano_name = strlen($fila_request['tipo']);
 								if($tamano_name >=15){
 									echo substr($text_name, 0, 15)."..."; 
 								}else{
@@ -223,14 +209,8 @@
 					<div class="content_active_jobs" > 
 						<div>
 							<?php 
-								if($fila['estatus_job'] == 0){
+								if($fila['estatus_job']==0){
 									echo "PENDING";									
-								}else if($fila['estatus_job'] == 2){
-									echo "APPROVED";
-
-								}else{
-									echo "PENDING";
-
 								}
 							
 							?>
@@ -238,17 +218,17 @@
 					</div>
                     <?php 
 					// COMPANY
-					$consulta_company="SELECT * FROM usuarios WHERE id='".$fila['company']."' ";
+					$consulta_company="SELECT * FROM usuarios WHERE id='".$fila_general['company']."' ";
 					$resultado_company= mysqli_query($conexion,$consulta_company);
 					$fila_company= mysqli_fetch_array($resultado_company);
 					
 					?>
-					<div class="content_active_jobs" > <div> </div> </div>
+					<div class="content_active_jobs" > <div><?php echo $fila_company['nombre']; ?>  </div> </div>
 					
 					<div class="content_active_jobs" > 
 						<div>
 						<!--    -->
-							<div class="view_detail_job"> <a href="request_search.php?id=<?php echo $fila['id_request'].",".$fila['id'] ?>">View </a></div> 
+							<div class="view_detail_job"> <a href="request_search.php?id=<?php echo $fila_request['id_request'] ?>">View </a></div> 
 						
 						</div> 
 					
@@ -263,26 +243,16 @@
 					-->
 					
 				</div>
-
-
-				<?php } /*}*/ ?>
+				<?php }} ?>
 				
 			</div>
-
-				<br />
-
-			<nav id="nvPagination">
-				<h2><?php echo $texto_cantidad; ?> <?php echo ($texto_cantidad > 0)?"PAGED":""; ?></h2>
-				<div id="dvPagination"><?php echo $controlesPaginacion; ?></div>
-
-
-			</nav>
+			
+			
 			
 		</div>
 		
 	</div>
     
-
     <?php include("include/footer.php"); ?>
 	
 	

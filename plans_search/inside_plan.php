@@ -2,8 +2,6 @@
     include("../confi/conf.inc.php");
 	//$time_code_inside=$_SESSION['time_code'];
 	//$conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
-
-
 ?>
 
 <script type="text/javascript">
@@ -154,7 +152,7 @@ if(isset($fila_info)){
 	
 
 //BUSCANDO INSIDE PLAN
-$consulta_id_inside="SELECT * FROM request WHERE id_request='".$id."' AND tipo='inside_plan' AND usuario_id='".$_SESSION['id']."' ";
+$consulta_id_inside="SELECT * FROM request WHERE id_request='$id' AND tipo='inside_plan' AND usuario_id='".$_SESSION['id']."' ";
 $resultado_id_inside= mysqli_query($conexion,$consulta_id_inside);
 $fila_id_inside = mysqli_fetch_array($resultado_id_inside);
 
@@ -164,15 +162,10 @@ $consulta_inside="SELECT * FROM inside_plans WHERE id_request='".$fila_id_inside
 $resultado_inside= mysqli_query($conexion,$consulta_inside);
 $fila_inside = mysqli_fetch_array($resultado_inside);
 
-// BUSCANDO A CONTRACTOR PROPERTY
-$consulta_property = "SELECT * FROM property_managers WHERE id_request='".$fila_inside["id"]."'";
-$resultado_property = mysqli_query($conexion,$consulta_property);
-$fila_property = mysqli_fetch_array($resultado_property);
 
 
 if(isset($fila_inside)){
 	echo 'inside';
-	
 	}
 
 
@@ -609,23 +602,20 @@ if(isset($fila_inside)){
 						<div class="div_container_company div_container_company_tres" >
 							<div class="div_title_company" > <div> PROPERTY MANAGER'S CONTACT </div> </div>
 							<div class="div_select_company" >
-								<select name="company_property" disabled>
-
+								<select name="company_property">
+									<option value="0"> COMPANY NAME </option>
 									<?php 
-										$consulta_company_user = "SELECT user_name FROM usuarios WHERE id='".$fila_property["company"]."'";
-
-										$resultado_company_user = mysqli_query($conexion,$consulta_company_user);
-										$fila_company_user = mysqli_fetch_array($resultado_company_user);
-
-
-									 ?>
-									<option><?php echo $fila_company_user["user_name"]; ?></option>
-
+										$consulta_company="SELECT * FROM usuarios WHERE estado='3' ";
+										$resultado_company= mysqli_query($conexion,$consulta_company);
+										while($fila_company= mysqli_fetch_array($resultado_company)){
+									?>										
+										<option value="<?php echo $fila_company['id']; ?>"><?php echo $fila_company['nombre']; ?></option>
+									<?php } ?>										
 								</select>
 							</div>
-							<input type="text" name="contact_name_property" placeholder="CONTACT NAME" class="input_cable_inside" value="<?php echo $fila_property['contact_name']; ?>" disabled="disabled" />
-							<input type="text" name="contact_number_property" placeholder="CONTACT #" class="input_cable_inside" value="<?php echo $fila_property['contact_number']; ?>" disabled="disabled" />
-							<input type="text" name="contact_email_property" placeholder="CONTACT'S EMAIL" class="input_cable_inside" value="<?php echo $fila_property['contact_email']; ?>" disabled="disabled" />										
+							<input type="text" name="contact_name_property" placeholder="CONTACT NAME" class="input_cable_inside" />
+							<input type="text" name="contact_number_property" placeholder="CONTACT #" class="input_cable_inside" />
+							<input type="text" name="contact_email_property" placeholder="CONTACT'S EMAIL" class="input_cable_inside" />										
 							
 						</div>
 						
