@@ -29,7 +29,7 @@
 		$_SESSION['user_name']=$_POST['user_name'];
 		$_SESSION['full_name']=$fila['nombre']." ".$fila['apellido'];
 		
-		echo "<div id='logueado' class='login_resultado' ></div>";
+		echo "<div id='logueado' class='login_resultado'></div>";
 		
 	}
 

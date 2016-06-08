@@ -177,19 +177,19 @@
 
 
 <script>
-$(document).ready(function() {
-    $("#submit_request").click(function() {
-        $.post($("#form_request").attr("action"), $("#form_request").serialize(),
-          function(data) {
-			$(".exito_insert").fadeIn(200);
-            $(".hola").append(data);
-            
-			
+    $(document).ready(function() {
+        $("#submit_request").click(function() {
+            $.post($("#form_request").attr("action"), $("#form_request").serialize(),
+              function(data) {
+    			$(".exito_insert").fadeIn(200);
+                $(".hola").append(data);
+                
+    			
+              });
+    		 
           });
-		 
+    	  
       });
-	  
-  });
   
   
   
@@ -488,6 +488,7 @@ $(document).ready(function() {
                 <input name="contratista_id" type="hidden" value="1">
                       <textarea name="scope_work" placeholder="SCOPE WORK" ></textarea>
             </div>
+             <input type="hidden" name="code_plan" id="code" value="<?php echo $_SESSION['time_code']; ?>"/>
 
         </div>
 	</div>

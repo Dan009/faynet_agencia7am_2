@@ -66,36 +66,21 @@
 					
 		            function(respuesta) {
 		                //Subida finalizada.
-		                $("#barra_de_progreso").val(0);
+		                $("#barra_de_progreso_cual").val(0);
 		                if (respuesta === 0) {
 		                    mostrarRespuestaCual('El archivo NO se ha podido subir.', false);
-		                    $("#nombre_archivo, #archivo").val('');
+		                    $("#archivoCualquiera").val('');
 		                } else {
 		                	mostrarRespuestaCual('Subido Correctamente.', true);
 							mostrarArchivosCual();
-
-							/*var type =  $("#type").val()
-							
-							$.get("include/select_temp.php", function (data) {
-		               		 $(".temp").append(data);
-		            		});
-							
-							$(".editor_imagenes").fadeIn(200);
-		                    mostrarRespuesta('Subido Correctamente.', true);
-							mostrarArchivos();
-							
-							$.get("include/editor.php", function (data) {
-								$(".editor_imagenes_content").append(data);
-		            		});
-							
-							$("body").css({ 'overflow': "hidden" });*/
-							
+							$("#archivoCualquiera").val('');
 							
 		                }
 		                
 		            }, function(progreso, valor) {
 		                //Barra de progreso.
-		                $("#barra_de_progreso").val(valor);
+		                $("#barra_de_progreso_cual").val(valor);
+
 		            });
 
 		        }
@@ -130,6 +115,35 @@
                 });
 
             }
+
+            ///  ELIMINAR CUALQUIER ARCHIVO
+	            function eliminarArchivosCual() {
+					var id = $(".eliminar_archivo").attr('id')
+					//alert(id);  
+		
+	                $.ajax({
+	                    url: 'include/eliminar_archivo.php',
+	                    type: 'POST',
+	                    timeout: 10000,
+	                    data: {id: id},
+	                    error: function() {
+	                        mostrarArchivosCual('Error al intentar eliminar el archivo.', false);
+	                    },
+	                    success: function(respuesta) {
+	                        if (respuesta == 1) {
+	                            mostrarArchivosCual('El archivo ha sido eliminado.', true);
+								
+	                        } else {
+								 
+	                            mostrarArchivosCual('Error al intentar eliminar el archivo.', false);  
+								                       
+	                        }
+							
+	                    }
+
+	                });
+
+	            }
 
     /////////////////////////////////////////////////////////////
     //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
@@ -207,6 +221,17 @@
 
 		            });
 
+		            // CUANDO SE PRESIONA SE ELIMINA EL NOMBRE DEL ARCHIVO QUE SE ELIMINO
+			            $("#archivos_subidos_cualquiera").on('click', '.eliminar_archivo', function() {
+			 			    var archivo = $(this).parents('.row').eq(0).find('span').text();
+			                archivo = $.trim(archivo);
+
+			                	console.log($(this).parents('.row').eq(0).find('span').text());
+
+			                eliminarArchivosCual(archivo);
+
+			            });
+
 		        // BOTON SUBIR IMAGENES
 		            $("#boton_subir").on('click', function() {
 						var name = $(this).attr('name');
@@ -217,6 +242,7 @@
 
 		        // CUANDO SE PRESIONA SE ELIMINA EL NOMBRE DEL ARCHIVO QUE SE ELIMINO
 		            $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+
 		                var archivo = $(this).parents('.row').eq(0).find('span').text();
 		                archivo = $.trim(archivo);
 		                eliminarArchivos(archivo);
@@ -704,8 +730,7 @@ $(document).ready(function() {
 					
 				  <textarea class="scope_work_inside_plans" name="scope_work_inside_plans" placeholder="SCOPE WORK" ></textarea>
                   <input type="hidden"  id="type" name="type_plan" value="inside_plan"/>
-                  <input type="hidden" name="code_plan" id="code" value="<?php echo $_SESSION['time_code']; ?>"/>
-                   
+                                 
             	</form>
             <div class="containerprueba">
     
@@ -736,31 +761,22 @@ $(document).ready(function() {
 	               <input type="hidden" name="inside" id="code" value="<?php echo $time_code_inside; ?>"/>
 	               <input type="hidden" name="inside" id="type" value="inside_plan"/>
 	               <input type="submit" id="boton_subir_cualquier" value="Subir" class="btn btn-success" />
-	               <progress id="barra_de_progreso" value="0" max="100"></progress>
+	               <progress id="barra_de_progreso_cual" value="0" max="100"></progress>
 	            </form>
-	            <div id="archivos_subidos_cualquiera"></div>
+	            <div id="archivos_subidos_cualquiera"></div> 
 				<div id="respuestaCual" class="alert"></div>	
                 
 			</div>
 
-			<div class="container_redline">
-    
-	    		<form action="javascript:void(0);" id="form_archivo">
-	            <div class="div_file_inside" >
-					<div class="text_file_inside" > <div class="icon_file_inside" > </div> <div class="div_text_file_inside"> UPLOAD FILE (JPG OR PNG) </div> </div>
-	               <input type="file" name="archivo" id="archivo" />
-	            </div>  
-	               <input type="hidden" name="inside" id="code" value="<?php echo $time_code_inside; ?>"/>
-	               <input type="hidden" name="inside" id="type" value="inside_plan"/>
-	               <input type="submit" id="boton_subir" value="Subir" class="btn btn-success" />
-	               <progress id="barra_de_progreso" value="0" max="100"></progress>
-	            </form>
-	            <div id="archivos_subidos"></div>
-				<div id="respuesta" class="alert"></div>
+			
+				<div class="container_redline">
+					<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>redline_form.php" target="_blank">
+	    
+		    			<div id="btnOpenRedline"> OPEN REDLINE </div>	
 
-				<input type="button" class="copypaste_b" value="Copy Paste">	
-                
-			</div>
+		    		</a>
+	                
+				</div>
            
             
           

@@ -67,8 +67,8 @@
 				if(isset($_POST['active_survey'])  || isset($_POST['active_isp_eng_plans']) || isset($_POST['active_eng_isp_plans'])  || isset($_POST['active_site_survey_as_built']) || isset($_POST['active_eng_isp_plans_as_built']) || isset($_POST['active_site_survey_as_built']) || isset($_POST['active_eng_isp_plans_as_built']) || isset($_POST['active_site_survey_passive_filter']) || isset($_POST['active_eng_isp_plans_passive_filter']) || isset($_POST['active_site_survey_research_floor']) ){
 			
 			
-			//INCLUIR CODIGO QUE GUARDA LAS IMAGENES
-			include("save_img.php");
+						//INCLUIR CODIGO QUE GUARDA LAS IMAGENES
+							include("save_img.php");
 			
 			
 				}
@@ -77,33 +77,33 @@
 			
 			
 			
-			if($_POST['si_sp_eng_plans'] =="si" or $_POST['si_isp_as_built'] =="si" or $_POST['si_passive_filter'] =="si" or $_POST['si_research_floor'] =="si"){
+		if($_POST['si_sp_eng_plans'] =="si" or $_POST['si_isp_as_built'] =="si" or $_POST['si_passive_filter'] =="si" or $_POST['si_research_floor'] =="si"){
 			
-		//
-		$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','inside_plan','".$fecha."','1','".$_POST['company_survey']."','".$_SESSION['id']."') ";
-		$resultado_request= mysqli_query($conexion,$consulta_request);
-		
-		$last_id_request=mysqli_insert_id($conexion);
-		
-		//Inserta el inside plan
-		
+			// INSERTANDO EN REQUEST
+			$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','inside_plan','".$fecha."','1','".$_POST['company_survey']."','".$_SESSION['id']."') ";
+			$resultado_request= mysqli_query($conexion,$consulta_request);
 			
-		$consulta_inside_plan="INSERT INTO inside_plans (service_number,assigned_company_eng_isp_plans_no_survey,assigned_company_site_survey_isp_as_built,contact_site_survey_isp_as_built,assigned_company_eng_isp_plans_isp_as_built,assigned_company_site_survey_passive_filter,contact_site_survey_passive_filter,assigned_company_eng_isp_plans_passive_filter,floor_site_survey_research_floor,assigned_company_site_survey_research_floor,scope_work_inside_plans,new_building,id_request) VALUES('".mysqli_real_escape_string($conexion,htmlspecialchars($_POST['service_number']))."','".$company_eng_isp_plans_no_survey."','".$company_site_survey_isp_as_built."','".$contact_site_survey_isp_as_built."','".$company_eng_isp_plans_isp_as_built."','".$company_site_survey_passive_filter_survey."','".$contact_site_survey_passive_filter_survey."','".$company_eng_isp_plans_passive_filter_survey."','".$floor_research_floor."','".$company_site_surve_research_floor."','".$scope_work_inside_plans."','".$new_building."','".$last_id_request."') ";	
-	
-		$resultado_inside_plan= mysqli_query($conexion,$consulta_inside_plan);
+			$last_id_request=mysqli_insert_id($conexion);
+			
+			//Inserta el inside plan
+			
+				
+			$consulta_inside_plan="INSERT INTO inside_plans (service_number,assigned_company_eng_isp_plans_no_survey,assigned_company_site_survey_isp_as_built,contact_site_survey_isp_as_built,assigned_company_eng_isp_plans_isp_as_built,assigned_company_site_survey_passive_filter,contact_site_survey_passive_filter,assigned_company_eng_isp_plans_passive_filter,floor_site_survey_research_floor,assigned_company_site_survey_research_floor,scope_work_inside_plans,new_building,id_request) VALUES('".mysqli_real_escape_string($conexion,htmlspecialchars($_POST['service_number']))."','".$company_eng_isp_plans_no_survey."','".$company_site_survey_isp_as_built."','".$contact_site_survey_isp_as_built."','".$company_eng_isp_plans_isp_as_built."','".$company_site_survey_passive_filter_survey."','".$contact_site_survey_passive_filter_survey."','".$company_eng_isp_plans_passive_filter_survey."','".$floor_research_floor."','".$company_site_surve_research_floor."','".$scope_work_inside_plans."','".$new_building."','".$last_id_request."') ";	
 		
-		$type="inside_plan";
-		$last_id = $last_id_request;
-		include('../contractor_code.php');
-		
-		echo "ISP Ok <br>";
+			$resultado_inside_plan= mysqli_query($conexion,$consulta_inside_plan);
+			
+			$type="inside_plan";
+			$last_id = $last_id_request;
+			include('../contractor_code.php');
+			
+			echo "ISP Ok <br>";
 
 		}
 			
 			
 			//ESTE CODIGO INSERTA EL BUILDING SITE SURVEY
 			if(isset($_POST['si_survey']) =="si") {
-		
+
 				if(isset($_POST['active_survey'])) {
 					
 					if(isset($_POST['company_survey'])) {
@@ -121,32 +121,39 @@
 						include('../contractor_code.php');
 						
 						echo "BUILDING SITE SURVEY Ok <br>";
-						}  
+
+					}  
+
 					
-					}
+				}	
+					
 						
-						
-						if(isset($_POST['active_isp_eng_plans'])=="si") {
+						if(isset($_POST['active_isp_eng_plans'])) {
 							if(isset($_POST['company_isp_eng_plans_site_survey'])) {
 								
-						$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
-						$resultado_request= mysqli_query($conexion,$consulta_request);
-						$last_id=mysqli_insert_id($conexion);
-						
-						$consulta_site_survey = "INSERT INTO building_site_survey (general_information_id,isp_eng_plans_company) VALUES('".$last_id."', '".$company_isp_eng_plans_site_survey."', '".$last_id_file."')";	
-						$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
-						
-					//insertar archivo
-					//$consulta_file="INSERT INTO uploaded_file (request_id,type,file,estado) VALUES('".$last_id."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
-					//$resultado_request= mysqli_query($conexion,$consulta_request);
-						
-						$type="building_site_survey";	
-						$last_id = mysqli_insert_id($conexion);
-						include('../contractor_code.php');
+								$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
+								$resultado_request= mysqli_query($conexion,$consulta_request);
+								//$last_id=mysqli_insert_id($conexion);
+								
+								$consulta_site_survey = "UPDATE building_site_survey SET isp_eng_plans_company ='".$company_isp_eng_plans_site_survey."' WHERE id_request='".$last_id."'";	
+
+									var_dump($consulta_site_survey);
+
+								$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
+								
+							//insertar archivo
+							//$consulta_file="INSERT INTO uploaded_file (request_id,type,file,estado) VALUES('".$last_id."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
+							//$resultado_request= mysqli_query($conexion,$consulta_request);
+								
+								$type="building_site_survey";	
+								$last_id = mysqli_insert_id($conexion);
+								include('../contractor_code.php');
+
+
 						}
 							
 							
-			}
+					}
 		}
 	}
 	

@@ -153,6 +153,8 @@
 				$resultado_building= mysqli_query($conexion,$consulta_building);
 				$fila_building= mysqli_fetch_array($resultado_building);
 
+					var_dump();
+
 			
 		?>
 
@@ -181,6 +183,7 @@
 										</div>
 										
 										<div class="container_click_option_inside" <?php if(isset($fila_building)){ echo 'style="height:auto"'; }?> >
+										
 										<div class="container_option_survey" >
 											
 											<div class="title_container_option_survey" >
@@ -189,16 +192,17 @@
 											</div>
 											<div class="container_click_check_inside" <?php if($fila_building['site_survey_company'] > 0){ echo 'style="height:auto"' ;}?>>
 											<div class="div_select_survey">
-														<?php 
+													<?php 
 														// BUSCA EL NOMBRE DE LA COMPANIA
 														$consulta_company="SELECT * FROM company WHERE id='".$fila_building['site_survey_company']."' ";
 														$resultado_company= mysqli_query($conexion,$consulta_company);
 														$fila_company= mysqli_fetch_array($resultado_company);
 													
-														?>	
+													?>	
 				                                
 												<select name="company_survey" disabled="disabled">
 													<option><?php echo $fila_company['company']; ?></option>
+
 												</select>
 											
 											</div>
@@ -245,7 +249,7 @@
 								</div>
 							</div>
 
-									<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
+				<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
 					<div class="container_attach_center">
 						<h3>Attached Files</h3>
 
@@ -258,13 +262,12 @@
 											$consulta_archivos = "SELECT file,canvas FROM uploaded_file WHERE type ='".$fila['tipo']."' AND code ='".$fila['id_request']."'";
 
 											$resultado_archivos = mysqli_query($conexion,$consulta_archivos);
-											
-											while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)) {   
 
-												?>
+												if (mysqli_num_rows($resultado_archivos) > 0) {
 
-												
-													
+													while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)){   
+
+														?>
 
 													<div class="container_attach_info" value="<?php echo $fila_archivos["file"]."_".$fila_archivos["canvas"]; ?>">
 														<span> <?php echo $fila_archivos['file']; ?> CLICK TO VIEW THE FILE</span>
@@ -273,7 +276,11 @@
 													</div>
 												
 
-										<?php  }?>
+										<?php  }/* FIN BUCLE WHILE */  } else{ /* FIN CONDICION SI EXISTE */  ?>
+
+											<h3 style="margin-left: 6%;">NO FILES WERE UPLOADED WITH THIS REQUEST</h3>
+
+										<?php } ?>
 								</div>
 
 								<!-- PO# DOC ATTACHED -->
@@ -282,26 +289,34 @@
 
 									<?php  
 										$consulta_po_doc = "SELECT po_doc_title FROM general_information WHERE time_code='".$_POST['id_request']."'";
-
 											
 										$resultado_po_doc = mysqli_query($conexion,$consulta_po_doc);
 
-										while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
+											while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
 										
 									?>
 
-										<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
+										<?php if (!empty($fila_po_doc['po_doc_title'])) { ?>
 
-											<div class="container_attach_info2" >
-													<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
+											<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
+
+												<div class="container_attach_info2" >
+														<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
 
 
-											</div>
+												</div>
 
-										</a>
-								
+											</a>
 
-									<?php } ?>
+										<?php  } else{ /* FIN CONDICION SI EXISTE */ ?>
+											<h3 style="margin-left: 6%;">NO PO DOC WAS UPLOADED WITH THIS REQUEST</h3>
+
+										<?php } ?>
+
+									<?php  }/* FIN BUCLE WHILE */   ?>
+
+											
+
 							</div>
 						
 					</div>
