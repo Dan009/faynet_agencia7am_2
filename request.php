@@ -10,7 +10,6 @@
         }
 
  ?>
- <script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
  
 <!--MUESTRA EL EDITOR DE IMAGENES-->
 <div id="copypaste">

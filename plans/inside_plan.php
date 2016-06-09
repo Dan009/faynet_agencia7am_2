@@ -3,6 +3,7 @@
 	//$time_code_inside=$_SESSION['time_code'];
 	//$conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 ?>
+	<script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
 
 <script type="text/javascript">
 

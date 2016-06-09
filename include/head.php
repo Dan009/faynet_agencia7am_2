@@ -36,6 +36,7 @@
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/main.js"></script>
 
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		 
 		<script>
 			   $.datepicker.regional['es'] = {
 				 closeText: 'Cerrar',
