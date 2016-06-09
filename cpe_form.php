@@ -1,14 +1,14 @@
 <?php include('include/head.php');
-include("../confi/conf.inc.php");
-$conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
+    include("../confi/conf.inc.php");
+    $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-    //$_SESSION['time_code'] = $time_code;
+        //$_SESSION['time_code'] = $time_code;
 
-        if (isset($_GET)) {
-            $id_information = $_GET['id_information'];
-            $id_request = $_GET['id_request'];
+            if (isset($_GET)) {
+                $id_information = $_GET['id_information'];
+                $id_request = $_GET['id_request'];
 
-        }
+            }
 
 
  ?>

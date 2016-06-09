@@ -5,6 +5,7 @@
 ?>
 
 <script type="text/javascript">
+
 	/////////////////////////////////////////////////////////////
 	////////    PARA SUBIR ARCHIVOS GENERAL E INSIDE   /////////
 	///////////////////////////////////////////////////////////
@@ -176,10 +177,12 @@
 	                type: 'POST',
 					data: {type:type, code:code},
 	                success: function(data) {
-	                        
-	                   $("#archivos_subidos_cualquiera").append(data);
-	                    
+
+	                   	$("#archivos_subidos_cualquiera").append(data);
+
+ 
 	                }
+
 	            });
 
 	        }
@@ -216,7 +219,7 @@
 
             	// BOTON SUBIR CUALQUIER ARCHIVO
 		            $("#boton_subir_cualquier").on('click', function() {
-		            	mostrarArchivosCual();
+		            	///mostrarArchivosCual();
 		                subirCualArchivo();
 
 		            });

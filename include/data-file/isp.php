@@ -136,9 +136,7 @@
 								//$last_id=mysqli_insert_id($conexion);
 								
 								$consulta_site_survey = "UPDATE building_site_survey SET isp_eng_plans_company ='".$company_isp_eng_plans_site_survey."' WHERE id_request='".$last_id."'";	
-
-									var_dump($consulta_site_survey);
-
+								
 								$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
 								
 							//insertar archivo

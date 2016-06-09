@@ -249,83 +249,12 @@
 								</div>
 							</div>
 
-				<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
-					<div class="container_attach_center">
-						<h3>Attached Files</h3>
-
-								<!-- FILES ATTACHED -->
-									<div style="margin-left: 4%;">
-										<h3>FILES ATTACHED</h3>
-
-										<?php 
-
-											$consulta_archivos = "SELECT file,canvas FROM uploaded_file WHERE type ='".$fila['tipo']."' AND code ='".$fila['id_request']."'";
-
-											$resultado_archivos = mysqli_query($conexion,$consulta_archivos);
-
-												if (mysqli_num_rows($resultado_archivos) > 0) {
-
-													while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)){   
-
-														?>
-
-													<div class="container_attach_info" value="<?php echo $fila_archivos["file"]."_".$fila_archivos["canvas"]; ?>">
-														<span> <?php echo $fila_archivos['file']; ?> CLICK TO VIEW THE FILE</span>
-
-
-													</div>
-												
-
-										<?php  }/* FIN BUCLE WHILE */  } else{ /* FIN CONDICION SI EXISTE */  ?>
-
-											<h3 style="margin-left: 6%;">NO FILES WERE UPLOADED WITH THIS REQUEST</h3>
-
-										<?php } ?>
-								</div>
-
-								<!-- PO# DOC ATTACHED -->
-								<div style="margin-left: 4%;">
-									<h3>PO# DOC ATTACHED</h3>
-
-									<?php  
-										$consulta_po_doc = "SELECT po_doc_title FROM general_information WHERE time_code='".$_POST['id_request']."'";
-											
-										$resultado_po_doc = mysqli_query($conexion,$consulta_po_doc);
-
-											while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
-										
-									?>
-
-										<?php if (!empty($fila_po_doc['po_doc_title'])) { ?>
-
-											<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
-
-												<div class="container_attach_info2" >
-														<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
-
-
-												</div>
-
-											</a>
-
-										<?php  } else{ /* FIN CONDICION SI EXISTE */ ?>
-											<h3 style="margin-left: 6%;">NO PO DOC WAS UPLOADED WITH THIS REQUEST</h3>
-
-										<?php } ?>
-
-									<?php  }/* FIN BUCLE WHILE */   ?>
-
-											
-
-							</div>
-						
-					</div>
 				
 
 				</div>
 
-				</div>
 			</div>
+
 		</div>
 
 <?php } ?>
@@ -698,71 +627,6 @@
 							</div>
 							
 						</div>
-
-			<!-- MOSTRAR LOS ARCHIVOS ATACHADOS -->
-				<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
-					<div class="container_attach_center">
-						<h3>Attached Files</h3>
-
-								<!-- FILES ATTACHED -->
-									<div style="margin-left: 4%;">
-										<h3>FILES ATTACHED</h3>
-
-										<?php 
-
-											$consulta_archivos = "SELECT file,canvas FROM uploaded_file WHERE type ='".$fila['tipo']."' AND code ='".$fila['id_request']."'";
-
-											$resultado_archivos = mysqli_query($conexion,$consulta_archivos);
-											
-											while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)) {   
-
-												?>
-
-												
-													
-
-													<div class="container_attach_info" value="<?php echo $fila_archivos["file"]."_".$fila_archivos["canvas"]; ?>">
-														<span> <?php echo $fila_archivos['file']; ?> CLICK TO VIEW THE FILE</span>
-
-
-													</div>
-												
-
-										<?php  }?>
-								</div>
-
-								<!-- PO# DOC ATTACHED -->
-								<div style="margin-left: 4%;">
-									<h3>PO# DOC ATTACHED</h3>
-
-									<?php  
-										$consulta_po_doc = "SELECT po_doc_title FROM general_information WHERE time_code='".$_POST['id_request']."'";
-
-											
-										$resultado_po_doc = mysqli_query($conexion,$consulta_po_doc);
-
-										while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
-										
-									?>
-
-										<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
-
-											<div class="container_attach_info2" >
-													<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
-
-
-											</div>
-
-										</a>
-								
-
-									<?php } ?>
-							</div>
-						
-					</div>
-				
-
-				</div>
 
 			  <div style="width:100%; float:left; border-top:1px solid #000;"></div>
 			  <?php } ?> <!-- TERMINA REASEARCH FLOOR -->
@@ -3373,6 +3237,112 @@
 	</div>	
 
 	<?php } ?>
+
+	<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
+					<div class="container_attach_center">
+						<h3>Attached Files</h3>
+
+								<!-- FILES ATTACHED -->
+									<div style="margin-left: 4%;">
+										<h3>FILES ATTACHED</h3>
+
+										<?php 
+
+											// BUSCANDO LAS IMAGENES
+												$consulta_archivos = "SELECT file,canvas FROM uploaded_file WHERE type ='".$fila['tipo']."' AND code ='".$fila['id_request']."'";
+
+												$resultado_archivos = mysqli_query($conexion,$consulta_archivos);
+
+											// BUSCANDO LOS OTROS ARCHIVOS
+
+												// BUSCAMOS EL CODIGO DEL GENERAL_INFORMATION
+													$consulta_code = "SELECT file_time_code FROM general_information WHERE id ='".$fila_general['id']."'";
+
+													$resultado_code = mysqli_query($conexion,$consulta_code);
+
+														$fila_archivo_code = mysqli_fetch_array($resultado_code);
+
+															//var_dump($fila_archivo_code);
+															//var_dump($consulta_code);
+
+												// BUSCAMOS LOS ARCHIVOS CON EL CODIGO ENCONTRADO
+													$consulta_archivos_otros = "SELECT file FROM temp WHERE code ='".$fila_archivo_code['file_time_code']."'";
+
+													$resultado_archivos_otros = mysqli_query($conexion,$consulta_archivos_otros);
+
+													if (mysqli_num_rows($resultado_archivos) > 0 || mysqli_num_rows($resultado_archivos_otros) > 0 ) {
+
+														while ( $fila_archivos = mysqli_fetch_array($resultado_archivos)){   
+
+															?>
+
+															<div class="container_attach_info" value="<?php echo $fila_archivos["file"]."_".$fila_archivos["canvas"]; ?>">
+																<span> <?php echo $fila_archivos['file']; ?> CLICK TO VIEW THE FILE</span>
+
+
+															</div>
+												
+
+										<?php  }/* FIN BUCLE WHILE DE IMAGENES*/  
+
+												while ($fila_archivos_otros = mysqli_fetch_array($resultado_archivos_otros)){ 
+
+											?>
+
+												<div class="container_attach_info2" value="<?php echo $fila_archivos_otros["file"]; ?>">
+														<span> <?php echo $fila_archivos_otros['file']; ?></span>
+
+
+												</div>
+
+										<?php }/* FIN BUCLE WHILE DE ARCHIVOS */ } else{ /* FIN CONDICION SI EXISTE */  ?>
+
+											<h3 style="margin-left: 6%;">NO FILES WERE UPLOADED WITH THIS REQUEST</h3>
+
+										<?php } ?>
+
+								</div>
+
+								<!-- PO# DOC ATTACHED -->
+								<div style="margin-left: 4%;">
+									<h3>PO# DOC ATTACHED</h3>
+
+									<?php  
+										$consulta_po_doc = "SELECT po_doc_title FROM general_information WHERE time_code='".$_POST['id_request']."'";
+											
+										$resultado_po_doc = mysqli_query($conexion,$consulta_po_doc);
+
+											while ($fila_po_doc = mysqli_fetch_array($resultado_po_doc)) {
+										
+									?>
+
+										<?php if (!empty($fila_po_doc['po_doc_title'])) { ?>
+
+											<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio."archivos/po_documents/".$fila_po_doc['po_doc_title'];?>" style="text-decoration: none; color: inherit; " target="_blank"> 
+
+												<div class="container_attach_info2" >
+														<span> <?php echo $fila_po_doc['po_doc_title']; ?> CLICK TO VIEW THE FILE</span>
+
+
+												</div>
+
+											</a>
+
+										<?php  } else{ /* FIN CONDICION SI EXISTE */ ?>
+											<h3 style="margin-left: 6%;">NO PO DOC WAS UPLOADED WITH THIS REQUEST</h3>
+
+										<?php } ?>
+
+									<?php  }/* FIN BUCLE WHILE */   ?>
+
+											
+
+							</div>
+						
+					</div>
+				
+
+				</div>
 
 <div class="div_line">
 

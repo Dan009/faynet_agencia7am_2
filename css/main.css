@@ -1765,7 +1765,7 @@ html,body{
 }
 .container_div_mostrar_cotizacion{
     width: 88%;
-    height: 363px;
+    height: 306px;
     margin: 0 auto;
 
 }
@@ -1910,7 +1910,6 @@ html,body{
 	float:left;
 	height:auto;
 	border:1px solid #e1e1e1;
-	margin-bottom:10px;
 	
 }
 
@@ -2653,7 +2652,7 @@ html,body{
 }
 .fancy_list_job{
 	width: 900px;
-	height:auto;
+	height: auto;
 	position: absolute;
 	background: rgb(255,255,255);
 	box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
@@ -3170,7 +3169,285 @@ h1{font-family: 'OpenSans-Bold';}
 
 
 #form_cotizacion2{
+    width: 100%;
+    height: auto;
     background-color: #f6f6f6;
-    padding-top: 12px;
+    float: left;
 
 }
+
+/*---------------------------------------------------------------------*/
+/*-------------             REDLINE STYLES                -------------*/
+/*---------------------------------------------------------------------*/
+
+
+/*---------------------------------------------*/
+/*----          GENERAL ELEMENTS          ----*/
+/*-------------------------------------------*/
+
+    .container_form_redline{
+        width: 100%;
+        height: auto;
+        float: left;
+        border-bottom: 1px solid rgb(240,240,240);
+        padding-bottom: 62px;
+    }
+    .bottom_container_form_redline{
+        width: 100%;
+        height: auto;
+        float: left;
+        border-top: 2px solid #000;
+        padding-bottom: 15px;
+    }
+    .inputRedline{
+        padding: 16px 0 3px 6px;
+        border: 1px solid #000;
+        font-size: 18px;
+        letter-spacing: 2px;
+
+    }
+    .container_info_redline{
+            width: 100%;
+            display: inline-block;
+
+        }
+            .container_info_redline label{
+                font-size: 16px;
+                font-weight: bold;
+
+            }
+
+/*---------------------------------------------*/
+/*----          FIRST LINE STYLES         ----*/
+/*-------------------------------------------*/
+    .container_service_number{
+        margin-right: 9%;
+
+    }
+    .container_date_requested label{
+        margin-right: 50px;
+
+    }
+    .container_service_number, .container_date_requested{
+        float: left;
+
+    }
+
+/*---------------------------------------------*/
+/*----          SECOND LINE STYLES        ----*/
+/*-------------------------------------------*/
+    .container_requested_engineer{
+        width: 100%;
+        display: inline-block;
+
+    }
+        .container_requested_engineer label{
+            font-size: 16px;
+            font-weight: bold;
+
+        }
+    .container_company_engineer{
+        margin-right: 3px;
+        position: relative;
+        right: 102px;
+
+    }
+    .container_company_engineer, .container_requested_by{
+        float: left;
+
+    }
+    .container_requested_by label{
+        margin-right: 10px;
+
+    }
+
+    .container_requested_by label{
+        margin: 0 72px 0 -22px;
+
+    }
+
+/*---------------------------------------------*/
+/*----          THIRD LINE STYLES         ----*/
+/*-------------------------------------------*/
+    .container_job_details{
+        width: 100%;
+        display: inline-block;
+
+    }
+    .container_job_info{
+        position: relative;
+        right: 36px;
+
+    }
+        .container_job_info label{
+            font-size: 16px;
+            font-weight: bold;
+
+        }
+        .container_job_info .inputRedline{
+            width: 80%;
+
+        }
+
+/*---------------------------------------------*/
+/*----          FORTH LINE STYLES         ----*/
+/*-------------------------------------------*/
+    .container_type_request{
+        position: relative;
+        right: 65px;
+        margin-top: 4px;
+
+    }
+
+/*---------------------------------------------*/
+/*----          STREET DETAIL STYLES      ----*/
+/*-------------------------------------------*/
+    .container_title_type_street_detail{
+        font-weight: bold;
+        color: red;
+
+    }
+
+        /* WORKING STREETS */
+            .container_working_streets{
+                width: 100%;
+                display: inline-block;
+                margin-top: -14px;
+
+            }
+            .container_working_streets label{
+                font-size: 16px;
+                font-weight: bold;
+
+            }
+            .container_working_streets .inputRedline{
+                width: 80%;
+                margin-bottom: 5px;
+
+            }
+
+        /* FROM STREET */
+            .container_from_street{
+                width: 100%;
+                display: inline-block;
+
+            }
+            .container_from_street label{
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 111px;
+
+            }
+            .container_from_street .inputRedline{
+                width: 80%;
+                margin-bottom: 5px;
+
+
+            }
+
+        /* TO STREET */
+            .container_to_street{
+                width: 100%;
+                display: inline-block;
+
+            }
+            .container_to_street label{
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 136px;
+
+            }
+            .container_to_street .inputRedline{
+                width: 80%;
+
+            }
+
+        /* DESCRIPTION / NOTES */
+            .container_textarea_descrip_notes{
+                width: 100%;
+                display: inline-block;
+                margin-top: 6%;
+                position: relative;
+                
+            }
+
+            .container_textarea_descrip_notes label{
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: -9px;
+                position: absolute;
+                top: 32px;
+                display: block;
+
+            }
+
+            .container_textarea_descrip_notes textarea{
+                width: 737px;
+                height: 247px;
+                margin-left: 168px;
+                border: 1px solid #000; 
+                resize: none;
+
+            }
+
+            .container_date_requested_completed{
+                float: right;
+                margin: 30px 8px 0 0;
+
+            }
+
+            .container_date_requested_completed label{
+                font-size: 16px;
+                font-weight: bold;
+
+            }
+            .container_date_requested_completed .inputRedline{
+                text-align: center;
+
+            }
+
+        /* FIRST PICTURE */
+            .container_job_street_info{
+                position: relative;
+                right: 36px;
+                margin-top: 25%;
+
+            }
+                .container_job_street_info label{
+                    font-size: 16px;
+                    font-weight: bold;
+
+                }
+                .container_job_street_info .inputRedline{
+                    width: 80%;
+
+                }
+                .container_first_picture,.container_second_picture,.container_thrird_picture{
+                    width: 100%;
+                    height: 300px;
+                    position: relative;
+                    right: 55px;
+
+                }/* FIRST PICTURE */
+            .container_job_street_info{
+                position: relative;
+                right: 36px;
+                margin-top: 25%;
+
+            }
+                .container_job_street_info label{
+                    font-size: 16px;
+                    font-weight: bold;
+
+                }
+                .container_job_street_info .inputRedline{
+                    width: 80%;
+
+                }
+                .container_first_picture,.container_second_picture,.container_thrird_picture{
+                    width: 100%;
+                    height: 300px;
+                    position: relative;
+                    right: 55px;
+
+                }
