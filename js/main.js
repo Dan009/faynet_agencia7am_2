@@ -35,36 +35,36 @@ $(document).ready(function(){
 	// ESTE CODIGO ES PARA MOSTRAR UNA VENTANA NUEVA
 	//////////////////////////////////////////////////////////////////////
    
-	$(".add_ventana").click(function(){
-		
-		//alert($(this).attr("name") );
-		var name_ventana= $(this).attr("name");
-		$("#ventana_"+name_ventana).fadeIn(0);
-		
-	//	$(".div_title_ventana").removeClass("ventana_activa");
-	//	$("#ventana_"+name_ventana).addClass("ventana_activa");
-		
-	//	if(name_ventana=="inside_plan"){
+		$(".add_ventana").click(function(){
+			
+			//alert($(this).attr("name") );
+			var name_ventana= $(this).attr("name");
+			$("#ventana_"+name_ventana).fadeIn(0);
+			
+		//	$(".div_title_ventana").removeClass("ventana_activa");
+		//	$("#ventana_"+name_ventana).addClass("ventana_activa");
+			
+		//	if(name_ventana=="inside_plan"){
+				
+				
+				$.ajax({
+	                type: 'POST',
+	                url: "http://"+hostname+ruta+"plans/"+name_ventana+".php",
+	                data: "",
+	                success: function(data) {    
+						$("#carga_ventana_load").append(data);
+						$(".content_form").fadeOut(0);
+						$("#content_"+name_ventana).fadeIn(0);
+						$(".div_title_ventana ").removeClass("ventana_activa");
+						$("#ventana_"+name_ventana).addClass("ventana_activa");
+	                }
+	            }) 
+		//	}
 			
 			
-			$.ajax({
-                type: 'POST',
-                url: "http://"+hostname+ruta+"plans/"+name_ventana+".php",
-                data: "",
-                success: function(data) {    
-					$("#carga_ventana_load").append(data);
-					$(".content_form").fadeOut(0);
-					$("#content_"+name_ventana).fadeIn(0);
-					$(".div_title_ventana ").removeClass("ventana_activa");
-					$("#ventana_"+name_ventana).addClass("ventana_activa");
-                }
-            }) 
-	//	}
+			
+		});
 		
-		
-		
-	});
-	
 	
 	///////////////////////////////////////////////////////////////////////
 	// ESTE CODIGO ES PARA MOSTRAR UNA VENTANA NUEVA DENTRO DEL PLAN
@@ -298,71 +298,67 @@ $(document).ready(function(){
 	///////////////////////////////////////////////////////////////////////
 	// ABRIR CUADRO EN LA LISTA DE TRABAJOS
 	//////////////////////////////////////////////////////////////////////	
-
 	
-	
-	$(".open_detail_job").click(function(){
-		
-		if($(this).attr("id") ){
-			var arrayStringsIDS = $(this).attr("id").split(".");
-
-			var name=$(this).attr("name");
-			var tipo=$(this).attr("title");
-			var id_request= arrayStringsIDS[0];
-			var id_tipo= arrayStringsIDS[1];
-			var siDiseñador = arrayStringsIDS[2]?arrayStringsIDS[2]:"vacio";
+		$(".open_detail_job").click(function(){
 			
-			//alert("http://"+hostname+ruta+"include/"+name+".php");
+			if($(this).attr("id") ){
+				var arrayStringsIDS = $(this).attr("id").split(".");
+
+				var name=$(this).attr("name");
+				var tipo=$(this).attr("title");
+				var id_request= arrayStringsIDS[0];
+				var id_tipo= arrayStringsIDS[1];
+				var siDiseñador = arrayStringsIDS[2]?arrayStringsIDS[2]:"vacio";
+				
+				//alert("http://"+hostname+ruta+"include/"+name+".php");
+				
+				$.ajax({
+					type: 'POST',
+					url: "http://"+hostname+ruta+"include/"+name+".php",
+					data:{id_request:id_request, tipo:tipo,id_tipo:id_tipo,siDiseñador:siDiseñador},
+					success: function(data) {    
+						$("body").css({ "overflow":"hidden" });
+						$(".fondo_list_job").fadeIn(100);
+						$(".fancy_list_job").append(data);
+						
+						$(".fancy_list_job").css({
+							left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+							
+						});
+												
+					}
+				});
+							
+			}
 			
-			$.ajax({
-				type: 'POST',
-				url: "http://"+hostname+ruta+"include/"+name+".php",
-				data:{id_request:id_request, tipo:tipo,id_tipo:id_tipo,siDiseñador:siDiseñador},
-				success: function(data) {    
-					$("body").css({ "overflow":"hidden" });
-					$(".fondo_list_job").fadeIn(100);
-					$(".fancy_list_job").append(data);
-					
-					$(".fancy_list_job").css({
-						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-						
-					});
-											
-				}
-			});
-						
-		}
+		});
 		
-	});
-	
-	$(".fancy_list_job").css({
-		//top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
-		left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-	});
-	
-	$(".fondo_list_job").click(function(){		
-		$(this).fadeOut(100);
-		$(".fancy_list_job").html("");	
-		$("body").css({ "overflow":"auto" });
-	});
-	
-	$(".fancy_list_job").click(function(e){		
-		e.stopPropagation();		
-	});
-	
-	
-    $(document).keyup(function(event){
-        if(event.which==27)
-        {
-			$(".fondo_list_job").fadeOut(100);
-			$(".fancy_list_job").html("");
+		$(".fancy_list_job").css({
+			//top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
+			left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+		});
+		
+		$(".fondo_list_job").click(function(){		
+			$(this).fadeOut(100);
+			$(".fancy_list_job").html("");	
 			$("body").css({ "overflow":"auto" });
-        }
-    });	
+		});
+		
+		$(".fancy_list_job").click(function(e){		
+			e.stopPropagation();		
+		});
+		
+		
+	    $(document).keyup(function(event){
+	        if(event.which==27)
+	        {
+				$(".fondo_list_job").fadeOut(100);
+				$(".fancy_list_job").html("");
+				$("body").css({ "overflow":"auto" });
+	        }
+	    });	
 	
-	
-	
-	
+		
 	///////////////////////////////////////////////////////////////////////
 	// ABRIR ASIGNAR DESIGNER
 	//////////////////////////////////////////////////////////////////////	
@@ -389,7 +385,7 @@ $(document).ready(function(){
 							});
 													
 						}
-					})
+					});
 								
 				}
 				

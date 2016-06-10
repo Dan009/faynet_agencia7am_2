@@ -1769,7 +1769,6 @@ html,body{
     margin: 0 auto;
 
 }
-
 .container_title_ventana{
     width: 100%;
     height: 80px;
@@ -1795,9 +1794,6 @@ html,body{
 	-ms-transition: all 0.2s;
 	display:none;
 	position:relative;
-}
-.ventana_activa{
-	border-bottom: 5px solid rgb(144, 207, 76);
 }
 .div_title_ventana:hover{
 	border-bottom: 5px solid rgb(144, 207, 76);
@@ -1910,6 +1906,7 @@ html,body{
 	float:left;
 	height:auto;
 	border:1px solid #e1e1e1;
+    margin-bottom: 10px;\
 	
 }
 
@@ -2136,6 +2133,7 @@ html,body{
     width: 24%;
     display: inline-block;
     text-decoration: none;
+    margin-right: 16%;
 
 }
 .container_redline a{
@@ -3298,6 +3296,50 @@ h1{font-family: 'OpenSans-Bold';}
         margin-top: 4px;
 
     }
+
+/*---------------------------------------------*/
+/*----         REDLINE LIGHTBOX STYLES    ----*/
+/*-------------------------------------------*/
+    .container_redline_title{
+        width: 100%;
+        height: 80px;
+        float: left;
+        border-bottom: 1px solid rgb(240,240,240);
+
+    }
+
+    .container_readline_form{
+        width: 100%;
+        height: auto;
+        float: left;
+        border-bottom: 1px solid rgb(240,240,240);
+        padding-bottom: 15px;
+    }
+
+    .div_readline_title_ventana{
+        width: auto;
+        height:50px;
+        border-bottom: 5px solid rgb(229,229,229);
+        font-family: OpenSans-Bold;
+        font-size:14px;
+        color:rgb(0,94,158);
+        float: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-right:12px;
+        cursor:pointer;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        display:none;
+        position:relative;
+    }
+
+.ventana_activa{
+    border-bottom: 5px solid rgb(144, 207, 76);
+}
 
 /*---------------------------------------------*/
 /*----          STREET DETAIL STYLES      ----*/

@@ -736,7 +736,17 @@ $(document).ready(function() {
                   <input type="hidden"  id="type" name="type_plan" value="inside_plan"/>
                                  
             	</form>
-            <div class="containerprueba">
+
+            	<div class="container_redline" dir="inside_plan">
+					<!-- <a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>redline_form.php" target="_blank"> -->
+	    
+		    			<div id="btnOpenRedline"> OPEN REDLINE </div>	
+
+		    		<!-- </a> -->
+	                
+				</div>
+
+          <!--   <div class="containerprueba">
     
 	    		<form action="javascript:void(0);" id="form_archivo">
 	            <div class="div_file_inside" >
@@ -751,9 +761,9 @@ $(document).ready(function() {
 	            <div id="archivos_subidos"></div>
 				<div id="respuesta" class="alert"></div>
 
-				<input type="button" class="copypaste_b" value="Copy Paste">	
+				<input type="button" class="copypaste_b" value="Copy Paste">	 
                 
-			</div>
+			</div> -->
 
 			<div class="container_any_file">
     
@@ -773,20 +783,52 @@ $(document).ready(function() {
 			</div>
 
 			
-				<div class="container_redline">
-					<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>redline_form.php" target="_blank">
-	    
-		    			<div id="btnOpenRedline"> OPEN REDLINE </div>	
-
-		    		</a>
-	                
-				</div>
+				
            
             
           
     </div>
     
     <script>
+
+		    ///////////////////////////////////////////////////////////////////////
+			// ABRIR LIGHTBOX REDLINE INSIDE PLAN 
+			//////////////////////////////////////////////////////////////////////	
+		
+				$(".container_redline").click(function(){
+
+					/*$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					//$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+
+					});
+
+					console.log("http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php");*/
+
+						$.ajax({
+							type: 'POST',
+							url: "http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php",
+							success: function(data) {   
+								$("body").css({ "overflow":"hidden" });
+								$(".fondo_list_job").fadeIn(100);
+								$(".fancy_list_job").append(data);
+								
+								$(".fancy_list_job").css({
+									left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+
+								});
+														
+							}
+
+						});
+
+						
+				});
+
+
 	
 		$(".copypaste_b").click(function(){
 			
@@ -800,65 +842,65 @@ $(document).ready(function() {
 
 	</script>
     
-			<script>
-				$(document).ready(function(){
+		<script>
+			$(document).ready(function(){
+			
+			 $('input').iCheck({
+				checkboxClass: 'icheckbox_square',
+				radioClass: 'iradio_square',
+				increaseArea: '20%' // optional
+			  });
+			
+				///////////////////////////////////////////////////////////////////////
+				// CLICK EN RADIO BUTTON INSIDE PLAN
+				//////////////////////////////////////////////////////////////////////
 				
-				 $('input').iCheck({
-					checkboxClass: 'icheckbox_square',
-					radioClass: 'iradio_square',
-					increaseArea: '20%' // optional
-				  });
-				
-					///////////////////////////////////////////////////////////////////////
-					// CLICK EN RADIO BUTTON INSIDE PLAN
-					//////////////////////////////////////////////////////////////////////
-					
-					//$('input').iCheck('update');
-					$('input ').on('ifClicked ', function(event) {
-						if ($(this).attr("name")=="new_building" ) {
+				//$('input').iCheck('update');
+				$('input ').on('ifClicked ', function(event) {
+					if ($(this).attr("name")=="new_building" ) {
+						
+					} else {
+						
+						if ($(this).attr("value")=="si" ) {
 							
-						} else {
+							$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
+								"height":"auto"
+							});
 							
-							if ($(this).attr("value")=="si" ) {
+						}else{
+							$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
+								"height":"0px"
 								
-								$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
-									"height":"auto"
-								});
+							});
 								
+						}
+						
+						if($(this).attr("class")=="click_check" ){
+							
+							if( $(this).is(':checked') ){
+								// aqui no esta en checked
+								$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
+									"height":"0px"										
+								})
+																	
 							}else{
-								$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
-									"height":"0px"
-									
-								});
-									
-							}
-							
-							if($(this).attr("class")=="click_check" ){
-								
-								if( $(this).is(':checked') ){
-									// aqui no esta en checked
-									$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
-										"height":"0px"										
-									})
-																		
-								}else{
-									// aqui esta en checked
-									$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
-										"height":"auto"										
-									})									
-									
-								}
+								// aqui esta en checked
+								$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
+									"height":"auto"										
+								})									
 								
 							}
-							
 							
 						}
-					});	
-				
-				
-				});
+						
+						
+					}
+				});	
+			
+			
+			});
 
-			</script>	
+		</script>	
             
     
 	<!-- FIN CODIGO PARA EL CONTENIDO DE INSIDE PLAN  -->

@@ -3238,7 +3238,7 @@
 
 	<?php } ?>
 
-	<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;">
+	<div class="content_option_inside" style=" width: 97.5%; padding: 10px; background-color: #EDEAE3;margin-bottom: 0px;">
 					<div class="container_attach_center">
 						<h3>Attached Files</h3>
 
@@ -3265,10 +3265,10 @@
 															//var_dump($fila_archivo_code);
 															//var_dump($consulta_code);
 
-												// BUSCAMOS LOS ARCHIVOS CON EL CODIGO ENCONTRADO
-													$consulta_archivos_otros = "SELECT file FROM temp WHERE code ='".$fila_archivo_code['file_time_code']."'";
+													// BUSCAMOS LOS ARCHIVOS CON EL CODIGO ENCONTRADO
+														$consulta_archivos_otros = "SELECT file FROM temp WHERE code ='".$fila_archivo_code['file_time_code']."'";
 
-													$resultado_archivos_otros = mysqli_query($conexion,$consulta_archivos_otros);
+														$resultado_archivos_otros = mysqli_query($conexion,$consulta_archivos_otros);
 
 													if (mysqli_num_rows($resultado_archivos) > 0 || mysqli_num_rows($resultado_archivos_otros) > 0 ) {
 

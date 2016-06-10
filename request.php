@@ -154,7 +154,7 @@
 
 </script>
 		
-  <div class="temp"></div>  
+    <div class="temp"></div>  
   			
     	<div class="editor_imagenes" style="overflow:auto">
         	<div class="cont-button-editor">
@@ -163,9 +163,9 @@
             </div>
         	<div class="editor_imagenes_content" style="width:100%; height:800px; margin:auto;">
 		
-		<!-- AQUI CARGA EL EDITOR-->
+		      <!-- AQUI CARGA EL EDITOR-->
 			
-		</div>
+		     </div>
 	</div>
     
 <body>
@@ -189,7 +189,11 @@
           });
     	  
       });
-  
+
+          /*$.get("include/editor.php", function (data) {
+                            $(".editor_imagenes_content_first").append(data);
+                        }); */
+
   
   
   
@@ -456,26 +460,27 @@
 
             <div class="center_form" >
                     
-                        <div class="div_input_request  " >
-                            <div class="title_div_input_request" > DATE REQUEST SENT </div>
-                            <input type="text" name="date_request_sent" id="date_request_sent" placeholder="KICK OFF DATE" />                       
+                <div class="div_input_request  " >
+                    <div class="title_div_input_request" > DATE REQUEST SENT </div>
+                    <input type="text" name="date_request_sent" id="date_request_sent" placeholder="KICK OFF DATE" />                       
 
-                        </div> 
-                        <div class="div_input_request margin_div_input_request " >
-                            <div class="title_div_input_request" > LT  EXP. JOB COMPLETION </div>
-                            <input type="text" name="lt_exp_job_completion" placeholder="LT  EXP. JOB COMPLETION"/>                       
+                </div> 
+                <div class="div_input_request margin_div_input_request " >
+                    <div class="title_div_input_request" > LT  EXP. JOB COMPLETION </div>
+                    <input type="text" name="lt_exp_job_completion" placeholder="LT  EXP. JOB COMPLETION"/>                       
 
-                        </div> 
-                        <div class="div_input_request margin_div_input_request " >
-                            <div class="title_div_input_request" > LT FIBER ENG. </div>
-                            <input type="text" name="lt_fiber_eng" placeholder=" LT FIBER ENG." />                       
+                </div> 
+                <div class="div_input_request margin_div_input_request " >
+                    <div class="title_div_input_request" > LT FIBER ENG. </div>
+                    <input type="text" name="lt_fiber_eng" placeholder=" LT FIBER ENG." />                       
 
-                        </div> 
-                        <div class="div_input_request  " >
-                            <div class="title_div_input_request" > LT PROJECT </div>
-                            <input type="text" name="lt_project" placeholder=" LT PROJECT" />                       
+                </div> 
+                <div class="div_input_request  " >
+                    <div class="title_div_input_request" > LT PROJECT </div>
+                    <input type="text" name="lt_project" placeholder=" LT PROJECT" />                       
 
-                        </div> 
+                </div> 
+
             </div>
 
         </div>
@@ -515,9 +520,31 @@
     <?php include("include/footer.php"); ?>
 
         
-    <!--    ESTE ES LIGHTBOX -->
-        <div class="fondo_list_job" >
-            <div class="fancy_list_job" style="width: 961px;"></div>
+    <!--    ESTE ES LIGHTBOX -->  <!-- AQUI CARGA EL EDITOR  -->
+        <div class="fondo_list_job">
+            <div class="fancy_list_job" style="width: 961px;">
+              
+                <!-- <div class="temp"></div>  
+                                            
+                    <div class="editor_street_pictures_first" style="overflow:auto">
+                        <div class="cont-button-editor">
+                            
+                            <input type="button" value="Save current image" onClick="exportAndSaveCanvas()" style="padding: 22px;width: 15%;">
+
+                        </div>
+                        
+                        <div class="editor_imagenes_content_first" style="width:100%; height:800px; margin:auto;">
+                                
+                              
+                        
+                        </div>
+                    
+                    </div> 
+
+                </div>    -->
+
+            </div>
+
         </div>
         
 
