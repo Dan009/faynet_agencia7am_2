@@ -1,6 +1,9 @@
 <?php include('include/head.php');
+
     include("../confi/conf.inc.php");
     $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
+
+    //var_dump($conexion);
 
         $_SESSION['time_code'] = $time_code;
 
@@ -347,7 +350,7 @@
                 <div class="container_form_custormer_contact">
 
                     <div class="center_form_custormer_contact" >
-                        <?php include("include/cpe-forms/customer_contact_form.php"); ?>
+                        <?php //include("include/cpe-forms/customer_contact_form.php"); ?>
 
                     </div>
 
@@ -361,7 +364,7 @@
                 <div class="container_form_lgx_info">
 
                     <div class="center_form_lgx_info" >
-                        <?php include("include/cpe-forms/lgx_info_form.php"); ?>
+                        <?php //include("include/cpe-forms/lgx_info_form.php"); ?>
 
                     </div>
 
@@ -375,7 +378,7 @@
                 <div class="container_lit_equip_info">
 
                     <div class="center_lit_equip_info" >
-                        <?php include("include/cpe-forms/lit_equip_info_form.php"); ?>
+                        <?php //include("include/cpe-forms/lit_equip_info_form.php"); ?>
 
                     </div>
 
@@ -383,7 +386,11 @@
 
             </div> <!---->
 
+    <input type="hidden" value="<?php echo $id_information ?>" id="id_information" />
+    <input type="hidden" value="<?php echo $id_request ?>" id="id_request" />
+
 </form>
+
     
     <?php include("include/footer.php"); ?>
 
@@ -409,6 +416,8 @@
     
 </body>
 </html>
+
+
 
 
 

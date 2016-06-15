@@ -1,20 +1,84 @@
 <?php 
+    include("../../confi/conf.inc.php");
+    //include("../head.php");
 
-    $consulta_information="SELECT * FROM general_information WHERE id='$id_information' ";
-    $resultado_information= mysqli_query($conexion,$consulta_information);
-    $fila_information= mysqli_fetch_array($resultado_information);
+    $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-        // BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
-            $consulta_property_manager = "SELECT * FROM property_managers WHERE id_request='$id_request'";
-            $resultado_property_manager = mysqli_query($conexion,$consulta_property_manager);
-            $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
+        $id_information = "";
+        $id_request = "";
 
-                //var_dump($consulta_property_manager);
+                                                    // echo strtoupper(substr($fila_information['state'],0,2))
 
-        // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA 
+        // REVISAR SI EXISTE POST Y SI NO EXISTE GET
+
+            if (!empty($_GET) && empty($_POST)) {
+                $id_information = $_GET['id_information'];
+                $id_request = $_GET['id_request'];
+                           
+                    $fila_information = buscarInfomation($id_information,$conexion);
+                    $fila_property_manager = buscarManager($id_request,$conexion);
+       
+            }else{
+        
+                $id_information = $_POST['id_information'];
+                $id_request = $_POST['id_request'];
+
+                    $fila_information = buscarInfomation($id_information,$conexion);
+                    $fila_property_manager = buscarManager($id_request,$conexion);
+
+            }
+
+                ///// FUNCIONES PARA BUSCAR LOS DATOS
+                    function buscarInfomation($idInfo,$conexion){                   
+
+                        // BUSCAMOS LA INFORMACION GENERAL 
+                            $consulta_information="SELECT * FROM general_information WHERE id='$idInfo' ";
+                            $resultado_information= mysqli_query($conexion,$consulta_information);
+                            $fila_information = mysqli_fetch_array($resultado_information);
+
+                                    //var_dump($fila_information);
+
+                                return $fila_information;
+
+                    } 
+
+                    function buscarManager($idRequest,$conexion){
+                             
+                        // BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
+                            $consulta_property_manager = "SELECT * FROM property_managers WHERE id_request='$idRequest'";
+                            $resultado_property_manager = mysqli_query($conexion,$consulta_property_manager);
+                            $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
+
+                            //var_dump($consulta_property_manager);
+
+                                return $fila_property_manager;
+
+                    } 
+
+        // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA ARCHIVO CSS
+
             $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 1px solid #000;";
 
             $estiloCSSBuilding = "width: 90%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;border: 1px solid #000;"; 
+
+
+        /* SANEAR LOS ACRONIMOS */ 
+
+            function revisarAcronimo($state){
+
+                $stateGoodAcro = "";
+
+                    if (strcasecmp($state, "NEW YORK") == 0) {
+                       
+                        $stateGoodAcro = "NY";
+
+                    }
+
+
+                return $stateGoodAcro;
+
+            }
+
 
 ?>
 
@@ -353,7 +417,7 @@
 
                         </div>
 
-                        <input type="text" placeholder="ENTER FIBER DESIGN" style="<?php echo $estiloCSS; ?>" />
+                        <input type="text"  style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_information['lt_fiber_eng'] ?>"  disabled="disabled"/>
 
                     </div>
 
@@ -459,7 +523,7 @@
                 <div class="container_state_building_info1">
                     <span> STATE </span>
 
-                    <input type="text" style="width: 64%;height:41px;position: relative;top: 4px; padding-left: 11px;border: 1px solid #000;" value="<?php echo strtoupper(substr($fila_information['state'],0,2)) ;?>" disabled />
+                    <input type="text" style="width: 64%;height:41px;position: relative;top: 4px; padding-left: 11px;border: 1px solid #000;" value="<?php echo revisarAcronimo($fila_information['state']);?>" disabled />
 
                 </div>
     
@@ -792,3 +856,32 @@
         </div>
 
     </div>
+
+    <input type="hidden" value="" name="working_days" />
+
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+
+        var workingDays = 
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square',
+                radioClass: 'iradio_square',
+                increaseArea: '20%' // optional
+            })
+            .on('ifChecked',function () {
+                alert("sdfsdf");
+                    
+
+            })
+            .on('ifUnchecked',function () {
+                    
+
+            });
+
+
+
+    });
+
+
+</script>

@@ -126,7 +126,7 @@
 
         }
         .container_cpe_input_text_inside .name:nth-child(3){
-            width: 192px;
+            width: 215px;
 
         }
         .container_info_building{
@@ -265,9 +265,11 @@
 
             }
             .container_service_info_type3 .container_state_building_info{
-                bottom: 29px;
-                margin-left: 6px;
+                bottom: 63px;
+                float: none;
                 width: 10%;
+                left: 84%;
+
             }
 
         .container_cpe_box_working_hours_building_picture{

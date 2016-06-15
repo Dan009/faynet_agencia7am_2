@@ -1,6 +1,15 @@
 $(document).ready(function(){
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////	   
+	///////////////////////  CODIGO PARA AGREGAR EN UN STRING LOS DIAS QUE SE TRABAJARA  /////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+
+		$("#mon_day").iCheck('check',function(){
+			 alert('Well done, Sir');
+			
+		});
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////	   
 	///////////////////////    ABRIR UNA VENTANA APARTE PARA PODER REVISAR EL PROGRESO ///////////////  
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,11 +50,11 @@ $(document).ready(function(){
 			var name_ventana= $(this).attr("name");
 			$("#ventana_"+name_ventana).fadeIn(0);
 			
-		//	$(".div_title_ventana").removeClass("ventana_activa");
-		//	$("#ventana_"+name_ventana).addClass("ventana_activa");
-			
-		//	if(name_ventana=="inside_plan"){
-				
+					//	$(".div_title_ventana").removeClass("ventana_activa");
+					//	$("#ventana_"+name_ventana).addClass("ventana_activa");
+						
+					//	if(name_ventana=="inside_plan"){
+							
 				
 				$.ajax({
 	                type: 'POST',
@@ -62,59 +71,92 @@ $(document).ready(function(){
 		//	}
 			
 			
-			
 		});
-		
-	
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// IDENTIFICAR EL NOMBRE SI EL USUARIO ESTA EN CPE FORM Y INSERTAR EL DOCUMENTO PHP CORRESPONDIENTE
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+		function insertarCPEform(name_ventana){
+
+			var id_information = $("#id_information").val();
+			var id_request = $("#id_request").val();
+
+			if (name_ventana == "content_building_info") {
+				
+				//console.log(id_information+" "+id_request);
+
+				$.ajax({
+	                type: 'POST',
+	                url: "http://"+hostname+ruta+"include/cpe-forms/content_building_info.php",
+	                data:{id_information:id_information,id_request:id_request},
+	                success: function(data) {    
+	                	//console.log(id_information+" "+id_request);
+
+						//$("#carga_ventana_load").append(data);
+						$("#content_building_info .container_form .center_form").html(data);
+						//$(".content_form").fadeOut(0);
+						$("#content_"+name_ventana).fadeIn(0);
+
+	                }
+
+	            }); 
+
+		    }
+
+		}
+
 	///////////////////////////////////////////////////////////////////////
 	// ESTE CODIGO ES PARA MOSTRAR UNA VENTANA NUEVA DENTRO DEL PLAN
 	//////////////////////////////////////////////////////////////////////
    
-	$(".add_plan").click(function(){
-		
-		//alert($(this).attr("name") );
-		var name_ventana= $(this).attr("name");
-		//var type= $(this).attr("type");
-		var title= $(this).attr("title");
-		$("#ventana_"+name_ventana).fadeIn(0);
-		
-	//	$(".div_title_ventana").removeClass("ventana_activa");
-	//	$("#ventana_"+name_ventana).addClass("ventana_activa");
-		
-	//	if(name_ventana=="inside_plan"){
+		$(".add_plan").click(function(){
 			
+			//alert($(this).attr("name") );
+			var name_ventana= $(this).attr("name");
+			//var type= $(this).attr("type");
+			var title= $(this).attr("title");
+			$("#ventana_"+name_ventana).fadeIn(0);
 			
-			$.ajax({
-                type: 'POST',
-                url: "http://"+hostname+ruta+"plans/"+title+".php",
-                data: "",
-                success: function(data) {   
+					//	$(".div_title_ventana").removeClass("ventana_activa");
+					//	$("#ventana_"+name_ventana).addClass("ventana_activa");
+						
+					//	if(name_ventana=="inside_plan"){
 				
-					$("#container_form_"+name_ventana).append(data);
-					$(".div_title_ventana").removeClass("ventana_activa");
-					$("#ventana_"+name_ventana).addClass("ventana_activa");
-					$("."+title).removeAttr("name");
-                }
-            }) 
-	//	}
-		
-		
-		
-	});
-	
-	
+				$.ajax({
+	                type: 'POST',
+	                url: "http://"+hostname+ruta+"plans/"+title+".php",
+	                data: "",
+	                success: function(data) {   
+					
+						$("#container_form_"+name_ventana).append(data);
+						$(".div_title_ventana").removeClass("ventana_activa");
+						$("#ventana_"+name_ventana).addClass("ventana_activa");
+						$("."+title).removeAttr("name");
+	                }
+	            }); 
 
-	$(".div_title_ventana").click(function(){
-		
-		var id_content=$(this).attr("name");
-		$(".content_form").fadeOut(0);			
-		$("#"+id_content).fadeIn(100);
-		
-		$(".div_title_ventana ").removeClass("ventana_activa");
-		$(this).addClass("ventana_activa");
+					//	}
+			
+			
+		});
 		
 		
-	});
+
+		$(".div_title_ventana").click(function(){
+			
+			var id_content=$(this).attr("name");
+
+
+				insertarCPEform(id_content);
+
+			$(".content_form").fadeOut(0);			
+			$("#"+id_content).fadeIn(100);
+			
+			$(".div_title_ventana ").removeClass("ventana_activa");
+			$(this).addClass("ventana_activa");
+			
+			
+		});
 	
 	//////////////////////////////////////////////////////////////////////
 	/////////////////       CERRAR VENTANA        ////////////////////////

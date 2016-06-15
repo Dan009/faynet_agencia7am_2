@@ -3,7 +3,60 @@
 	//$time_code_inside=$_SESSION['time_code'];
 	//$conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 ?>
-	<script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
+	<script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script>
+  
+<script>
+
+		    ///////////////////////////////////////////////////////////////////////
+			// ABRIR LIGHTBOX REDLINE INSIDE PLAN 
+			//////////////////////////////////////////////////////////////////////	
+		
+				$(".container_redline").click(function(){
+
+					/*$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					//$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+
+					});
+
+					console.log("http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php");*/
+
+						$.ajax({
+							type: 'POST',
+							url: "http://"+hostname+ruta+"editor.php",
+							success: function(data) {   
+								$("body").css({ "overflow":"hidden" });
+								$(".fondo_list_job").fadeIn(100);
+								$(".fancy_list_job").append(data);
+								
+								$(".fancy_list_job").css({
+									left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+
+								});
+														
+							}
+
+						});
+
+						
+				});
+
+
+	
+		$(".copypaste_b").click(function(){
+			
+			
+			$("#copypaste").css({
+				"display":"block"
+			
+			});
+
+		});
+
+	</script> 
 
 <script type="text/javascript">
 
@@ -789,58 +842,7 @@ $(document).ready(function() {
           
     </div>
     
-    <script>
-
-		    ///////////////////////////////////////////////////////////////////////
-			// ABRIR LIGHTBOX REDLINE INSIDE PLAN 
-			//////////////////////////////////////////////////////////////////////	
-		
-				$(".container_redline").click(function(){
-
-					/*$("body").css({ "overflow":"hidden" });
-					$(".fondo_list_job").fadeIn(100);
-					//$(".fancy_list_job").append(data);
-					
-					$(".fancy_list_job").css({
-						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-
-					});
-
-					console.log("http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php");*/
-
-						$.ajax({
-							type: 'POST',
-							url: "http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php",
-							success: function(data) {   
-								$("body").css({ "overflow":"hidden" });
-								$(".fondo_list_job").fadeIn(100);
-								$(".fancy_list_job").append(data);
-								
-								$(".fancy_list_job").css({
-									left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-
-								});
-														
-							}
-
-						});
-
-						
-				});
-
-
-	
-		$(".copypaste_b").click(function(){
-			
-			
-			$("#copypaste").css({
-				"display":"block"
-			
-			});
-
-		});
-
-	</script>
+ 
     
 		<script>
 			$(document).ready(function(){
@@ -909,7 +911,7 @@ $(document).ready(function() {
 		
 
 		
-		
+		  
 		
 		
 		
