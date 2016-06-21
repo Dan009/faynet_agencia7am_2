@@ -31,10 +31,15 @@
 		<link rel="stylesheet" href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>css/jquery-ui.css">
 		 
          <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/jquery.js"></script>
+        <!-- <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/jquery.js"></script> -->
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/icheck.js"></script>
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/main.js"></script>
-
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/jquery.inputmask.bundle.min.js"></script> 
+       <!--  <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/inputmask.js"></script>
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/inputmask.date.extensions.js"></script>-->
+        
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/mascaras.js"></script>
+        
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		 
 		<script>

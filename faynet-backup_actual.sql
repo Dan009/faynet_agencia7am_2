@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-06-2016 a las 20:41:52
+-- Tiempo de generación: 21-06-2016 a las 21:40:47
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -1002,7 +1002,7 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 --
 -- Volcado de datos para la tabla `temp`
@@ -1025,7 +1025,8 @@ INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_na
 (43, 'file-1465479878.gz', '0000-00-00', '1465479834-2', 'inside_plan', '', 'literallycanvas-0.4.11.tar.gz'),
 (48, 'file-1465509833.jpg', '0000-00-00', '1465509822-2', 'redline_form', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
 (49, 'file-1465510721.jpg', '0000-00-00', '1465510716-2', 'redline_form', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
-(50, 'file-1465572452.jpg', '0000-00-00', '1465571938-2', 'redline_form', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg');
+(50, 'file-1465572452.jpg', '0000-00-00', '1465571938-2', 'redline_form', '', 'a6a6ccc8f5500869f6e2fc74aabb021d.jpg'),
+(71, 'file-1466542458.jpg', '0000-00-00', '1', 'building_picture', 'canvas-14665424883.png', '1433778601-1.jpg');
 
 -- --------------------------------------------------------
 

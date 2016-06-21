@@ -364,7 +364,7 @@
 
             }
             .container_project_management .container_cpe_orange_box span:nth-child(1){
-                margin-right: 16px;
+                margin-right: 20px;
 
             }
 
@@ -415,18 +415,38 @@
 
         }
         .container_first_property_number .name{
-            width: 36%;
+            width: 41%;
             margin: 0 auto;
             margin-right: 24%;
 
         }
         .text_select_image{
-            text-align: center;
             display: none;
-            position: relative;
-            top: 42px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            top: -5px;
+            left: 100%;
             z-index: -1;
+            width: 50%;
 
+        }
+        .text_select_image::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent black transparent transparent;
+        } 
+        .text_select_image:hover {
+            visibility: visible;
         }
         #dvPictureImage{
             width: 275px;
@@ -454,7 +474,9 @@
             height: 195px;
             cursor: pointer;
             opacity: 0;
+            top: -14px;
         }
+
 /*---------------------------------------------*/
 /*----   LIT EQUIP INFO CLASSES AND IDS  ------*/
 /*-------------------------------------------*/
@@ -513,6 +535,8 @@
             top: 13px;
 
         }
+
+
 
 /*---------------------------------------------*/
 /*----      LIT EQUIP CLASSES AND IDS   ------*/
@@ -2123,7 +2147,7 @@ html,body{
 }
 .containerprueba{
     display: inline-block;
-    width: 38%;
+    width: 95%;
 
 }
 .container_any_file{

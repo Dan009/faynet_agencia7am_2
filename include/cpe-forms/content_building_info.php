@@ -2,82 +2,79 @@
     include("../../confi/conf.inc.php");
     //include("../head.php");
 
-    $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
+        $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-        $id_information = "";
-        $id_request = "";
+            $id_information = "";
+            $id_request = "";
+                              
+                // REVISAR SI EXISTE POST Y SI NO EXISTE GET
 
-                                                    // echo strtoupper(substr($fila_information['state'],0,2))
+                    if (!empty($_GET) && empty($_POST)) {
+                        $id_information = $_GET['id_information'];
+                        $id_request = $_GET['id_request'];
+                                   
+                            $fila_information = buscarInfomation($id_information,$conexion);
+                            $fila_property_manager = buscarManager($id_request,$conexion);
+               
+                    }else{
+                
+                        $id_information = $_POST['id_information'];
+                        $id_request = $_POST['id_request'];
 
-        // REVISAR SI EXISTE POST Y SI NO EXISTE GET
-
-            if (!empty($_GET) && empty($_POST)) {
-                $id_information = $_GET['id_information'];
-                $id_request = $_GET['id_request'];
-                           
-                    $fila_information = buscarInfomation($id_information,$conexion);
-                    $fila_property_manager = buscarManager($id_request,$conexion);
-       
-            }else{
-        
-                $id_information = $_POST['id_information'];
-                $id_request = $_POST['id_request'];
-
-                    $fila_information = buscarInfomation($id_information,$conexion);
-                    $fila_property_manager = buscarManager($id_request,$conexion);
-
-            }
-
-                ///// FUNCIONES PARA BUSCAR LOS DATOS
-                    function buscarInfomation($idInfo,$conexion){                   
-
-                        // BUSCAMOS LA INFORMACION GENERAL 
-                            $consulta_information="SELECT * FROM general_information WHERE id='$idInfo' ";
-                            $resultado_information= mysqli_query($conexion,$consulta_information);
-                            $fila_information = mysqli_fetch_array($resultado_information);
-
-                                    //var_dump($fila_information);
-
-                                return $fila_information;
-
-                    } 
-
-                    function buscarManager($idRequest,$conexion){
-                             
-                        // BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
-                            $consulta_property_manager = "SELECT * FROM property_managers WHERE id_request='$idRequest'";
-                            $resultado_property_manager = mysqli_query($conexion,$consulta_property_manager);
-                            $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
-
-                            //var_dump($consulta_property_manager);
-
-                                return $fila_property_manager;
-
-                    } 
-
-        // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA ARCHIVO CSS
-
-            $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 1px solid #000;";
-
-            $estiloCSSBuilding = "width: 90%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;border: 1px solid #000;"; 
-
-
-        /* SANEAR LOS ACRONIMOS */ 
-
-            function revisarAcronimo($state){
-
-                $stateGoodAcro = "";
-
-                    if (strcasecmp($state, "NEW YORK") == 0) {
-                       
-                        $stateGoodAcro = "NY";
+                            $fila_information = buscarInfomation($id_information,$conexion);
+                            $fila_property_manager = buscarManager($id_request,$conexion);
 
                     }
 
+                        ///// FUNCIONES PARA BUSCAR LOS DATOS
+                            function buscarInfomation($idInfo,$conexion){                   
 
-                return $stateGoodAcro;
+                                // BUSCAMOS LA INFORMACION GENERAL 
+                                    $consulta_information="SELECT * FROM general_information WHERE id='$idInfo' ";
+                                    $resultado_information= mysqli_query($conexion,$consulta_information);
+                                    $fila_information = mysqli_fetch_array($resultado_information);
 
-            }
+                                            //var_dump($fila_information);
+
+                                        return $fila_information;
+
+                            } 
+
+                            function buscarManager($idRequest,$conexion){
+                                     
+                                // BUSCAMOS LA INFORMACION DEL PROPERTY MANAGER
+                                    $consulta_property_manager = "SELECT * FROM property_managers WHERE id_request='$idRequest'";
+                                    $resultado_property_manager = mysqli_query($conexion,$consulta_property_manager);
+                                    $fila_property_manager = mysqli_fetch_array($resultado_property_manager);
+
+                                    //var_dump($consulta_property_manager);
+
+                                        return $fila_property_manager;
+
+                            } 
+
+                // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA ARCHIVO CSS
+
+                    $estiloCSS = "width: 26%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;float:left;border: 1px solid #000;";
+
+                    $estiloCSSBuilding = "width: 90%;height: 33px;padding-left: 13px; position: relative;bottom: 9px;border: 1px solid #000;"; 
+
+                // SANEAR LOS ACRONIMOS  
+
+                    function revisarAcronimo($state){
+
+                        $stateGoodAcro = "";
+
+                            if (strcasecmp($state, "NEW YORK") == 0) {
+                               
+                                $stateGoodAcro = "NY";
+
+                            }
+
+
+                        return $stateGoodAcro;
+
+                    }
 
 
 ?>
@@ -122,7 +119,7 @@
 
                     if (respuesta === 0) {
                         mostrarRespuesta('El archivo NO se ha podido subir.', false);
-                        $("#nombre_archivo, #archivo").val('');
+                        $("#nombre_archivo, #archivoCPEPhotos").val('');
 
                     } else {
                         var type =  $("#type").val();
@@ -157,7 +154,7 @@
 
                         $("body").css({ 'overflow': "hidden" });
                         
-                        window.stop();
+                        //window.stop();
                     }
                         
                 }, function(progreso, valor) {
@@ -237,9 +234,22 @@
         $(document).ready(function() {
             mostrarArchivos();
 
-            $("#archivo").change(function (){
+            $("#archivoCPEPhotos").change(function (){
                 //subirArchivos();
-                subirArchivos();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "include/cpe_photos_manager.php",
+                        type: $("#type").val(),
+                        tipo_ejecucion: $("#tipo_ejecucion").val(),
+                        cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information,"; ?>
+                        success: function(data){
+                            console.log(data);
+                            //console.log($("#tipo_ejecucion").val());
+
+                        }
+
+                    });
 
             });
 
@@ -254,9 +264,8 @@
                 ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
                 ///////////////////////////////////////////////////////////
 
-                    $("#archivo").mouseenter(function(){
+                    $("#archivoCPEPhotos").mouseenter(function(){
                         $(".text_select_image").fadeIn(150);
-
 
                     }).mouseleave(function(){
                         $(".text_select_image").fadeOut(150);
@@ -276,7 +285,11 @@
                     url: "include/cpe_photos_manager.php",
                     data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
                     success: function(data) {
-                        $("#dvPictureImage").css("background-image","url(archivos/temp/"+data+"");
+
+                         var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
+
+                        $("#dvPictureImage").css("background-image",urlCodePicture);
+                      
 
                     }
 
@@ -296,7 +309,7 @@
                     url: "include/cpe_photos_manager.php",
                     data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
                     success: function(data) {
-                        $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data+"");
+                        $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data.trim()+"");
   
                              
                     }
@@ -351,11 +364,10 @@
                             $(".containerprueba").css("z-index","999999999999999");
                             $(".text_select_image").css({
                                 zIndex:"-999999",
-                                top: "139px",
-                                color: "white"
-
+                     
                             });
 
+                                $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
                                 $(".literally").remove();    
                                 $(".editor_imagenes").css({ 'display': "none" });
                                 $("body").css({ 'overflow': "auto" });
@@ -602,11 +614,11 @@
 
                         <span> Start Time: </span>
 
-                           <input type="text" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
+                           <input type="text" id="txtFirstAMTime" name="txtFirstAMTime" style="width: 20%;font-size: 22px;float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text" id="txtSecondAMTime" name="txtSecondAMTime" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">AM</sup>
 
@@ -616,11 +628,11 @@
 
                          <span style="display: block;"> End Time: </span>
 
-                           <input type="text" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
+                           <input type="text"  id="txtFirstPMTime" name="txtFirstPMTime" style="width: 20%;font-size: 22px; float: left;height: 32px;" />
 
                             <span class="time_dotte_span">:</span>
 
-                            <input type="text" style="width: 20%;font-size: 22px;height: 32px;" />
+                            <input type="text"  id="txtSecondPMTime" name="txtSecondPMTime" style="width: 20%;font-size: 22px;height: 32px;" />
 
                         <sup class="time_meridian">PM</sup>
                        
@@ -692,6 +704,8 @@
 
                                 </div>
 
+                        <input id="txtDayWorking" name="txtDayWorking" type="hidden" />
+
                     </div>
 
                 </div>
@@ -708,7 +722,7 @@
 
 							   <input type="file" name="archivo" id="archivoCPEPhotos" accept="image/x-png, image/gif, image/jpeg" />
 					           
-                               <h3 class="text_select_image"> Click here to upload and draw an image </h3>
+                               <span class="text_select_image"> Click here to upload and draw an image </span>
 
 							</div>  
 
@@ -860,28 +874,165 @@
     <input type="hidden" value="" name="working_days" />
 
 <script type="text/javascript">
-    
-    $(document).ready(function(){
 
-        var workingDays = 
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_square',
-                radioClass: 'iradio_square',
-                increaseArea: '20%' // optional
-            })
-            .on('ifChecked',function () {
-                alert("sdfsdf");
-                    
+    var workingDays = [];   
 
-            })
-            .on('ifUnchecked',function () {
-                    
+            //// ORDENAR DIAS Y SETEAR EN INPUT
 
-            });
+            //// SETEAR EN INPUT ESCONDIDO LOS DIAS QUE SE TRABAJARA
+                function setearDiasTrabajo(array){
+
+                    var workDays = "";
+
+                        for (var i = 0; i < array.length; i++) {
+
+                            if(array[i] != undefined && array[i] != ""){
+                                workDays += array[i]+",";
+
+                            }
+                            
+                        }
+
+                        var workDays2 = workDays.slice(0,-1);
+
+                    //console.log(workDays2);
+
+                    $("#txtDayWorking").val(workDays2);
+
+                }
+
+
+            //// FUNCION PARA ELIMINAR EL DIA
+                function quitarDiaLista(array,nombreElemento){
+                        var index = array.indexOf(nombreElemento);
+
+                            if (index > -1) {
+                                array.splice(index, 1);
+                            }
+
+                    return array;
+                }
+
+            //// FUNCIONES PARA AGREGAR Y ELIMINAR DIAS
+
+                // AGREGAR DIAS
+                    function agregarDia(dia){
+                        switch(dia){
+                            case "mon_day":
+                                workingDays[0] = "monday";
+
+                            break;
+
+                            case "tue_day":
+                                workingDays[1] = "tuesday";
+
+                            break;
+
+                            case "Wed_day":
+                                workingDays[2] = "wednesday";
+
+                            break;
+
+                            case "thur_day":
+                                workingDays[3] = "thursday";
+
+                            break;
+
+                            case "fri_day":
+                                workingDays[4] = "friday";
+
+                            break;
+
+                            case "sat_day":
+                                workingDays[5] = "saturday";
+
+                            break;
+
+                            case "sun_day":
+                                workingDays[6] = "sunday";
+
+                            break;
+
+                            default:
+                            break;
+
+                        }
+
+                        //console.log(workingDays);
+                        setearDiasTrabajo(workingDays);
+
+                    }/**/
+
+                // QUITAR DIAS
+                    function quitarDia(dia){
+                        switch(dia){
+                            case "mon_day":
+                                workingDays = quitarDiaLista(workingDays,"monday");
+
+                            break;
+
+                            case "tue_day":
+                                workingDays = quitarDiaLista(workingDays,"tuesday");
+
+                            break;
+
+                            case "Wed_day":
+                                workingDays = quitarDiaLista(workingDays,"wednesday");
+
+                            break;
+
+                            case "thur_day":
+                                workingDays = quitarDiaLista(workingDays, "thursday");
+
+                            break;
+
+                            case "fri_day":
+                               workingDays =  quitarDiaLista(workingDays,"friday");
+
+                            break;
+
+                            case "sat_day":
+                               workingDays = quitarDiaLista(workingDays,"saturday");
+
+                            break;
+
+                            case "sun_day":
+                                workingDays = quitarDiaLista(workingDays,"sunday");
+
+                            break;
+
+                            default:
+                            break;
+
+                        }
+
+                        //console.log(workingDays);
+                        setearDiasTrabajo(workingDays);
+
+                    }/**/
+
+        $(document).ready(function(){
+
+            
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square',
+                    radioClass: 'iradio_square',
+                    increaseArea: '20%' // optional
+                })
+                .on('ifChecked',function () {
+                    var dayName = $(this).attr("id");
+                        agregarDia(dayName);
+
+                })
+                .on('ifUnchecked',function () {
+                   var dayName = $(this).attr("id");
+                        quitarDia(dayName);
+
+                });
 
 
 
-    });
+        });
 
 
 </script>
