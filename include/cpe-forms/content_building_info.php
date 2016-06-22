@@ -80,307 +80,332 @@
 ?>
 
 <script type="text/javascript">
+
     var contador = 0;
 
-    /////////////////////////////////////////////////////////////
-    //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
-    ///////////////////////////////////////////////////////////
- 
-        function subirArchivos() {
-           /* var nombreArchivo = $("#nombre_archivo").val();
-            var code = $("#code").val();
-            var type = $("#type").val();
+        /////////////////////////////////////////////////////////////
+        //////////            PRIMER PASO              /////////////
+        ///////////////////////////////////////////////////////////
 
-                $.ajax({
-                    type: "POST",
-                    url: "include/subir_archivo.php",
-                    data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
-                    success: function(data){
-                        $(".temp").append(data);
+            /////////////////////////////////////////////////////////////
+            //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
+            ///////////////////////////////////////////////////////////
+         
+                function subirArchivos() {
+                   /* var nombreArchivo = $("#nombre_archivo").val();
+                    var code = $("#code").val();
+                    var type = $("#type").val();
 
-                    }
+                        $.ajax({
+                            type: "POST",
+                            url: "include/subir_archivo.php",
+                            data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
+                            success: function(data){
+                                $(".temp").append(data);
 
-                });*/
-    
-                $(".containerprueba").css("z-index","0");
-                contador++;
+                            }
 
-            $("#archivoCPEPhotos").upload('include/cpe_photos_manager.php',
-            {
-                type: $("#type").val(),
-                tipo_ejecucion: $("#tipo_ejecucion").val(),
-                cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information"; ?>
-
-            },
+                        });*/
             
-            function(respuesta) {
-                //Subida finalizada.
-                $("#barra_de_progreso").val(0);
+                        $(".containerprueba").css("z-index","0");
+                        contador++;
 
-                    if (respuesta === 0) {
-                        mostrarRespuesta('El archivo NO se ha podido subir.', false);
-                        $("#nombre_archivo, #archivoCPEPhotos").val('');
+                    $("#archivoCPEPhotos").upload('include/cpe_photos_manager.php',
+                    {
+                        type: $("#type").val(),
+                        tipo_ejecucion: $("#tipo_ejecucion").val(),
+                        cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information"; ?>
 
-                    } else {
-                        var type =  $("#type").val();
-                        var select_temp_type = "select_image";
+                    },
+                    
+                    function(respuesta) {
+                        //Subida finalizada.
+
+                            if (respuesta === 0) {
+                                mostrarRespuesta('El archivo NO se ha podido subir.', false);
+                                $("#nombre_archivo, #archivoCPEPhotos").val('');
+
+                            } else {
+                                var type =  $("#type").val();
+                                var select_temp_type = "select_image";
+                                //var select_temp_type = "subir_arhivo";
 
 
-                        
-                            $.post("include/cpe_photos_manager.php",
-                                {
-                                    type: $("#type").val(),
-                                    tipo_ejecucion:select_temp_type<?php echo ",\nid_information: $id_information"; ?>
 
-                                } ,
-                                function (data) {
-                                    $(".temp").append(data);
+                                    $.post("include/cpe_photos_manager.php",
+                                        {
+                                            type: $("#type").val(),
+                                            tipo_ejecucion:select_temp_type<?php echo ",\nid_information: $id_information"; ?>
 
-                            });
+                                        } ,
+                                        function (data) {
+                                            $(".temp").append(data);
 
-                        // $.get("include/select_temp.php", function (data) {
-                        //  $(".temp").append(data);
-                        // });
-                        
-                        $(".editor_imagenes").fadeIn(200);
-                        mostrarRespuesta('Subido Correctamente.', true);
-                        mostrarArchivos();
-                        
-                        $.get("include/editor.php", function (data) {
-                            $(".editor_imagenes_content").append(data);
-                            
+                                    });
+
+                                // $.get("include/select_temp.php", function (data) {
+                                //  $(".temp").append(data);
+                                // });
+                                
+                                $(".editor_imagenes").fadeIn(200);
+                                mostrarRespuesta('Subido Correctamente.', true);
+                                mostrarArchivos();
+                                
+                                $.get("include/editor.php", function (data) {
+                                    $(".editor_imagenes_content").append(data);
+                                    
+                                });
+
+
+                                $("body").css({ 'overflow': "hidden" });
+                                
+                                //window.stop();
+                            }
+                                
+                        }, function(progreso, valor) {
+                            //Barra de progreso.
+                            $("#barra_de_progreso").val(valor);
+
                         });
 
 
-                        $("body").css({ 'overflow': "hidden" });
-                        
-                        //window.stop();
-                    }
-                        
-                }, function(progreso, valor) {
-                    //Barra de progreso.
-                    $("#barra_de_progreso").val(valor);
-
-                });
-
-
-        }
-
-    /////////////////////////////////////////////////////////////
-    //////////        PARA ELIMINAR ARCHIVOS       /////////////
-    ///////////////////////////////////////////////////////////
-        function eliminarArchivos() {
-            var id = $(".eliminar_archivo").attr('id')
-            alert(id);  
-
-            $.ajax({
-                url: 'include/eliminar_archivo.php',
-                type: 'POST',
-                timeout: 10000,
-                data: {id: id},
-                error: function() {
-                    mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-                },
-                success: function(respuesta) {
-                    if (respuesta == 1) {
-                        mostrarRespuesta('El archivo ha sido eliminado.', true);
-                        
-                    } else {
-                         
-                        mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
-                                               
-                    }
-                    
                 }
-            });
-        }
 
-    /////////////////////////////////////////////////////////////
-    //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
-    ///////////////////////////////////////////////////////////
-
-        function mostrarArchivos() {
-            code = $("#code").val()
-            type =  $("#type").val()
-            
-            $.ajax({
-                url: 'include/mostrar_archivos.php',
-                type: 'POST',
-                data: {type:type, code:code},
-                success: function(data) {
-                        
-                        $("#archivos_subidos").append(data);
-                    
-                }
-            });
-        }
-
-    /////////////////////////////////////////////////////////////
-    //////////  PARA MOSTRAR LAS RESPUESTAS DE LAS ACCIONES  ///
-    ///////////////////////////////////////////////////////////
-        function mostrarRespuesta(mensaje, ok){
-            $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
-            if(ok){
-                $("#respuesta").addClass('alert-success');
-            }else{
-                $("#respuesta").addClass('alert-danger');
-            }
-        }
-
-    /////////////////////////////////////////////////////////////
-    ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
-    ///////////////////////////////////////////////////////////
-
-        $(document).ready(function() {
-            mostrarArchivos();
-
-            $("#archivoCPEPhotos").change(function (){
-                //subirArchivos();
+            /////////////////////////////////////////////////////////////
+            //////////        PARA ELIMINAR ARCHIVOS       /////////////
+            ///////////////////////////////////////////////////////////
+                function eliminarArchivos() {
+                    var id = $(".eliminar_archivo").attr('id')
+                    alert(id);  
 
                     $.ajax({
-                        type: "POST",
-                        url: "include/cpe_photos_manager.php",
-                        type: $("#type").val(),
-                        tipo_ejecucion: $("#tipo_ejecucion").val(),
-                        cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information,"; ?>
-                        success: function(data){
-                            console.log(data);
-                            //console.log($("#tipo_ejecucion").val());
-
-                        }
-
-                    });
-
-            });
-
-            $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-                var archivo = $(this).parents('.row').eq(0).find('span').text();
-                archivo = $.trim(archivo);
-                eliminarArchivos(archivo);
-
-            });
-
-                /////////////////////////////////////////////////////////////
-                ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
-                ///////////////////////////////////////////////////////////
-
-                    $("#archivoCPEPhotos").mouseenter(function(){
-                        $(".text_select_image").fadeIn(150);
-
-                    }).mouseleave(function(){
-                        $(".text_select_image").fadeOut(150);
-
-                    });
-
-        });
-
-    /////////////////////////////////////////////////////////////////////
-    ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
-    ///////////////////////////////////////////////////////////////////
-        function setearFotoCPE(){
-            var type_ejecucion = "select_picture";
-
-                $.ajax({ 
-                    type: "POST", 
-                    url: "include/cpe_photos_manager.php",
-                    data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
-                    success: function(data) {
-
-                         var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
-
-                        $("#dvPictureImage").css("background-image",urlCodePicture);
-                      
-
-                    }
-
-                });
-
-        }
-
-    /////////////////////////////////////////////////////////////////////
-    ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
-    ///////////////////////////////////////////////////////////////////
-
-        function setearCanvasCPE(){
-            var type_ejecucion = "select_canva";
-
-                $.ajax({ 
-                    type: "POST", 
-                    url: "include/cpe_photos_manager.php",
-                    data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
-                    success: function(data) {
-                        $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data.trim()+"");
-  
-                             
-                    }
-
-
-                });
-
-        }
-          
-    ////////////////////////////////////////////////////////////
-    ///     FUNCION QUE SETEA LOS DIVS CON LAS IMAGENES     ///
-    //////////////////////////////////////////////////////////
-
-      var canvas;
-
-      function exportAndSaveCanvas()  {
-            setearFotoCPE();
-    
-          canvas = document.getElementById("canvas");
-
-            // Get the canvas screenshot as PNG
-                var screenshot = Canvas2Image.saveAsPNG(canvas, true);
-
-            // This is a little trick to get the SRC attribute from the generated <img> screenshot
-                canvas.parentNode.appendChild(screenshot);
-                screenshot.id = "canvasimage";      
-                type_plan = $("#type").val();
-                data = $('#canvasimage').attr('src');
-                code = <?php echo $id_information; ?>;
-            
-            
-            //alert(type_plan);
-            
-            canvas.parentNode.removeChild(screenshot);
-
-
-            // Send the screenshot to PHP to save it on the server
-                var url = 'include/export.php';
-
-                    $.ajax({ 
-                        type: "POST", 
-                        url: url,
-                        dataType: 'text',
-                        data: {
-                            base64data : data, codesend : code, type:type
+                        url: 'include/eliminar_archivo.php',
+                        type: 'POST',
+                        timeout: 10000,
+                        data: {id: id},
+                        error: function() {
+                            mostrarRespuesta('Error al intentar eliminar el archivo.', false);
                         },
-                        success: function(data) {
+                        success: function(respuesta) {
+                            if (respuesta == 1) {
+                                mostrarRespuesta('El archivo ha sido eliminado.', true);
+                                
+                            } else {
+                                 
+                                mostrarRespuesta('Error al intentar eliminar el archivo.', false);  
+                                                       
+                            }
+                            
+                        }
+                    });
+                }
 
-                            setearCanvasCPE();
-                            $("#dvPictureImage").fadeIn(100);
-                            $("#dvCanvaImage").fadeIn(100);
-                            $(".containerprueba").css("z-index","999999999999999");
-                            $(".text_select_image").css({
-                                zIndex:"-999999",
-                     
+            /////////////////////////////////////////////////////////////
+            //////////   PARA MOSTRAR LOS NOMBRES DE LOS ARCHIVOS    ///
+            ///////////////////////////////////////////////////////////
+
+                function mostrarArchivos() {
+                    code = $("#code").val()
+                    type =  $("#type").val()
+                    
+                    $.ajax({
+                        url: 'include/mostrar_archivos.php',
+                        type: 'POST',
+                        data: {type:type, code:code},
+                        success: function(data) {
+                                
+                                $("#archivos_subidos").append(data);
+                            
+                        }
+                    });
+                }
+
+            /////////////////////////////////////////////////////////////
+            //////////  PARA MOSTRAR LAS RESPUESTAS DE LAS ACCIONES  ///
+            ///////////////////////////////////////////////////////////
+                function mostrarRespuesta(mensaje, ok){
+                    $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
+                    if(ok){
+                        $("#respuesta").addClass('alert-success');
+                    }else{
+                        $("#respuesta").addClass('alert-danger');
+                    }
+                }
+
+            /////////////////////////////////////////////////////////////
+            ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
+            ///////////////////////////////////////////////////////////
+
+                $(document).ready(function() {
+                    mostrarArchivos();
+
+                    $("#archivoCPEPhotos").change(function (){
+                        $("#dvPictureImage").fadeOut(0);
+                        $("#dvCanvaImage").fadeOut(0);
+
+                        subirArchivos();
+
+                            /*$.ajax({
+                                type: "POST",
+                                url: "include/cpe_photos_manager.php",
+                                data: { tipo_ejecucion: $("#tipo_ejecucion").val(),
+                                cantidad_ejecucion:contador<?php echo ",\nid_information: $id_information,"; ?>},
+                                success: function(data){
+                                    console.log(data);
+                                    //console.log($("#tipo_ejecucion").val());
+
+                                }
+
+                            });*/
+
+                    });
+
+                    $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
+                        var archivo = $(this).parents('.row').eq(0).find('span').text();
+                        archivo = $.trim(archivo);
+                        eliminarArchivos(archivo);
+
+                    });
+
+                        /////////////////////////////////////////////////////////////
+                        ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
+                        ///////////////////////////////////////////////////////////
+
+                            $("#archivoCPEPhotos").mouseenter(function(){
+                                $(".text_select_image").fadeIn(150);
+
+                            }).mouseleave(function(){
+                                $(".text_select_image").fadeOut(150);
+
                             });
 
-                                $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
-                                $(".literally").remove();    
-                                $(".editor_imagenes").css({ 'display': "none" });
-                                $("body").css({ 'overflow': "auto" });
-                            
-                                 
-                        }
- 
-                        
-                    });
+                });
+
+        /////////////////////////////////////////////////////////////
+        //////////            SEGUNDO PASO              ////////////
+        ///////////////////////////////////////////////////////////
+
+            /////////////////////////////////////////////////////////////////////
+            ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
+            ///////////////////////////////////////////////////////////////////
+                function setearFotoCPE(){
+                    var type_ejecucion = "select_picture";
+
+                        $.ajax({ 
+                            type: "POST", 
+                            url: "include/cpe_photos_manager.php",
+                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                            success: function(data) {
+
+                                 var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
+
+                                $("#dvPictureImage").css("background-image",urlCodePicture);
+                              
+
+                            }
+
+                        });
+
+                }
+
+            /////////////////////////////////////////////////////////////////////
+            ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
+            ///////////////////////////////////////////////////////////////////
+
+                function setearCanvasCPE(){
+                    var type_ejecucion = "select_canva";
+
+                        $.ajax({ 
+                            type: "POST", 
+                            url: "include/cpe_photos_manager.php",
+                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                            success: function(data) {
+                                $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data.trim()+"");
+          
+                                     
+                            }
 
 
-       }
+                        });
 
+                }
+                  
+            ////////////////////////////////////////////////////////////
+            ///     FUNCION QUE SETEA LOS DIVS CON LAS IMAGENES     ///
+            //////////////////////////////////////////////////////////
+
+              var canvas;
+
+              function exportAndSaveCanvas()  {
+                    setearFotoCPE();
+            
+                  canvas = document.getElementById("canvas");
+
+                    // Get the canvas screenshot as PNG
+                        var screenshot = Canvas2Image.saveAsPNG(canvas, true);
+
+                    // This is a little trick to get the SRC attribute from the generated <img> screenshot
+                        canvas.parentNode.appendChild(screenshot);
+                        screenshot.id = "canvasimage";      
+                        type_plan = $("#type").val();
+                        data = $('#canvasimage').attr('src');
+                        code = <?php echo $id_information; ?>;
+                    
+                    
+                    //alert(type_plan);
+                    
+                    canvas.parentNode.removeChild(screenshot);
+
+
+                    // Send the screenshot to PHP to save it on the server
+                        var url = 'include/export.php';
+
+                            $.ajax({ 
+                                type: "POST", 
+                                url: url,
+                                dataType: 'text',
+                                data: {
+                                    base64data : data, codesend : code, type:type
+                                },
+                                success: function(data) {
+
+                                    setearCanvasCPE();
+                                    $("#dvPictureImage").fadeIn(100);
+                                    $("#dvCanvaImage").fadeIn(100);
+                                    $(".containerprueba").css("z-index","999999999999999");
+                                    $(".text_select_image").css({
+                                        zIndex:"-999999",
+                             
+                                    });
+
+                                        $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
+                                        $(".literally").remove();    
+                                        $(".editor_imagenes").css({ 'display': "none" });
+                                        $("body").css({ 'overflow': "auto" });
+                                    
+                                         
+                                }
+         
+                                
+                            });
+
+
+               }
+
+
+$(document).ready(function() {
+    $("#submit_request").click(function() {
+
+        $.post($("#form_request").attr("action"), $("#form_request").serialize(),
+        function(data) {
+            $(".hola").append(data);
+            
+            
+        });
+         
+    });
+  
+});
 
 </script>
  
@@ -407,9 +432,9 @@
 
                     <span> Type of Service </span>
 
-                        <input type="radio" name="type_service" /> <span>LIT</span> 
+                        <input type="radio" name="type_service" value="yes" /> <span>LIT</span> 
                         &nbsp;
-                        <input type="radio" name="type_service" /> <span>DARK</span>  
+                        <input type="radio" name="type_service" value="no" /> <span>DARK</span>  
 
                 </div>
 
@@ -422,14 +447,14 @@
 
                         </div>
 
-                        <input type="text" placeholder="ENTER REGION" style="<?php echo $estiloCSS; ?>"/>
+                        <input type="text" name="txtRegion" placeholder="ENTER REGION" style="<?php echo $estiloCSS; ?>"/>
 
                         <div class="name">
                             Fiber Design Engineer:
 
                         </div>
 
-                        <input type="text"  style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_information['lt_fiber_eng'] ?>"  disabled="disabled"/>
+                        <input type="text" style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_information['lt_fiber_eng'] ?>"  disabled="disabled"/>
 
                     </div>
 
@@ -439,14 +464,14 @@
 
                         </div>
 
-                        <input type="text"  placeholder="ENTER PROJECT MANAGER" style="<?php echo $estiloCSS; ?>"/>
+                        <input type="text" name="txtProyectManager" placeholder="ENTER PROJECT MANAGER" style="<?php echo $estiloCSS; ?>"/>
 
                         <div class="name txtConstructionEngiBI" style="">
                             Construction Engineer:
 
                         </div>
 
-                        <input type="text" placeholder="ENTER CONSTRUCTION ENGINEER" style="<?php echo $estiloCSS; ?>"/>
+                        <input type="text" name="txtContructionEngi" placeholder="ENTER CONSTRUCTION ENGINEER" style="<?php echo $estiloCSS; ?>"/>
                             
                         </div>
 
@@ -485,7 +510,7 @@
 
                     </div>
 
-                    <input type="text" style="<?php echo $estiloCSSBuilding; ?>" placeholder="ENTER LATITUDE" />
+                    <input type="text" name="txtLatitude" style="<?php echo $estiloCSSBuilding; ?>" placeholder="ENTER LATITUDE" />
 
                 </div>
 
@@ -495,7 +520,7 @@
 
                     </div>
 
-                    <input type="text" style="<?php echo $estiloCSSBuilding; ?>" placeholder="ENTER LONGITUDE" />
+                    <input type="text" name="txtLongitude" style="<?php echo $estiloCSSBuilding; ?>" placeholder="ENTER LONGITUDE" />
 
                 </div>
 
@@ -530,7 +555,7 @@
 
                 </div>
 
-                  <input type="text" style="width: 84%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 1px solid #000;"  />
+                  <input type="text" name="txtMunicipa" style="width: 84%;height: 33px;position: relative;margin: 16px 22px 0 1px;padding: 5px;bottom: 23px;float: left;border: 1px solid #000;"  />
 
                 <div class="container_state_building_info1">
                     <span> STATE </span>
@@ -578,7 +603,7 @@
 
                     <span> Total flrs. </span>
 
-                     <input type="number" value="7" style="" maxlength="2" />
+                     <input type="number" name="totalFloor" style="" maxlength="2" />
 
                 </div>
         
@@ -726,9 +751,9 @@
 
 							</div>  
 
-							   <input type="hidden" name="inside" id="code" value="<?php echo $time_code; ?>" />
-                               <input type="hidden" name="inside" id="type" value="building_picture"/>
-							   <input type="hidden" name="inside" id="tipo_ejecucion" value="subir_archivo"/>
+							   <input type="hidden" name="code_building_picture" id="code" value="<?php echo $time_code; ?>" />
+                               <input type="hidden" name="form_type" id="type" value="building_picture"/>
+							   <input type="hidden" id="tipo_ejecucion" value="subir_archivo"/>
 	
 						</form>
 						
@@ -870,9 +895,8 @@
         </div>
 
     </div>
-
-    <input type="hidden" value="" name="working_days" />
-
+    <input type="hidden" name="TxtId_information" value="<?php echo $id_information ?>" id="id_information" />
+    <input type="hidden" name="TxtId_request" value="<?php echo $id_request ?>" id="id_request" />
 <script type="text/javascript">
 
     var workingDays = [];   
@@ -895,7 +919,7 @@
 
                         var workDays2 = workDays.slice(0,-1);
 
-                    //console.log(workDays2);
+                    console.log(array);
 
                     $("#txtDayWorking").val(workDays2);
 
@@ -905,6 +929,8 @@
             //// FUNCION PARA ELIMINAR EL DIA
                 function quitarDiaLista(array,nombreElemento){
                         var index = array.indexOf(nombreElemento);
+                            
+                                console.log(index);
 
                             if (index > -1) {
                                 array.splice(index, 1);
@@ -1006,7 +1032,7 @@
 
                         }
 
-                        //console.log(workingDays);
+                        //-console.log(workingDays);
                         setearDiasTrabajo(workingDays);
 
                     }/**/

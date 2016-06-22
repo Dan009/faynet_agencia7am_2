@@ -269,8 +269,6 @@
     <?php include("include/menu.php"); ?>
     
 
-
-
 <script>
 
         $(document).ready(function() {
@@ -278,8 +276,6 @@
                 $.post($("#form_request").attr("action"), $("#form_request").serialize(),
                   function(data) {
         			$(".exito_insert").fadeIn(200);
-                    $(".hola").append(data);
-                    
         			
                   });
         		 
@@ -291,14 +287,14 @@
 
 </script>
 
-<form id="form_request" name="form_request" method="post" enctype="multipart/form-data" >
+
+<form id="form_request" name="form_request" method="post" enctype="multipart/form-data" action="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>include/cpe-forms/data-files/cpe_content_building_form.php">
 
     <div class="container_title_request">
     
         <div class="center_title_request"> 
-		
+		    <input type="submit" value="COMPLETE CPE FORM" id="submit_request" required onclick="return false;"/> 
 			WELCOME TO / <span> CPE FORM </span>  
-			<!-- <input type="submit" value="COMPLETE REQUEST" id="submit_request" required /> -->
 	
 		</div>
     
@@ -386,8 +382,7 @@
 
             </div> <!---->
 
-    <input type="hidden" value="<?php echo $id_information ?>" id="id_information" />
-    <input type="hidden" value="<?php echo $id_request ?>" id="id_request" />
+
 
 </form>
 
@@ -395,7 +390,7 @@
     <?php include("include/footer.php"); ?>
 
         
-    <!--    ESTE ES LIGHTBOX -->
+    <!--    ESTE ES LIGHTBOX  -->
         <div class="fondo_list_job" >
             <div class="fancy_list_job" style="width: 961px;"></div>
         </div>
@@ -403,7 +398,7 @@
 
         	<div class="exito_insert" >
         		
-        		<div class="div_exito_insert" >
+        		<div class="div_exito_insert">
                 <div class="hola"></div>
         			<!--<img src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>images/default.gif" class="loader_request" />-->
         			<div class="text_exito_insert" >

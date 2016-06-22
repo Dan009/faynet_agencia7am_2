@@ -56,7 +56,7 @@
 
 		});
 
-	</script> 
+</script> 
 
 <script type="text/javascript">
 
@@ -313,19 +313,21 @@
 </script>
      
       
-   <script>
+<script>
 
-$(document).ready(function() {
-    $("#submit_request").click(function() {
-        
-		  $.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
-          function(data) {
-            $(".hola").append(data);
-            
-			
-          });
-      });
-  });
+	$(document).ready(function() {
+	    $("#submit_request").click(function() {
+	        
+			  $.post($("#inside_plan_form").attr("action"), $("#inside_plan_form").serialize(),
+	          function(data) {
+	            $(".hola").append(data);
+	            
+				
+	          });
+	          
+	      });
+
+	  });
 
 </script>
 
@@ -339,7 +341,6 @@ $(document).ready(function() {
 				<div class="center_form" >
 
 					<div class="title_center_form" > INSIDE PLAN REQUEST </div>		
-					
 				
 					
 				</div>

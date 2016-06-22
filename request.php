@@ -1,13 +1,24 @@
 <?php include('include/head.php');
     $_SESSION['time_code']=$time_code;
 
-        if(isset($_GET['id'])){
-            // CARGA LA INFORMACIÓN GENERAL DE SEARCH
-                $consulta_search="SELECT STREET_NUMBER,CITY, STATE FROM GENERAL_INFORMATION WHERE TIME_CODE = '".$_GET['id']."' AND USUARIO_ID = '".$_SESSION['id']."' ";
-                $resultado_search= mysqli_query($conexion,$consulta_search);
-                $fila_search= mysqli_fetch_array($resultado_search);
+        $confirmarContratista = strcasecmp("contratista",$_SESSION['full_name']);
+        
+            /// NO ACEPTAR CONTRATISTAS
+               if($confirmarContratista >= -4){
+                header("Location: index.php");
 
-        }
+                } /**/
+
+        /// INFORMACIÓN GENERAL SEARCH
+
+            if(isset($_GET['id'])){
+                // CARGA LA INFORMACIÓN GENERAL DE SEARCH
+                    $consulta_search="SELECT STREET_NUMBER,CITY, STATE FROM GENERAL_INFORMATION WHERE TIME_CODE = '".$_GET['id']."' AND USUARIO_ID = '".$_SESSION['id']."' ";
+                    $resultado_search= mysqli_query($conexion,$consulta_search);
+                    $fila_search= mysqli_fetch_array($resultado_search);
+
+            }
+
 
  ?>
  

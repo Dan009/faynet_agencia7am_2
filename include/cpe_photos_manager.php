@@ -3,22 +3,18 @@ include("../confi/conf.inc.php");
 $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 	//echo $code = $_POST['code'];
 	//echo $type = $_POST['type'];
-echo "Desde aqui funciona";
+
 	// REALIZAR EL CODIGO QUE ESTA EN SUBIR_ARCHIVO.PHP
-		if ($_POST['tipo_ejecucion'] == "subir_archivo" && $_POST['cantidad_ejecucion'] <= 1) {
+		if ($_POST['tipo_ejecucion'] == "subir_archivo") {
 				
 			if (isset($_FILES['archivo'])) {
-
 				$consulta_existe_registro = "SELECT file FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1";
 
 				$resultado_existe_registro = mysqli_query($conexion,$consulta_existe_registro);
 
 				$fila_existe_registro = mysqli_fetch_array($resultado_existe_registro);
 
-					var_dump($consulta_existe_registro);
-
-
-					/*if () {
+					if (empty($fila_existe_registro)) {
 
 						$archivo = $_FILES['archivo'];
 					    $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
@@ -40,7 +36,27 @@ echo "Desde aqui funciona";
 						    }
 
 
-					}*/
+					}else{
+						$archivo = $_FILES['archivo'];
+					    $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+						$time = time();
+					    $nombre = "file-"."$time.$extension";
+						$code = $_POST['code'];
+						$type = $_POST['type'];
+						$id_information = $_POST['id_information'];
+						
+						$consulta_temp="UPDATE temp SET file = '".$nombre."' WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."'";
+						$resultado_temp= mysqli_query($conexion,$consulta_temp);
+						
+						    if (move_uploaded_file($archivo['tmp_name'], "../archivos/temp/$nombre")) {
+						     
+								
+						    } else {
+						        echo 1;
+
+						    }
+
+					}
 						
 				
 
