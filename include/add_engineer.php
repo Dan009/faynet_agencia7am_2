@@ -3,9 +3,10 @@
 	$conexion = mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
 ?>
+
 <div class="header-overview">
 	<div class="title-windows">
-    Add <span>Designer </span>
+    Add <span>Engineer </span>
     </div>
     <div class="botonera"></div>
 </div>
@@ -20,7 +21,7 @@
   		<?php  
 
 			$campos_diseñador = array(
-				"First Name", "Last Name","Username","Company","Correo","Password");
+				"First Name", "Last Name","Company");
 
 					//var_dump($campos_diseñador[0]);
 
@@ -31,8 +32,16 @@
 
 				<label for="<?php  echo $campos_diseñador[$i];?>" style="display: table-cell;"><?php  echo $campos_diseñador[$i];?></label>
 
-						<?php  if ($campos_diseñador[$i] == "Company"): ?>
-							<select name="<?php echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);?>" style="width: 31%;height: 44px;padding: 10px;margin-top: 8px;margin-left: 0px;">
+
+
+					<?php if ($campos_diseñador[$i] != "Company"){ ?>
+
+							<input type="text" id="<?php  echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);?>" name="<?php echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);;?>" autocomplete="off" >	
+
+							
+					<?php }else{ ?>
+
+						<select name="<?php echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);?>" style="width: 31%;height: 44px;padding: 10px;margin-top: 8px;margin-left: 0px;">
 
 								<?php 
 									$consulta_companies = "SELECT id,nombre FROM usuarios WHERE apellido = 'contratista'";
@@ -47,21 +56,7 @@
 
 								<?php } ?>
 
-							 </select>
-
-						<?php endif;?>
-
-					<?php if ($campos_diseñador[$i] != "Password") {  ?>
-
-						<?php if ($campos_diseñador[$i] != "Company"): ?>
-
-							<input type="text" id="<?php  echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);?>" name="<?php echo preg_replace('/\s+/', '_', $campos_diseñador[$i]);;?>" autocomplete="off" >	
-
-						<?php endif ?>
-							
-					<?php }else{ ?>
-
-						<input type="password" id="<?php  echo $campos_diseñador[$i];?>" name="<?php  echo $campos_diseñador[$i];?>"  style="width: 288px; height: 50px;margin-top: 5px; padding-left: 10px; border: 1px solid rgb(220,220,220); outline: none; font-family: ArialNarrow; font-size: 14px; color: rgb(117,117,117);" autocomplete="off"  >
+						</select>
 							
 					<?php } ?>
 
@@ -70,10 +65,11 @@
       	<?php } ?>
 
 	
-	<input name="send" type="submit" id="submit_request" style="margin-top:0;float:none; margin-bottom:15px; margin-left:2%;" value="ADD DESIGNER">
+	<input name="send" type="submit" id="submit_request" style="margin-top:0;float:none; margin-bottom:15px; margin-left:2%;" value="ADD ENGINEER">
+
 	<div class="division"></div>
 
-	<input type="hidden" name="tipo" value="disenador"></input>
+	<input type="hidden" name="tipo" value="engineer"></input>
 
 </form>
 

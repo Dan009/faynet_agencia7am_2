@@ -461,27 +461,94 @@ $(document).ready(function(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////	   
 ///////////////////////    ABRIR UNA VENTANA APARTE PARA PODER AGREGAR EL DISEÑADOR ///////////////  
 //////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//// VENTANA DESIGNER
 
-	$(".open_add_designer").click(function(){
+		$(".open_add_designer").click(function(){
 
-		$.ajax({
-			type: 'POST',
-			url: "http://"+hostname+ruta+"include/add_designer.php", 
-			success: function(data) {   
-				$("body").css({ "overflow":"hidden" });
-				$(".fondo_list_job").fadeIn(100);
-				$(".fancy_list_job").append(data);
-				
-				$(".fancy_list_job").css({
-					left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-				});
-										
-			}
-		}); 
-		
+			$.ajax({
+				type: 'POST',
+				url: "http://"+hostname+ruta+"include/add_designer.php", 
+				success: function(data) {   
+					$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+					});
+											
+				}
+			}); 
+			
 
-	});
+		});
 
+	//// VENTANA CONTRACTOR
+		$(".open_add_contractor").click(function(){
+
+			$.ajax({
+				type: 'POST',
+				url: "http://"+hostname+ruta+"include/add_big_one.php",
+				data: {tipo:"CONTRACTOR" }, 
+				success: function(data) {   
+					$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+					});
+											
+				}
+			}); 
+			
+
+		});
+
+	//// VENTANA COMPANY
+		$(".open_add_company").click(function(){
+
+			$.ajax({
+				type: 'POST',
+				url: "http://"+hostname+ruta+"include/add_big_one.php",
+				data: {tipo:"COMPANY"}, 
+				success: function(data) {   
+					$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+					});
+											
+				}
+			}); 
+			
+
+		});
+
+	//// VENTANA INGENIERO 
+		$(".open_add_engineer").click(function(){
+
+			$.ajax({
+				type: 'POST',
+				url: "http://"+hostname+ruta+"include/add_engineer.php",
+				data: {tipo:"engineer" }, 
+				success: function(data) {   
+					$("body").css({ "overflow":"hidden" });
+					$(".fondo_list_job").fadeIn(100);
+					$(".fancy_list_job").append(data);
+					
+					$(".fancy_list_job").css({
+						left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+					});
+											
+				}
+			}); 
+			
+
+		});
    
 ///////////////////////////////////////////////////////////////////////////////////////////////////	   
 ///////////////////////   FORMULARIO DE COTIZACION Y FACTURA   ////////////////////////////////////	   

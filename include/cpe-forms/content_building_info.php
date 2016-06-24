@@ -15,6 +15,7 @@
                                    
                             $fila_information = buscarInfomation($id_information,$conexion);
                             $fila_property_manager = buscarManager($id_request,$conexion);
+                            $fila_engineer_name = buscarEngineer($id_information,$conexion);
                
                     }else{
                 
@@ -23,6 +24,7 @@
 
                             $fila_information = buscarInfomation($id_information,$conexion);
                             $fila_property_manager = buscarManager($id_request,$conexion);
+                            $fila_engineer_name = buscarEngineer($id_information,$conexion);
 
                     }
 
@@ -51,6 +53,24 @@
 
                                         return $fila_property_manager;
 
+                            }
+
+                            function buscarEngineer($idInfo,$conexion){
+
+                                $fila_general_engineer = buscarInfomation($idInfo,$conexion);
+                                $engineer_id = $fila_general_engineer['engineering_id'];
+
+                                    //var_dump($engineer_id);
+                                     
+                                // BUSCAR EL ENGINEER CORRESPONDIENTE
+                                    $consulta_engineer_name = "SELECT engineering FROM engineering WHERE id='$engineer_id'";
+                                    $resultado_engineer_name = mysqli_query($conexion,$consulta_engineer_name);
+                                    $fila_engineer_name = mysqli_fetch_array($resultado_engineer_name);
+
+                                    //var_dump($consulta_property_manager);
+
+                                        return $fila_engineer_name; 
+
                             } 
 
                 // ESTILOS DE TEXTO QUE DEBEN DESAPARECER Y SETEARSE DE MANERA ARCHIVO CSS
@@ -75,6 +95,7 @@
                         return $stateGoodAcro;
 
                     }
+
 
 
 ?>
@@ -393,19 +414,19 @@
                }
 
 
-$(document).ready(function() {
-    $("#submit_request").click(function() {
+    $(document).ready(function() {
+        $("#submit_request").click(function() {
 
-        $.post($("#form_request").attr("action"), $("#form_request").serialize(),
-        function(data) {
-            $(".hola").append(data);
-            
-            
+            $.post($("#form_request").attr("action"), $("#form_request").serialize(),
+            function(data) {
+                $(".hola").append(data);
+                
+                
+            });
+             
         });
-         
+      
     });
-  
-});
 
 </script>
  
@@ -432,9 +453,9 @@ $(document).ready(function() {
 
                     <span> Type of Service </span>
 
-                        <input type="radio" name="type_service" value="yes" /> <span>LIT</span> 
+                        <input type="radio" name="type_service" value="yes" value="si" /> <span>LIT</span> 
                         &nbsp;
-                        <input type="radio" name="type_service" value="no" /> <span>DARK</span>  
+                        <input type="radio" name="type_service" value="no" checked="checked" /> <span>DARK</span>  
 
                 </div>
 
@@ -454,7 +475,7 @@ $(document).ready(function() {
 
                         </div>
 
-                        <input type="text" style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_information['lt_fiber_eng'] ?>"  disabled="disabled"/>
+                        <input type="text" style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_information['lt_fiber_eng'] ?>"  disabled="disabled" />
 
                     </div>
 
@@ -471,7 +492,7 @@ $(document).ready(function() {
 
                         </div>
 
-                        <input type="text" name="txtContructionEngi" placeholder="ENTER CONSTRUCTION ENGINEER" style="<?php echo $estiloCSS; ?>"/>
+                        <input type="text" placeholder="ENTER CONSTRUCTION ENGINEER" style="<?php echo $estiloCSS; ?>" value="<?php echo $fila_engineer_name['engineering'] ?>"  disabled="disabled" />
                             
                         </div>
 
@@ -573,9 +594,9 @@ $(document).ready(function() {
 
                     <span> Multi-Tenant Building </span>
 
-                        <input type="radio" name="if_multi_tenant" /> <span>YES</span> 
+                        <input type="radio" name="if_multi_tenant" value="si" /> <span>YES</span> 
                         &nbsp;
-                        <input type="radio" name="if_multi_tenant" /> <span>NO</span>  
+                        <input type="radio" name="if_multi_tenant" value="no" checked="checked" /> <span>NO</span>  
 
                 </div>
 
@@ -583,9 +604,9 @@ $(document).ready(function() {
 
                     <span> RENT </span>
 
-                        <input type="radio" name="if_rent" /> <span>YES</span> 
+                        <input type="radio" name="if_rent" value="si" /> <span>YES</span> 
                         &nbsp;
-                        <input type="radio" name="if_rent" /> <span>NO</span>  
+                        <input type="radio" name="if_rent" value="no" checked="checked" /> <span>NO</span>  
 
                 </div>
 
@@ -593,9 +614,9 @@ $(document).ready(function() {
 
                     <span> Floor Plans </span>
 
-                        <input type="radio" name="type_floor" /> <span>YES</span> 
+                        <input type="radio" name="if_floor_plans" value="si" /> <span>YES</span> 
                         &nbsp;
-                        <input type="radio" name="type_floor" /> <span>NO</span>  
+                        <input type="radio" name="if_floor_plans" value="no" checked="checked" /> <span>NO</span>  
 
                 </div>
 
@@ -603,7 +624,7 @@ $(document).ready(function() {
 
                     <span> Total flrs. </span>
 
-                     <input type="number" name="totalFloor" style="" maxlength="2" />
+                     <input type="number" id="TxtTotalFloor" name="totalFloor" style="" maxlength="2" checked="checked" />
 
                 </div>
         
@@ -675,9 +696,9 @@ $(document).ready(function() {
 
                             <span> Riser Management Company </span>
 
-                                <input type="radio" name="if_riser_management" /> <span>YES</span> 
+                                <input type="radio" name="if_riser_management" value="si" /> <span>YES</span> 
                                 &nbsp;
-                                <input type="radio" name="if_riser_management" /> <span>NO</span>  
+                                <input type="radio" name="if_riser_management" value="no" checked="checked" /> <span>NO</span>  
 
                         </div>
 
@@ -685,9 +706,9 @@ $(document).ready(function() {
 
                             <span> Filter/LIT Equipment Required</span>
 
-                                <input type="radio" name="if_filter_LIT" /> <span>YES</span> 
+                                <input type="radio" name="if_filter_LIT" value="si" /> <span>YES</span> 
                                 &nbsp;
-                                <input type="radio" name="if_filter_LIT" /> <span>NO</span>  
+                                <input type="radio" name="if_filter_LIT" value="no" checked="checked" /> <span>NO</span>  
 
                         </div>
 
@@ -897,6 +918,7 @@ $(document).ready(function() {
     </div>
     <input type="hidden" name="TxtId_information" value="<?php echo $id_information ?>" id="id_information" />
     <input type="hidden" name="TxtId_request" value="<?php echo $id_request ?>" id="id_request" />
+    
 <script type="text/javascript">
 
     var workingDays = [];   
@@ -1038,9 +1060,8 @@ $(document).ready(function() {
                     }/**/
 
         $(document).ready(function(){
-
-            
-                $('input').iCheck({
+                         
+                /*$('input').iCheck({
                     checkboxClass: 'icheckbox_square',
                     radioClass: 'iradio_square',
                     increaseArea: '20%' // optional
@@ -1054,8 +1075,44 @@ $(document).ready(function() {
                    var dayName = $(this).attr("id");
                         quitarDia(dayName);
 
-                });
+                });*/
 
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square',
+                    radioClass: 'iradio_square',
+                    increaseArea: '20%' // optional
+                })
+                .on('ifChecked',function () {
+                    var type_element = $(this).attr("type");
+                    var if_floor_active = ($(this).attr("name") == "if_floor_plans")?true:false;
+
+                        if (type_element == "checkbox") {
+                            var dayName = $(this).attr("id");
+                                agregarDia(dayName);
+
+                        }else if(if_floor_active){
+                            $("#TxtTotalFloor").attr("disabled","");
+
+                        }
+
+                })
+                .on('ifUnchecked',function () {
+
+                    var type_element = $(this).attr("type");
+                    var if_floor_active = ($(this).attr("name") == "if_floor_plans")?true:false;
+
+                            console.log(if_floor_active);
+
+                        if (type_element == "checkbox") {
+                           var dayName = $(this).attr("id");
+                                quitarDia(dayName);
+
+                        }else if(if_floor_active){
+                            $("#TxtTotalFloor").attr("disabled","disabled");
+
+                        }
+
+                });
 
 
         });
