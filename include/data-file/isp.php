@@ -102,59 +102,59 @@
 			
 			
 			//ESTE CODIGO INSERTA EL BUILDING SITE SURVEY
-			if(isset($_POST['si_survey']) =="si") {
+				if(isset($_POST['si_survey']) =="si") {
 
-					if(isset($_POST['active_survey'])) {
-						
-						if(isset($_POST['company_survey'])) {
+						if(isset($_POST['active_survey'])) {
 							
-							//Insertando el Request
-							$consulta_request = "INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_survey']."','".$_SESSION['id']."')";
-							$resultado_request = mysqli_query($conexion,$consulta_request);
-							$last_id_request = mysqli_insert_id($conexion);
-							
-							$consulta_site_survey = "INSERT INTO building_site_survey (id_request,site_survey_company,site_survey_contact) VALUES('".$last_id_request."','".$company_survey."','".$contact_survey."')";	
-							$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
-							
-							$type="building_site_survey";
-							$last_id = $last_id_request;
-							include('../contractor_code.php');
-							
-							echo "BUILDING SITE SURVEY Ok <br>";
-
-						}  
-
-						
-					}	
-					
-						
-						if(isset($_POST['active_isp_eng_plans'])) {
-							if(isset($_POST['company_isp_eng_plans_site_survey'])) {
+							if(isset($_POST['company_survey'])) {
 								
-								$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
-								$resultado_request= mysqli_query($conexion,$consulta_request);
-								//$last_id=mysqli_insert_id($conexion);
+								//Insertando el Request
+								$consulta_request = "INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_survey']."','".$_SESSION['id']."')";
+								$resultado_request = mysqli_query($conexion,$consulta_request);
+								$last_id_request = mysqli_insert_id($conexion);
 								
-								$consulta_site_survey = "UPDATE building_site_survey SET isp_eng_plans_company ='".$company_isp_eng_plans_site_survey."' WHERE id_request='".$last_id."'";	
-								
+								$consulta_site_survey = "INSERT INTO building_site_survey (id_request,site_survey_company,site_survey_contact) VALUES('".$last_id_request."','".$company_survey."','".$contact_survey."')";	
 								$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
 								
-							//insertar archivo
-							//$consulta_file="INSERT INTO uploaded_file (request_id,type,file,estado) VALUES('".$last_id."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
-							//$resultado_request= mysqli_query($conexion,$consulta_request);
-								
-								$type="building_site_survey";	
-								$last_id = mysqli_insert_id($conexion);
+								$type="building_site_survey";
+								$last_id = $last_id_request;
 								include('../contractor_code.php');
+								
+								echo "BUILDING SITE SURVEY Ok <br>";
+
+							}  
+
+							
+						}	
+						
+							
+							if(isset($_POST['active_isp_eng_plans'])) {
+								if(isset($_POST['company_isp_eng_plans_site_survey'])) {
+									
+									$consulta_request="INSERT INTO request (id_request,tipo,fecha,estado, contratista_id, usuario_id) VALUES('".$_SESSION['time_code']."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
+									$resultado_request= mysqli_query($conexion,$consulta_request);
+									//$last_id=mysqli_insert_id($conexion);
+									
+									$consulta_site_survey = "UPDATE building_site_survey SET isp_eng_plans_company ='".$company_isp_eng_plans_site_survey."' WHERE id_request='".$last_id."'";	
+									
+									$resultado_site_survey= mysqli_query($conexion,$consulta_site_survey);
+									
+								//insertar archivo
+								//$consulta_file="INSERT INTO uploaded_file (request_id,type,file,estado) VALUES('".$last_id."','building_site_survey','".$fecha."','1','".$_POST['company_isp_eng_plans_site_survey']."','".$_SESSION['id']."') ";
+								//$resultado_request= mysqli_query($conexion,$consulta_request);
+									
+									$type="building_site_survey";	
+									$last_id = mysqli_insert_id($conexion);
+									include('../contractor_code.php');
 
 
+							}
+								
+								
 						}
-							
-							
-					}
 
-		}
-		
+			}
+			
 	}
 	
 	

@@ -3,8 +3,6 @@
     include("../confi/conf.inc.php");
     $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
-    //var_dump($conexion);
-
         $_SESSION['time_code'] = $time_code;
 
             if (isset($_GET)) {
@@ -272,24 +270,31 @@
 <script>
 
         $(document).ready(function() {
-            $("#submit_request").click(function() {
-                $.post($("#form_request").attr("action"), $("#form_request").serialize(),
-                  function(data) {
-        			$(".exito_insert").fadeIn(200);
-        			
-                  });
-        		 
-              });
-        	  
-          });
-          
+            $("#submit_request").on('click', function() {
+               
+        		$(".exito_insert").fadeIn(200);
+    
 
+                   /*$.post($("#form_cpe_building_form").attr("action"), $("#form_cpe_building_form").serialize(),
+                    function(data) {
+
+                        $(".hola").append(data);
+
+                        
+                        
+                        
+                    });*/
+             
+        			
+            });
+
+        	  
+        });
+          
 
 </script>
 
-
-<form id="form_request" name="form_request" method="post" enctype="multipart/form-data" action="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>include/cpe-forms/data-files/cpe_content_building_form.php">
-
+<div id="form_request">
     <div class="container_title_request">
     
         <div class="center_title_request"> 
@@ -326,19 +331,19 @@
     
     </div>
     
+        <!-- BUILDING INFO FORM -->
+    		<div class="content_form" id="content_building_info" >
+                <div class="container_form" >
 
-		<div class="content_form" id="content_building_info" >
-            <div class="container_form" >
+                    <div class="center_form" > 
 
-                <div class="center_form" > 
+                        <?php include("include/cpe-forms/content_building_info.php"); ?>
 
-                    <?php include("include/cpe-forms/content_building_info.php"); ?>
+                    </div>
 
                 </div>
 
             </div>
-
-        </div>
 
         <!-- CUSTOMER CONTACT FORM -->
             <div class="content_form" id="content_customer_contact" style="display: none;">
@@ -382,10 +387,7 @@
 
             </div> <!---->
 
-
-
-</form>
-
+</div>
     
     <?php include("include/footer.php"); ?>
 

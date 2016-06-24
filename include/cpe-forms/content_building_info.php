@@ -398,10 +398,14 @@
                                         zIndex:"-999999",
                              
                                     });
+                                        $("#TxtFileUploaded").val("yes");
 
                                         $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
+
                                         $(".literally").remove();    
+
                                         $(".editor_imagenes").css({ 'display': "none" });
+
                                         $("body").css({ 'overflow': "auto" });
                                     
                                          
@@ -415,21 +419,31 @@
 
 
     $(document).ready(function() {
-        $("#submit_request").click(function() {
+        $("#submit_request").on('click', function() {
 
-            $.post($("#form_request").attr("action"), $("#form_request").serialize(),
-            function(data) {
-                $(".hola").append(data);
-                
-                
-            });
+           var FormData = $("#form_cpe_building_form").serialize();
+
+               $.post($("#form_cpe_building_form").attr("action"), FormData,
+                function(data) {
+                    $(".hola").append(data);
+
+                    
+                    
+                    
+                });
              
         });
       
-    });
+    });/**/
 
 </script>
- 
+
+<form id="form_cpe_building_form" name="form_request" method="post" enctype="multipart/form-data" action="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>include/cpe-forms/data-files/cpe_content_building_form.php">
+
+    <input type="hidden" name="TxtIfFile" value="no" id="TxtFileUploaded" />
+    <input type="hidden" name="TxtId_information" value="<?php echo $id_information ?>" id="id_information" />
+    <input type="hidden" name="TxtId_request" value="<?php echo $id_request ?>" id="id_request" />
+
 <!-- SERVICE INFO TYPE  -->
     <div class="div_form_request" >
         <div class="container_cpe_service_info">
@@ -915,15 +929,15 @@
 
         </div>
 
-    </div>
-    <input type="hidden" name="TxtId_information" value="<?php echo $id_information ?>" id="id_information" />
-    <input type="hidden" name="TxtId_request" value="<?php echo $id_request ?>" id="id_request" />
+    </div>  
+
+
+</form>
     
 <script type="text/javascript">
 
     var workingDays = [];   
 
-            //// ORDENAR DIAS Y SETEAR EN INPUT
 
             //// SETEAR EN INPUT ESCONDIDO LOS DIAS QUE SE TRABAJARA
                 function setearDiasTrabajo(array){
@@ -941,7 +955,7 @@
 
                         var workDays2 = workDays.slice(0,-1);
 
-                    console.log(array);
+                    //console.log(array);
 
                     $("#txtDayWorking").val(workDays2);
 
@@ -1060,7 +1074,13 @@
                     }/**/
 
         $(document).ready(function(){
-                         
+
+           // $("#TxtTotalFloor").prop("disabled",true);
+
+            //var isDisabled = true;
+
+            //console.log(isDisabled);
+
                 /*$('input').iCheck({
                     checkboxClass: 'icheckbox_square',
                     radioClass: 'iradio_square',
@@ -1086,29 +1106,30 @@
                     var type_element = $(this).attr("type");
                     var if_floor_active = ($(this).attr("name") == "if_floor_plans")?true:false;
 
+                            //console.log(if_floor_active);
+
                         if (type_element == "checkbox") {
                             var dayName = $(this).attr("id");
                                 agregarDia(dayName);
 
-                        }else if(if_floor_active){
-                            $("#TxtTotalFloor").attr("disabled","");
+                        }/*else if(if_floor_active){
+                            
+                                $("#TxtTotalFloor").prop("disabled",false);
 
-                        }
+
+                               // console.log(isDisabled); 
+                                //console.log("isDisabled"); 
+
+                        }*/
 
                 })
                 .on('ifUnchecked',function () {
 
                     var type_element = $(this).attr("type");
-                    var if_floor_active = ($(this).attr("name") == "if_floor_plans")?true:false;
-
-                            console.log(if_floor_active);
 
                         if (type_element == "checkbox") {
                            var dayName = $(this).attr("id");
                                 quitarDia(dayName);
-
-                        }else if(if_floor_active){
-                            $("#TxtTotalFloor").attr("disabled","disabled");
 
                         }
 

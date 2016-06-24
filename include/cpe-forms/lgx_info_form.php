@@ -1,12 +1,14 @@
 <?php 
+    
+    ///ESTILO PARA LOS INPUTS QUE DEBE DESAPARECER
+        $estiloCSSTextLGXFloor = "width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;";
 
-    $estiloCSSTextLGXFloor = "width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 2px solid #000;";
     
 ?>
 
     <!-- LGX INFO -->
         <div class="div_form_request" >
-            <input type="text" style="border: 2px solid rgb(253, 140, 64); margin: 2px 0 4px 37%;width: 22%;" placeholder="Add to netcracker" />
+            <input type="text" style="border: 2px solid rgb(253, 140, 64); margin: 1px 0 4px 37%;width: 22%;" placeholder="Add to netcracker" />
 
             <div class="container_cpe_box" style="height: 1088px; margin: 0 auto; width: 100%;">
 
@@ -32,7 +34,7 @@
 
                         </div>
 
-                        <input type="text" placeholder="ENTER LGX FLOOR # ..." style="width: 70%;height: 33px;position: relative;margin: 12px 0 -7px 17px;padding: 7px;bottom: 10px;border: 2px solid #000;" />
+                        <input type="text" placeholder="ENTER LGX FLOOR # ..." style="width: 70%;height: 33px;position: relative;margin: 12px 0 -7px 17px;padding: 7px;bottom: 10px;border: 1px solid #000;" name="txtLGXFloor" />
 
                         <div class="container_cpe_black_box" style="width: 24%;height: 84px;float: right;position: relative;bottom: 36px;margin-right: 7px;">
 
@@ -41,7 +43,7 @@
 
                             </div>
 
-                            <input type="text" style=" width: 48%;margin-left: 10px; height: 20px;padding: 10px;" />
+                            <input type="text" style=" width: 48%;margin-left: 10px; height: 20px;padding: 10px;" name="txtLGXRoom" />
 
                             <div class="container_checkbox_na" style="width: 37%;float: right;position: relative;top: 12px;">
 
@@ -51,7 +53,7 @@
                                 </div>
 
 
-                                <input type="checkbox" style="top: 10px;" />
+                                <input type="checkbox" style="top: 10px;" value="none" name="chkNone" />
 
                                 
                             </div>
@@ -70,9 +72,9 @@
 
                             </div>
 
-                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="Wall Mount" />
+                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;" placeholder="Wall Mount" name="txtWallMount1" />
 
-                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 2px solid #000;" />
+                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 1px solid #000;" name="txtWallMount2"/>
 
                         </div>    
 
@@ -82,9 +84,9 @@
 
                             </div>
 
-                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 2px solid #000;" value="144 port" />
+                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;"  name="txtLGXTerm" />
 
-                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 2px solid #000;" />
+                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 1px solid #000;" name="txtLGXTerm" />
 
                         </div>
 
@@ -102,9 +104,9 @@
 
                             </div>
 
-                          <input type="text" style="width: 72%;height: 33px;margin: -1px 0 0 13px;padding: 7px;float: left;border: 2px solid #000;" />  
+                          <input type="text" style="width: 72%;height: 33px;margin: -1px 0 0 13px;padding: 7px;float: left;border: 1px solid #000;" name="txtRoomNameLGX" />  
 
-                          <input type="text" style="width: 19%;height: 33px;margin: -2px 0 0 8px;padding: 7px;float: left;border: 2px solid #000;" value="[INSERT COMPANY NAME]" /> 
+                          <input type="text" style="width: 19%;height: 33px;margin: -2px 0 0 8px;padding: 7px;float: left;border: 1px solid #000;" placeholder="[INSERT OWNER NAME]" name="OwnedPanel" /> 
 
 
                     </div>
@@ -119,10 +121,9 @@
 
                                 <div class="container_radio_darkfiber" style="position:relative; top: 3px;">
                                     <input type="radio" name="if_dark_fiber" /> <span>YES</span> 
-                                         &nbsp;
                                         &nbsp;
-                                         &nbsp;
-
+                                        &nbsp;
+                                        &nbsp;
                                     <input type="radio" name="if_dark_fiber" /> <span>NO</span>
 
                                 </div>
@@ -187,12 +188,11 @@
                                     </div> 
 
                                         <div class="container_fusion_splice" style="position:relative; top: 3px;width: 94%;">
-                                            <input type="radio" name="if_dark_fiber" /> <span>YES</span> 
+                                            <input type="radio" name="if_splice" /> <span>YES</span> 
                                                 &nbsp;
                                                 &nbsp;
                                                 &nbsp;
-
-                                            <input type="radio" name="if_dark_fiber" /> <span>NO</span>
+                                            <input type="radio" name="if_splice" /> <span>NO</span>
 
                                         </div>
 
@@ -204,9 +204,8 @@
 
                                     </div> 
 
-                                    <input  type="text" style="text-align: right; width: 7%; height: 13px;padding: 11px;font-size: 20px;" value="12" />
+                                    <input  type="text" style="text-align: right; width: 7%; height: 13px;padding: 11px;font-size: 20px;"  name="txtFiberTerminated" />
                                         
-
                                 </div>
 
                             </div>   
@@ -219,9 +218,8 @@
                                       Total # of Bulkheads
 
                                     </div> 
-
                                         
-                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -15px;letter-spacing: -1px;" value="12" />
+                                    <input  type="text" style="text-align: right;width: 7%;height: 13px;padding: 11px;font-size: 20px;"  name="TotalBulheads" />
 
                                 </div>
 
@@ -231,11 +229,11 @@
 
                                     </div> 
 
-                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;" value="12" />
+                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;"  name="txtConnectorType1" />
 
                                         <span style="padding: 0 10px 0 10px;font-size: 25px;">/</span>
 
-                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;" value="12" />
+                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;" name="txtConnectorType1" />
                                         
 
                                 </div>
@@ -288,3 +286,15 @@
             </div>
 
         </div>                    
+
+
+<script type="text/javascript">
+    
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square',
+        radioClass: 'iradio_square',
+        increaseArea: '20%' // optional
+    });
+
+
+</script>

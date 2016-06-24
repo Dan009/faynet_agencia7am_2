@@ -72,27 +72,84 @@ $(document).ready(function(){
 			var id_information = $("#id_information").val();
 			var id_request = $("#id_request").val();
 
-			if (name_ventana == "content_building_info") {
-				
-				//console.log(id_information+" "+id_request);
+				if (name_ventana == "content_building_info") {
 
-				$.ajax({
-	                type: 'POST',
-	                url: "http://"+hostname+ruta+"include/cpe-forms/content_building_info.php",
-	                data:{id_information:id_information,id_request:id_request},
-	                success: function(data) {    
-	                	//console.log(id_information+" "+id_request);
+					$.ajax({
+		                type: 'POST',
+		                url: "http://"+hostname+ruta+"include/cpe-forms/content_building_info.php",
+		                data:{id_information:id_information,id_request:id_request},
+		                success: function(data) {    
+		                	//console.log(id_information+" "+id_request);
 
-						//$("#carga_ventana_load").append(data);
-						$("#content_building_info .container_form .center_form").html(data);
-						//$(".content_form").fadeOut(0);
-						$("#content_"+name_ventana).fadeIn(0);
+							//$("#carga_ventana_load").append(data);
+							//$("#content_building_info .container_form .center_form").html(data);
+							$(".center_form").html(data);
+							//$(".content_form").fadeOut(0);
+							$("#content_"+name_ventana).fadeIn(0);
 
-	                }
+		                }
 
-	            }); 
+		            }); 
 
-		    }
+			    }else if (name_ventana == "content_customer_contact"){
+
+			    	$.ajax({
+		                type: 'POST',
+		                url: "http://"+hostname+ruta+"include/cpe-forms/customer_contact_form.php",
+		                data:{id_information:id_information,id_request:id_request},
+		                success: function(data) {    
+							/*$("#content_customer_contact .container_form_custormer_contact"+
+							 ".center_form_custormer_contact").html(data);*/
+
+							 $(".center_form_custormer_contact").html(data);
+							//$(".content_form").fadeOut(0);
+							$("#content_"+name_ventana).fadeIn(0);
+
+
+		                }
+
+		            }); 
+
+
+			    }else if (name_ventana == "ventana_lgx_info"){
+
+			    	$.ajax({
+		                type: 'POST',
+		                url: "http://"+hostname+ruta+"include/cpe-forms/lgx_info_form.php",
+		                data:{id_information:id_information,id_request:id_request},
+		                success: function(data) {    
+		                	//console.log(id_information+" "+id_request);
+
+							//$("#carga_ventana_load").append(data);
+							$(".center_form_lgx_info").html(data);
+							//$(".content_form").fadeOut(0);
+							$("#content_"+name_ventana).fadeIn(0);
+
+		                }
+
+		            }); 
+
+
+			    }else if (name_ventana == "ventana_lit_equip_info"){
+
+			    	$.ajax({
+		                type: 'POST',
+		                url: "http://"+hostname+ruta+"include/cpe-forms/lit_equip_info_form.php",
+		                data:{id_information:id_information,id_request:id_request},
+		                success: function(data) {    
+		                	//console.log(id_information+" "+id_request);
+
+							//$("#carga_ventana_load").append(data);
+							$(".center_lit_equip_info").html(data);
+							//$(".content_form").fadeOut(0);
+							$("#content_"+name_ventana).fadeIn(0);
+
+		                }
+
+		            }); 
+
+
+			    }
 
 		}
 

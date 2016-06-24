@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2016 a las 13:33:52
+-- Tiempo de generación: 24-06-2016 a las 20:29:44
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -69,49 +69,7 @@ CREATE TABLE IF NOT EXISTS `all_request_utility_plans` (
 
 CREATE TABLE IF NOT EXISTS `as_built_pole_plan_task` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
-  `service_number` varchar(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  `as_built_licensed_pole_plans` varchar(255) NOT NULL,
-  `gis_as_built_file_need` varchar(255) NOT NULL,
-  `designerid` int(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `as_built_pole_plan_task`
---
-
-INSERT INTO `as_built_pole_plan_task` (`id`, `service_number`, `id_request`, `as_built_licensed_pole_plans`, `gis_as_built_file_need`, `designerid`) VALUES
-(1, '', '9', 'si', 'si', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `breakout_manhole`
---
-
-CREATE TABLE IF NOT EXISTS `breakout_manhole` (
-  `id` int(16) NOT NULL AUTO_INCREMENT,
-  `service_number` varchar(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  `look_survey_manhole` varchar(255) NOT NULL,
-  `final_butterfly_manhole` varchar(255) NOT NULL,
-  `preliminary_proposed_manhole` varchar(255) NOT NULL,
-  `gis_as_built_manhole` varchar(255) NOT NULL,
-  `butterfly_proposed_manhole` varchar(255) NOT NULL,
-  `outsite_utility_application_manhole` varchar(255) NOT NULL,
-  `butterfly_as_built_manhole` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `building_site_survey`
---
-
-CREATE TABLE IF NOT EXISTS `building_site_survey` (
-  `id` int(250) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NO NULL AUTO_INCREMENT,
   `id_request` varchar(250) NOT NULL,
   `site_survey_company` int(11) NOT NULL,
   `site_survey_contact` int(11) NOT NULL,
@@ -154,7 +112,53 @@ CREATE TABLE IF NOT EXISTS `cable_installation_contractor` (
 INSERT INTO `cable_installation_contractor` (`id`, `company`, `contact_name`, `contact_number`, `contact_email`, `id_request`, `type`) VALUES
 (1, '3', '', '', '', '1', 'building_site_survey'),
 (2, '3', '', '', '', '2', 'building_site_survey'),
-(3, '3', '', '', '', '3', har(255) NOT NULL,
+(3, '3', '', '', '', '3', 'building_site_survey'),
+(4, '3', '', '', '', '0', 'building_site_survey');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `city`
+--
+
+CREATE TABLE IF NOT EXISTS `city` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) NOT NULL,
+  `fecha` varchar(255) NOT NULL,
+  `estado` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `city`
+--
+
+INSERT INTO `city` (`id`, `city`, `fecha`, `estado`) VALUES
+(1, 'New York', '1452536997', 1),
+(2, 'Los Angeles', '1452537015', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `civil_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `civil_plans` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `proposed_plan_tmp_civil` varchar(255) NOT NULL,
+  `as_built_plan_civil` varchar(255) NOT NULL,
+  `total_station_civil` varchar(255) NOT NULL,
+  `print_a_b_mylar_civil` varchar(255) NOT NULL,
+  `deliver_mylar_civil` varchar(255) NOT NULL,
+  `proposed_route_civil` varchar(255) NOT NULL,
+  `from_civil` varchar(255) NOT NULL,
+  `to_civil` varchar(255) NOT NULL,
+  `scope_work_civil` varchar(255) NOT NULL,
+  `check_uno_trench_detail_civil` varchar(255) NOT NULL,
+  `company_uno_trench_detail_civil` varchar(255) NOT NULL,
+  `check_dos_trench_detail_civil` varchar(255) NOT NULL,
   `company_dos_trench_detail_civil` varchar(255) NOT NULL,
   `check_tres_trench_detail_civil` varchar(255) NOT NULL,
   `company_tres_trench_detail_civil` varchar(255) NOT NULL,
@@ -286,15 +290,7 @@ CREATE TABLE IF NOT EXISTS `cpe_building_info` (
   `id_request` int(11) NOT NULL,
   `service_type` char(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `cpe_building_info`
---
-
-INSERT INTO `cpe_building_info` (`id`, `region`, `project_manager`, `latitude`, `longitude`, `municipality`, `multi_tenant_req`, `rent_required`, `floor_plan_req`, `total_floors`, `start_time_am`, `end_time_pm`, `riser_management_company_req`, `filter_lit_equip_req`, `working_days_week`, `building_photo_code`, `id_information`, `id_request`, `service_type`) VALUES
-(1, '', '', '0', '0', '', '', '', '', 0, '', '', '', '', '', '', 0, 0, ''),
-(2, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', 0, 0, '');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -323,7 +319,44 @@ INSERT INTO `designer` (`designerid`, `name_designer`, `password`, `estado`, `la
 (1, 'Ramon', '266575d3c2b8a34f83817458f96152b1', 1, 'Pereyra', 'ramonpe', '', '', '19-02-2016'),
 (2, 'Natha', '', 1, 'Arias', '', '', '', '12-04-2016'),
 (3, 'Daniel ', 'accaef43bfe058f6c0526b790092656f', 1, 'Ortega', 'dan', '', '', '10-03-2016'),
-(8, 'Fulano', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'De Tal', 'fulanodetcompany_utility` varchar(255) NOT NULL,
+(8, 'Fulano', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'De Tal', 'fulanodetal', '', 'gulinc', '04-05-2016'),
+(9, 'Jairo', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Cuesta', 'jairo', '', '7am', '04-05-2016');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `electric_proposed_manhole_plan`
+--
+
+CREATE TABLE IF NOT EXISTS `electric_proposed_manhole_plan` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `task_request_number_electric_manhole` varchar(255) NOT NULL,
+  `date_task_request_electric_manhole` varchar(255) NOT NULL,
+  `expected_date_electric_manhole` varchar(255) NOT NULL,
+  `mh_option_electric_manhole` varchar(255) NOT NULL,
+  `company_electric_manhole` varchar(255) NOT NULL,
+  `prop_fiber_electric_manhole` varchar(255) NOT NULL,
+  `path_length_electric_manhole` varchar(255) NOT NULL,
+  `from_electric_manhole` varchar(255) NOT NULL,
+  `to_electric_manhole` varchar(255) NOT NULL,
+  `scope_work_electric_manhole` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `electric_request_utility_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `electric_request_utility_plans` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `service_number` varchar(250) NOT NULL,
+  `id_request` varchar(250) NOT NULL,
+  `task_request_number_utility` varchar(255) NOT NULL,
+  `company_utility` varchar(255) NOT NULL,
   `path_length_utility` varchar(255) NOT NULL,
   `see_attached_map_utility` varchar(255) NOT NULL,
   `from_electric_utility` varchar(255) NOT NULL,
@@ -506,33 +539,7 @@ CREATE TABLE IF NOT EXISTS `inside_plans` (
   `contact_site_survey_passive_filter` int(16) NOT NULL,
   `assigned_company_eng_isp_plans_passive_filter` int(16) NOT NULL,
   `floor_site_survey_research_floor` varchar(255) NOT NULL,
-  `assigned_company_site_survey_research_floor` int(16) NOT NULL,
-  `scope_work_inside_plans` longtext NOT NULL,
-  `new_building` varchar(2) NOT NULL,
-  `designerid` int(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `inside_plans`
---
-
-INSERT INTO `inside_plans` (`id`, `service_number`, `assigned_company_site_survey_building`, `contact_site_survey_building`, `assigned_company_isp_eng_plans_building`, `assigned_company_eng_isp_plans_no_survey`, `assigned_company_site_survey_isp_as_built`, `contact_site_survey_isp_as_built`, `assigned_company_eng_isp_plans_isp_as_built`, `assigned_company_site_survey_passive_filter`, `contact_site_survey_passive_filter`, `assigned_company_eng_isp_plans_passive_filter`, `floor_site_survey_research_floor`, `assigned_company_site_survey_research_floor`, `scope_work_inside_plans`, `new_building`, `designerid`, `id_request`) VALUES
-(1, '', 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, '', 0, '', 'si', 0, '5'),
-(2, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '44', 2, '', '', 0, '25');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mwra_request_civil_plans`
---
-
-CREATE TABLE IF NOT EXISTS `mwra_request_civil_plans` (
-  `id` int(16) NOT NULL AUTO_INCREMENT,
-  `service_number` varchar(250) NOT NULL,
-  `id_request` varchar(250) NOT NULL,
-  `task_request_mwra_civil` varchar(255) NOT NULL,
+  `assigned_company_s
   `date_task_request_mwra_civil` varchar(255) NOT NULL,
   `expected_return_mwra_civil` varchar(255) NOT NULL,
   `proposed_length_mwra_civil` varchar(255) NOT NULL,
@@ -931,14 +938,7 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `temp`
---
-
-INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_name`) VALUES
-(1, 'file-1466608731.jpg', '0000-00-00', '1', 'building_picture', 'canvas-14666087353.png', 'casa3.jpg');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -962,10 +962,9 @@ CREATE TABLE IF NOT EXISTS `tenants_contact` (
 --
 
 INSERT INTO `tenants_contact` (`id`, `company`, `contact_name`, `contact_number`, `contact_email`, `type`, `id_request`) VALUES
-(1, 3, '', '', '', 'building_site_survey', '1'),
+(1, 3, 'Daniel Ortega', '8093335255', 'dan@gmail.com', 'building_site_survey', '1'),
 (2, 3, '', '', '', 'building_site_survey', '2'),
-(3, 3, '', '', '', 'building_site_survey', '3'),
-(4, 3, '', '', '', 'building_site_survey', '0');
+(3, 3, '', '', '', 'building_site_survey', '3');
 
 -- --------------------------------------------------------
 
@@ -999,7 +998,7 @@ CREATE TABLE IF NOT EXISTS `uploaded_file` (
   `canvas` varchar(250) NOT NULL,
   `code` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `uploaded_file`
@@ -1008,7 +1007,8 @@ CREATE TABLE IF NOT EXISTS `uploaded_file` (
 INSERT INTO `uploaded_file` (`id`, `type`, `estado`, `file`, `canvas`, `code`) VALUES
 (1, 'inside_plan', 1, 'file-1465327329.jpg', 'canvas-14653275032.png', '1465327145-2'),
 (2, 'inside_plan', 1, 'file-1465328747.jpg', 'canvas-14653287802.png', '1465328558-2'),
-(3, 'inside_plan', 1, 'file-1465330225.jpg', 'canvas-14653302382.png', '1465330033-2');
+(3, 'inside_plan', 1, 'file-1465330225.jpg', 'canvas-14653302382.png', '1465330033-2'),
+(4, 'building_picture', 1, 'file-1466784026.jpg', 'canvas-14667840303.png', '1');
 
 -- --------------------------------------------------------
 
