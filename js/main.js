@@ -65,8 +65,8 @@ $(document).ready(function(){
 		});
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// IDENTIFICAR EL NOMBRE SI EL USUARIO ESTA EN CPE FORM Y INSERTAR EL DOCUMENTO PHP CORRESPONDIENTE
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//    IDENTIFICAR EL NOMBRE SI EL USUARIO ESTA EN CPE FORM Y INSERTAR EL DOCUMENTO PHP CORRESPONDIENTE  //
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		function insertarCPEform(name_ventana){
 
 			var id_information = $("#id_information").val();
@@ -154,8 +154,8 @@ $(document).ready(function(){
 		}
 
 	///////////////////////////////////////////////////////////////////////
-	// ESTE CODIGO ES PARA MOSTRAR UNA VENTANA NUEVA DENTRO DEL PLAN
-	//////////////////////////////////////////////////////////////////////
+	//   ESTE CODIGO ES PARA MOSTRAR UNA VENTANA NUEVA DENTRO DEL PLAN  //
+	/////////////////////////////////////////////////////////////////////
    
 		$(".add_plan").click(function(){
 			
@@ -207,144 +207,140 @@ $(document).ready(function(){
 		});
 	
 	//////////////////////////////////////////////////////////////////////
-	/////////////////       CERRAR VENTANA        ////////////////////////
-	//////////////////////////////////////////////////////////////////////
-	
-	$(".cerrar_ventana").click(function(e){
-		e.stopPropagation();
-		var nombre_ventana = $(this).parents(".div_title_ventana").attr("name");
-		$(this).parents(".div_title_ventana").fadeOut(0);
+	/////////////////       CERRAR VENTANA        ///////////////////////
+	////////////////////////////////////////////////////////////////////
 		
-		$("#"+nombre_ventana).remove();
-		
-		$("#content_general_information").fadeIn(0);
-		
-		
-	});
-	
+		$(".cerrar_ventana").click(function(e){
+			e.stopPropagation();
+			var nombre_ventana = $(this).parents(".div_title_ventana").attr("name");
+			$(this).parents(".div_title_ventana").fadeOut(0);
+			
+			$("#"+nombre_ventana).remove();
+			
+			$("#content_general_information").fadeIn(0);
+			
+			
+		});
 	
 	
 	//////////////////////////////////////////////////////////////////////
 	///////////////// FIN CERRAR VENTANA   ////////////////////////
 	//////////////////////////////////////////////////////////////////////
 	
+	/////////////////////////////////////////////////////////////////////////
+	//  ESTE CODIGO ES PARA MARCAR EN EL MENU EN QUE PAGINA TE ENCUENTRAS //
 	///////////////////////////////////////////////////////////////////////
-	// ESTE CODIGO ES PARA MARCAR EN EL MENU EN QUE PAGINA TE ENCUENTRAS
-	//////////////////////////////////////////////////////////////////////
-	var pathname = window.location.pathname;
-	//alert(pathname);
-	
-	if(pathname=="/faynet/" || pathname=="/faynet/index.php" ){
+
+		var pathname = window.location.pathname;
+		//alert(pathname);
 		
-		$("#li_home").css({
-			"border-bottom":"5px solid rgb(144,207,76)"
-		
-		});
-		
-	}
-	if(pathname=="/faynet/request.php"  ){
-		
-		$("#li_request").css({
-			"border-bottom":"5px solid rgb(144,207,76)"
-		
-		});
-		
-	}
-	if(pathname=="/faynet/report.php"  ){
-		
-		$("#li_report").css({
-			"border-bottom":"5px solid rgb(144,207,76)"
-		
-		});
-		
-	}
+		if(pathname=="/faynet/" || pathname=="/faynet/index.php" ){
+			
+			$("#li_home").css({
+				"border-bottom":"5px solid rgb(144,207,76)"
+			
+			});
+			
+		}
+		if(pathname=="/faynet/request.php"  ){
+			
+			$("#li_request").css({
+				"border-bottom":"5px solid rgb(144,207,76)"
+			
+			});
+			
+		}
+		if(pathname=="/faynet/report.php"  ){
+			
+			$("#li_report").css({
+				"border-bottom":"5px solid rgb(144,207,76)"
+			
+			});
+			
+		}
 	
 	
 	///////////////////////////////////////////////////////////////////////
 	// LOGIN
 	//////////////////////////////////////////////////////////////////////
    
-	$("#form_login").submit(function(){
-		
-		$.ajax({
-			type: 'POST',
-			url: $(this).attr("action"),
-			data: $(this).serialize(),
-			success: function(data) {    
-				$("body").append(data);
-				
-				if($(".login_resultado").attr("id")=="logueado" ){
-					$(".error_mensaje").fadeOut(50);
-					location.reload();
+		$("#form_login").submit(function(){
+			
+			$.ajax({
+				type: 'POST',
+				url: $(this).attr("action"),
+				data: $(this).serialize(),
+				success: function(data) {    
+					$("body").append(data);
 					
-				}else{
+					if($(".login_resultado").attr("id")=="logueado" ){
+						$(".error_mensaje").fadeOut(50);
+						location.reload();
+						
+					}else{
+						
+						$(".error_mensaje").fadeIn(100);
+						$(".login_resultado").remove();
+					}
 					
-					$(".error_mensaje").fadeIn(100);
-					$(".login_resultado").remove();
 				}
-				
-			}
-		}) 	
+			}) 	
+			
+			return false;
+		});
+		$(".logout").click(function(){
+			
+			$.ajax({
+				type: 'POST',
+				url: "http://"+hostname+ruta+"include/logout.php",
+				data: "",
+				success: function(data) {    
+					location.reload();
+				}
+			})  	
+			
+			return false;
+		});
 		
-		return false;
-	});
-	$(".logout").click(function(){
-		
-		$.ajax({
-			type: 'POST',
-			url: "http://"+hostname+ruta+"include/logout.php",
-			data: "",
-			success: function(data) {    
-				location.reload();
-			}
-		})  	
-		
-		return false;
-	});
-	
-   
    
 	///////////////////////////////////////////////////////////////////////
 	// AGREGANDO GENERAL INFORMATION Y DEMAS VENTANAS
 	//////////////////////////////////////////////////////////////////////
    
-   
-	$(document).on('submit','#form_request',function(){
-		//$(".exito_insert").fadeIn(200);
-	    var formData = new FormData(this);  
-	    // alert("estoy haciendo submit");
-		$.ajax({
-			type: 'POST',
-			url: $(this).attr("action"),
-			data: $(this).serialize(),
-			mimeType:"multipart/form-data",
-			contentType: false,
-			cache: false,
-			processData:false,				
-			success: function(data) {  
+		$(document).on('submit','#form_request',function(){
+			//$(".exito_insert").fadeIn(200);
+		    var formData = new FormData(this);  
+		    // alert("estoy haciendo submit");
+			$.ajax({
+				type: 'POST',
+				url: $(this).attr("action"),
+				data: $(this).serialize(),
+				mimeType:"multipart/form-data",
+				contentType: false,
+				cache: false,
+				processData:false,				
+				success: function(data) {  
+				
+					//$(".hola").append(data);
+					
+					
+				}
+			})  
 			
-				//$(".hola").append(data);
-				
-				
-			}
-		})  
+			
+		  // return false;
+		}); 
 		
 		
-	  // return false;
-	}); 
-	
-	
-	
-	$(".exito_insert").click(function(){
 		
-		location.reload();
-		
-	});
+		$(".exito_insert").click(function(){
+			
+			location.reload();
+			
+		});
 	
 	
-	
-	
-	
+
 	/////////////////////////////
 	////////////////////////////
 	
@@ -354,37 +350,37 @@ $(document).ready(function(){
 	// CLICK EN RADIO BUTTON INSIDE PLAN
 	//////////////////////////////////////////////////////////////////////
    	
-	$("#form_request").on("click", ".radio_click", null, function(){
+		$("#form_request").on("click", ".radio_click", null, function(){
+			
+			//alert("dasds");
+			
+		});
 		
-		//alert("dasds");
 		
-	});
-	
-	
-	////// CENTER EXITO INSERT INFORMATION
-	
-       $(".div_exito_insert").css({
-            top: ($(".exito_insert").height() - $(".div_exito_insert").outerHeight())/2,
-            left: ($(".exito_insert").width() - $(".div_exito_insert").outerWidth())/2,
-        });	
+		////// CENTER EXITO INSERT INFORMATION
 		
+	       $(".div_exito_insert").css({
+	            top: ($(".exito_insert").height() - $(".div_exito_insert").outerHeight())/2,
+	            left: ($(".exito_insert").width() - $(".div_exito_insert").outerWidth())/2,
+	        });	
+			
 
-	$(window).resize(function(){ 
+		$(window).resize(function(){ 
 
-       $(".div_exito_insert").css({
-            top: ($(".exito_insert").height() - $(".div_exito_insert").outerHeight())/2,
-            left: ($(".exito_insert").width() - $(".div_exito_insert").outerWidth())/2,
-        });
+	       $(".div_exito_insert").css({
+	            top: ($(".exito_insert").height() - $(".div_exito_insert").outerHeight())/2,
+	            left: ($(".exito_insert").width() - $(".div_exito_insert").outerWidth())/2,
+	        });
+			
+	       $(".fancy_list_job").css({
+	          //  top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
+	            left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+	        });
 		
-       $(".fancy_list_job").css({
-          //  top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
-            left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-        });
-	
+			
+		});
 		
-	});
-	
-	
+		
 	///////////////////////////////////////////////////////////////////////
 	// ABRIR CUADRO EN LA LISTA DE TRABAJOS
 	//////////////////////////////////////////////////////////////////////	
@@ -453,58 +449,58 @@ $(document).ready(function(){
 	// ABRIR ASIGNAR DESIGNER
 	//////////////////////////////////////////////////////////////////////	
 	
-	$(".open_designer").click(function(){
-		
-				if($(this).attr("id") ){
-					var name=$(this).attr("name");
-					var id_request=$(this).attr("id");
-					
-					//alert("http://"+hostname+ruta+"include/"+name+".php");
-					
-					$.ajax({
-						type: 'POST',
-						url: "http://"+hostname+ruta+"include/"+name+".php",
-						data:{id_request:id_request},
-						success: function(data) {   
-							$("body").css({ "overflow":"hidden" });
-							$(".fondo_list_job").fadeIn(100);
-							$(".fancy_list_job").append(data);
-							
-							$(".fancy_list_job").css({
-								left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-							});
-													
-						}
-					});
+		$(".open_designer").click(function(){
+			
+					if($(this).attr("id") ){
+						var name=$(this).attr("name");
+						var id_request=$(this).attr("id");
+						
+						//alert("http://"+hostname+ruta+"include/"+name+".php");
+						
+						$.ajax({
+							type: 'POST',
+							url: "http://"+hostname+ruta+"include/"+name+".php",
+							data:{id_request:id_request},
+							success: function(data) {   
+								$("body").css({ "overflow":"hidden" });
+								$(".fondo_list_job").fadeIn(100);
+								$(".fancy_list_job").append(data);
 								
-				}
-				
-	});
-	
-	$(".fancy_list_job").css({
-		//top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
-		left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
-	});
-	
-	$(".fondo_list_job").click(function(){		
-		$(this).fadeOut(100);
-		$(".fancy_list_job").html("");	
-		$("body").css({ "overflow":"auto" });
-	});
-	
-	$(".fancy_list_job").click(function(e){		
-		e.stopPropagation();		
-	});
-	
-	
-    $(document).keyup(function(event){
-        if(event.which==27)
-        {
-			$(".fondo_list_job").fadeOut(100);
-			$(".fancy_list_job").html("");
+								$(".fancy_list_job").css({
+									left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+								});
+														
+							}
+						});
+									
+					}
+					
+		});
+		
+		$(".fancy_list_job").css({
+			//top: ($(".fondo_list_job").height() - $(".fancy_list_job").outerHeight())/2,
+			left: ($(".fondo_list_job").width() - $(".fancy_list_job").outerWidth())/2,
+		});
+		
+		$(".fondo_list_job").click(function(){		
+			$(this).fadeOut(100);
+			$(".fancy_list_job").html("");	
 			$("body").css({ "overflow":"auto" });
-        }
-    });	
+		});
+		
+		$(".fancy_list_job").click(function(e){		
+			e.stopPropagation();		
+		});
+		
+		
+	    $(document).keyup(function(event){
+	        if(event.which==27)
+	        {
+				$(".fondo_list_job").fadeOut(100);
+				$(".fancy_list_job").html("");
+				$("body").css({ "overflow":"auto" });
+	        }
+	    });	
 	
 	
 	

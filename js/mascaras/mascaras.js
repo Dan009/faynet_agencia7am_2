@@ -7,11 +7,11 @@ $(document).ready(function(){
 
 			$("#txtFirstAMTime,#txtFirstPMTime").keypress()
 
-			$("#txtSecondAMTime,#txtSecondPMTime").inputmask({"mask":"s","greedy": false});
+			$("#txtSecondAMTime,#txtSecondPMTime").inputmask({"mask":"datetime12","greedy": false});
 
 			$(document).on("click","#txtFirstAMTime,#txtFirstPMTime",function(){
 
-				$("#txtFirstAMTime,#txtFirstPMTime").inputmask({"mask":"h","greedy": true});
+				$("#txtFirstAMTime,#txtFirstPMTime").inputmask({"mask":"datetime12","greedy": true});
 				$("#txtSecondAMTime,#txtSecondPMTime").inputmask({"mask":"s","greedy": true});
 
 			});

@@ -45,7 +45,8 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 						$type = $_POST['type'];
 						$id_information = $_POST['id_information'];
 						
-						$consulta_temp="UPDATE temp SET file = '".$nombre."' WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."'";
+						$consulta_temp="UPDATE temp SET file = '$nombre',original_name='".$archivo['name']."' WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."'";
+
 						$resultado_temp= mysqli_query($conexion,$consulta_temp);
 						
 						    if (move_uploaded_file($archivo['tmp_name'], "../archivos/temp/$nombre")) {

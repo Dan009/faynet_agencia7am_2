@@ -44,7 +44,7 @@
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/inputmask.date.extensions.js"></script>
         
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/mascaras.js"></script>
-        
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>/js/cpe_lgx_picture_management.js"></script>
 		
 		 
 		<script>

@@ -11,9 +11,9 @@
 			// ABRIR LIGHTBOX REDLINE INSIDE PLAN 
 			//////////////////////////////////////////////////////////////////////	
 		
-				$(".container_redline").click(function(){
+				/*$(".container_redline").click(function(){
 
-					/*$("body").css({ "overflow":"hidden" });
+					$("body").css({ "overflow":"hidden" });
 					$(".fondo_list_job").fadeIn(100);
 					//$(".fancy_list_job").append(data);
 					
@@ -22,7 +22,7 @@
 
 					});
 
-					console.log("http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php");*/
+					console.log("http://"+hostname+ruta+"include/redline_forms/upload_picture_window.php");
 
 						$.ajax({
 							type: 'POST',
@@ -42,13 +42,11 @@
 						});
 
 						
-				});
+				});*/
 
 
 	
-		$(".copypaste_b").click(function(){
-			
-			
+		$(".copypaste_b").click(function(){			
 			$("#copypaste").css({
 				"display":"block"
 			
@@ -792,11 +790,11 @@
             	</form>
 
             	<div class="container_redline" dir="inside_plan">
-					<!-- <a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>redline_form.php" target="_blank"> -->
+					<a href="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>redline.php?type=inside_plan&id=1" target="_blank"> <!---->
 	    
 		    			<div id="btnOpenRedline"> OPEN REDLINE </div>	
 
-		    		<!-- </a> -->
+		    		</a> <!---->
 	                
 				</div>
 
@@ -836,74 +834,67 @@
                 
 			</div>
 
-			
-				
-           
-            
-          
     </div>
     
- 
-    
-		<script>
-			$(document).ready(function(){
-			
-			 $('input').iCheck({
-				checkboxClass: 'icheckbox_square',
-				radioClass: 'iradio_square',
-				increaseArea: '20%' // optional
-			  });
-			
-				///////////////////////////////////////////////////////////////////////
-				// CLICK EN RADIO BUTTON INSIDE PLAN
-				//////////////////////////////////////////////////////////////////////
+<script>
+	$(document).ready(function(){
+	
+	 $('input').iCheck({
+		checkboxClass: 'icheckbox_square',
+		radioClass: 'iradio_square',
+		increaseArea: '20%' // optional
+	  });
+	
+		///////////////////////////////////////////////////////////////////////
+		// CLICK EN RADIO BUTTON INSIDE PLAN
+		//////////////////////////////////////////////////////////////////////
+		
+		//$('input').iCheck('update');
+		$('input ').on('ifClicked ', function(event) {
+			if ($(this).attr("name")=="new_building" ) {
 				
-				//$('input').iCheck('update');
-				$('input ').on('ifClicked ', function(event) {
-					if ($(this).attr("name")=="new_building" ) {
+			} else {
+				
+				if ($(this).attr("value")=="si" ) {
+					
+					$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
+						"height":"auto"
+					});
+					
+				}else{
+					$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
+						"height":"0px"
 						
-					} else {
+					});
 						
-						if ($(this).attr("value")=="si" ) {
-							
-							$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
-								"height":"auto"
-							});
-							
-						}else{
-							$(this).parents(".title_content_option_inside").siblings(".container_click_option_inside").css({
-								"height":"0px"
-								
-							});
-								
-						}
-						
-						if($(this).attr("class")=="click_check" ){
-							
-							if( $(this).is(':checked') ){
-								// aqui no esta en checked
-								$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
-									"height":"0px"										
-								})
-																	
-							}else{
-								// aqui esta en checked
-								$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
-									"height":"auto"										
-								})									
-								
-							}
-							
-						}
-						
+				}
+				
+				if($(this).attr("class")=="click_check" ){
+					
+					if( $(this).is(':checked') ){
+						// aqui no esta en checked
+						$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
+							"height":"0px"										
+						})
+															
+					}else{
+						// aqui esta en checked
+						$(this).parents(".title_container_option_survey").siblings(".container_click_check_inside").css({
+							"height":"auto"										
+						})									
 						
 					}
-				});	
-			
-			
-			});
+					
+				}
+				
+				
+			}
+		});	
+	
+	
+	});
 
-		</script>	
+</script>	
             
     
 	<!-- FIN CODIGO PARA EL CONTENIDO DE INSIDE PLAN  -->

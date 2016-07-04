@@ -1,12 +1,25 @@
 <?php 
-    
+       include("../../confi/conf.inc.php");
+
+        $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
+
     ///ESTILO PARA LOS INPUTS QUE DEBE DESAPARECER
         $estiloCSSTextLGXFloor = "width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;";
 
-    
-?>
 
-    <!-- LGX INFO -->
+    $id_information = $_POST['id_information'];
+    $id_request = $_POST['id_request'];
+
+?>
+    
+    <form id="form_cpe_lgx_form" name="form_request" method="post" enctype="multipart/form-data" action="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>include/cpe-forms/data-files/cpe_lgx_info_form.php">
+
+        <input type="hidden" name="TxtIfFile" value="no" id="TxtFileUploaded" />
+        <input type="hidden" name="TxtId_information" value="<?php echo $id_information ?>" id="id_information" />
+        <input type="hidden" name="TxtId_request" value="<?php echo $id_request ?>" id="id_request" />
+        <input type="hidden" value="" id="txtCurrentCPEPicture" />
+
+        <!-- LGX INFO -->
         <div class="div_form_request" >
             <input type="text" style="border: 2px solid rgb(253, 140, 64); margin: 1px 0 4px 37%;width: 22%;" placeholder="Add to netcracker" />
 
@@ -43,7 +56,7 @@
 
                             </div>
 
-                            <input type="text" style=" width: 48%;margin-left: 10px; height: 20px;padding: 10px;" name="txtLGXRoom" />
+                            <input type="text" style=" width: 48%;margin-left: 10px; height: 20px;padding: 10px;font-size: 22px;" name="txtLGXRoom" />
 
                             <div class="container_checkbox_na" style="width: 37%;float: right;position: relative;top: 12px;">
 
@@ -79,14 +92,14 @@
                         </div>    
 
                         <div class="container_second_lgx_term">
-                            <div class="name" style="width: 14%;margin-right: 42%;">
-                                  LGX Term Panel
+                            <div class="name" style="width: 159px;margin-right: 42%;">
+                                  LGX Term Panel Size
 
                             </div>
 
-                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;"  name="txtLGXTerm" />
+                            <input type="text"  style="width: 40%;height: 33px;position: relative;margin: 8px 0 0 15px;padding: 7px;bottom: 10px;border: 1px solid #000;"  name="txtLGXTermSize1" />
 
-                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 1px solid #000;" name="txtLGXTerm" />
+                            <input type="text" style="width: 28%;height: 33px;position: relative;margin: -21px 0 0 46px;padding: 7px;bottom: 10px;;border: 1px solid #000;" name="txtLGXTermSize2" />
 
                         </div>
 
@@ -106,7 +119,7 @@
 
                           <input type="text" style="width: 72%;height: 33px;margin: -1px 0 0 13px;padding: 7px;float: left;border: 1px solid #000;" name="txtRoomNameLGX" />  
 
-                          <input type="text" style="width: 19%;height: 33px;margin: -2px 0 0 8px;padding: 7px;float: left;border: 1px solid #000;" placeholder="[INSERT OWNER NAME]" name="OwnedPanel" /> 
+                          <input type="text" style="width: 19%;height: 33px;margin: -2px 0 0 8px;padding: 7px;float: left;border: 1px solid #000;" placeholder="[INSERT OWNER NAME]" name="TxtOwnedPanel" /> 
 
 
                     </div>
@@ -115,16 +128,16 @@
 
                         <div class="container_cpe_black_box">
                             <div class="name" style="width: 40%;margin-right: 10%;">
-                                Dark Fiber Hand - Off Panel To CUstomer (CPE)
+                                Dark Fiber Hand - Off Panel To Customer (CPE)
 
                             </div> 
 
                                 <div class="container_radio_darkfiber" style="position:relative; top: 3px;">
-                                    <input type="radio" name="if_dark_fiber" /> <span>YES</span> 
+                                    <input type="radio" name="if_dark_fiber" value="yes" /> <span>YES</span> 
                                         &nbsp;
                                         &nbsp;
                                         &nbsp;
-                                    <input type="radio" name="if_dark_fiber" /> <span>NO</span>
+                                    <input type="radio" name="if_dark_fiber" value="no" checked="checked"/> <span>NO</span>
 
                                 </div>
 
@@ -138,16 +151,16 @@
 
                                <div class="container_rank_sizes" style="position: relative;bottom: 8px;">
 
-                                    <input type="radio" name="if_rack_size" /> <span style="">19</span> 
+                                    <input type="radio" name="if_rack_size" value="19" /> <span >19</span> 
                                          &nbsp;
                                          &nbsp;
 
-                                    <input type="radio" name="if_rack_size" /> <span>23</span>
+                                    <input type="radio" name="if_rack_size" value="23" /> <span>23</span>
                                         &nbsp;
                                         &nbsp;
 
-                                    <input type="radio" name="if_rack_size" /> <span>Other</span>
-                                    <input type="text" style="width: 4%;height: 27px;font-size: 28px;position: relative;top: 5px;" />
+                                    <input type="radio" name="if_rack_size" value="other" checked="checked" /> <span>Other</span>
+                                    <input type="text" style="width: 4%;height: 27px;font-size: 28px;position: relative;top: 5px;" name="txtOtherRackSize" />
 
                                 </div> 
 
@@ -163,12 +176,12 @@
 
                                 <div class="container_radio_roomTypes" style="position:relative; top:3px;">
 
-                                    <input type="radio" name="if_room_type" /> <span>Private</span> 
+                                    <input type="radio" name="if_room_type" value="private" /> <span>Private</span> 
                                          &nbsp;
                                          &nbsp;
                                          &nbsp;
 
-                                    <input type="radio" name="if_room_type" /> <span>Common</span>
+                                    <input type="radio" name="if_room_type" value="common" checked="checked" /> <span>Common</span>
 
                                 </div>
                         </div>
@@ -188,11 +201,11 @@
                                     </div> 
 
                                         <div class="container_fusion_splice" style="position:relative; top: 3px;width: 94%;">
-                                            <input type="radio" name="if_splice" /> <span>YES</span> 
+                                            <input type="radio" name="if_splice" value="yes" /> <span>YES</span> 
                                                 &nbsp;
                                                 &nbsp;
                                                 &nbsp;
-                                            <input type="radio" name="if_splice" /> <span>NO</span>
+                                            <input type="radio" name="if_splice" value="no" checked="checked" /> <span>NO</span>
 
                                         </div>
 
@@ -219,7 +232,7 @@
 
                                     </div> 
                                         
-                                    <input  type="text" style="text-align: right;width: 7%;height: 13px;padding: 11px;font-size: 20px;"  name="TotalBulheads" />
+                                    <input  type="text" style="text-align: right;width: 7%;height: 13px;padding: 11px;font-size: 20px;"  name="txtTotalBulkHeads" />
 
                                 </div>
 
@@ -229,11 +242,11 @@
 
                                     </div> 
 
-                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;"  name="txtConnectorType1" />
+                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;text-transform: uppercase;"  name="txtConnectorType1" id="txtConnectorType1" />
 
                                         <span style="padding: 0 10px 0 10px;font-size: 25px;">/</span>
 
-                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;" name="txtConnectorType1" />
+                                    <input  type="text" style="text-align: right;width: 21px;height: 14px;padding: 13px;font-size: 20px;position: relative;top: -6px;letter-spacing: -1px;text-transform: uppercase;" name="txtConnectorType2" id="txtConnectorType2" />
                                         
 
                                 </div>
@@ -245,47 +258,137 @@
                 <!-- PANEL DRAWINGS -->
                     <div class="container_panel_photos">
                         <div class="container_center_panels">
-                        <!-- SAVE CURRENT PANEL  -->
-                            <div class="container_panel">
-                                <div class="container_cpe_black_box" style="width: 87%;padding: 15px;margin: 0 auto;">
-                                    Panel Location
-                                </div>
 
-                                <div class="container_panel_photo container_cpe_black_box" style=""></div>
+                            <!-- LGX PHOTO N 1 -->
+                                <div class="container_panel">
+                                    <div class="container_cpe_black_box" style="width: 244px;padding: 15px;margin: 0 auto auto 1px;">
+                                        Panel Location
+                                    </div>
 
-                                  <div id="btnPanelButton">Save Current LGX Info</div>
+                                    <div class="container_panel_photo1 container_cpe_black_box">
+                                        <div class="containerprueba" style="float: left;position: relative;z-index: 999999;">
 
-                            </div>
+                                            <form action="javascript:void(0);" id="form_archivo">
+
+                                                <div class="div_file_inside">
+
+                                                   <input type="file" name="archivo" id="archivoCPELGXPhoto1" accept="image/x-png, image/gif, image/jpeg" />
+                                                   
+                                                   <span class="text_select_image_lgx"> Click here to upload and draw an image </span>
+
+                                                </div>  
+
+                                                   <input type="hidden" name="code_picture" id="code" value="<?php echo $time_code; ?>" />
+                                                   <input type="hidden" name="form_type" id="type" value="cpe_first_picture"/>
+                                                   <input type="hidden" id="tipo_ejecucion" value="subir_archivo"/>
                         
-                        <!--  UPDATE CURRENT PANEL  --> 
-                            <div class="container_panel">
-                                <div class="container_cpe_black_box" style="width: 87%;padding: 15px;margin: 0 auto;">
-                                    Panel Location
-                                </div>
-
-                                <div class="container_panel_photo container_cpe_black_box" style=""></div>
-
-                                <div id="btnPanelButton">Update Current LGX Info</div>
-
-                            </div>
+                                            </form>
+                                            
+                                            <div id="archivos_subidos"></div>
+                                                 <!--    <div id="respuesta" class="alert"></div> -->
                         
-                        <!--  CLEAR CURRENT PANEL -->
-                            <div class="container_panel">
-                                <div class="container_cpe_black_box" style="width: 87%;padding: 15px;margin: 0 auto;">
-                                    Panel Location
+                                        </div>
+                                        
+                                        <div id="dvPictureImageFirstLGX"></div>
+                                        <div id="dvCanvaImageFirstLGX"></div>
+
+
+                                    </div>
+
+                                      <div id="btnPanelButton1">Insert by Copy Paste</div>
+
                                 </div>
+                            
+                            <!-- LGX PHOTO N 2  --> 
+                                <div class="container_panel">
+                                    <div class="container_cpe_black_box" style="width: 244px;padding: 15px;margin: 0 auto auto 1px;">
+                                        Panel Location
+                                    </div>
 
-                                <div class="container_panel_photo container_cpe_black_box" style=""></div>
-                                <div id="btnPanelButton">Clear Current LGX Info</div>
+                                    <div class="container_panel_photo2 container_cpe_black_box">
+                                        
+                                         <div class="containerprueba" style="float: left;position: relative;z-index: 999999;">
 
-                            </div>
+                                            <form action="javascript:void(0);" id="form_archivo">
+
+                                                <div class="div_file_inside">
+
+                                                   <input type="file" name="archivo" id="archivoCPELGXPhoto2" accept="image/x-png, image/gif, image/jpeg" />
+                                                   
+                                                   <span class="text_select_image"> Click here to upload and draw an image </span>
+
+                                                </div>  
+
+                                                   <input type="hidden" name="code_picture" id="code" value="<?php echo $time_code; ?>" />
+                                                   <input type="hidden" name="form_type" id="type" value="cpe_second_picture"/>
+                                                   <input type="hidden" id="tipo_ejecucion" value="subir_archivo"/>
+                        
+                                            </form>
+                                            
+                                            <div id="archivos_subidos"></div>
+                                                 <!--    <div id="respuesta" class="alert"></div> -->
+                        
+                                        </div>
+                                        
+                                        <div id="dvPictureImageSecondLGX"></div>
+                                        <div id="dvCanvaImageSecondLGX"></div>
+
+
+                                    </div>
+
+                                       <div id="btnPanelButton2">Insert by Copy Paste</div>
+
+                                </div>
+                            
+                            <!-- LGX PHOTO N 3 -->
+                                <div class="container_panel">
+                                    <div class="container_cpe_black_box" style="width: 246px;padding: 15px;margin: 0 auto auto 0px;">
+                                        Panel Location
+                                    </div>
+
+                                    <div class="container_panel_photo3 container_cpe_black_box">
+                                        <div class="containerprueba" style="float: left;position: relative;z-index: 999999;">
+
+                                            <form action="javascript:void(0);" id="form_archivo">
+
+                                                <div class="div_file_inside">
+
+                                                   <input type="file" name="archivo" id="archivoCPELGXPhoto3" accept="image/x-png, image/gif, image/jpeg" />
+                                                   
+                                                   <span class="text_select_image"> Click here to upload and draw an image </span>
+
+                                                </div>  
+
+                                                   <input type="hidden" name="code_picture" id="code" value="<?php echo $time_code; ?>" />
+                                                   <input type="hidden" name="form_type" id="type" value="cpe_third_picture"/>
+                                                   <input type="hidden" id="tipo_ejecucion" value="subir_archivo"/>
+                        
+                                            </form>
+                                            
+                                            <div id="archivos_subidos"></div>
+                                                 <!--    <div id="respuesta" class="alert"></div> -->
+                        
+                                        </div>
+                                        
+                                        <div id="dvPictureImageThridLGX"></div>
+                                        <div id="dvCanvaImageThridLGX"></div>
+
+
+                                    </div>
+
+                                        <div id="btnPanelButton3">Insert by Copy Paste</div>
+
+                                </div>
+                            
                         </div>
 
                     </div>
                     
             </div>
 
-        </div>                    
+        </div>      
+
+    </form>        
 
 
 <script type="text/javascript">

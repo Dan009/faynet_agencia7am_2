@@ -11,7 +11,6 @@
 
             }
 
-
  ?>
 
 <script src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/upload.js"></script> 
@@ -65,7 +64,7 @@
     ///      LLAMADA DE LA PRIMERA FUNCION SUBIRARCHIVO()    ///
     ///////////////////////////////////////////////////////////
 
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 //mostrarArchivos();
 
                 $("#archivo").change(function (){
@@ -74,12 +73,6 @@
 
                 });
 
-                $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-                    var archivo = $(this).parents('.row').eq(0).find('span').text();
-                    archivo = $.trim(archivo);
-                    eliminarArchivos(archivo);
-
-                });
 
                     /////////////////////////////////////////////////////////////
                     ///    ESCUCHADOR DEL MOUSE PARA MOSTRAR EL MENSAJE      ///
@@ -95,7 +88,188 @@
                         });
                         
 
-            });
+            });*/
+
+
+        /////////////////////////////////////////////////////////////
+        //////////            EXPORT CANVAS             ////////////
+        ///////////////////////////////////////////////////////////
+
+            /////////////////////////////////////////////////////////////////////
+            ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
+            ///////////////////////////////////////////////////////////////////
+                function setearFotoCPE(){
+                    var type_ejecucion = "select_picture";
+
+                        $.ajax({ 
+                            type: "POST", 
+                            url: "include/cpe_photos_manager.php",
+                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                            success: function(data) {
+
+                                 var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
+
+                                $("#dvPictureImage").css("background-image",urlCodePicture);
+                              
+
+                            }
+
+                        });
+
+                }
+
+            /////////////////////////////////////////////////////////////////////
+            ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
+            ///////////////////////////////////////////////////////////////////
+
+                function setearCanvasCPE(){
+                    var type_ejecucion = "select_canva";
+
+                        $.ajax({ 
+                            type: "POST", 
+                            url: "include/cpe_photos_manager.php",
+                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
+                            success: function(data) {
+                                $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data.trim()+"");
+          
+                                     
+                            }
+
+
+                        });
+
+                }
+                  
+            ////////////////////////////////////////////////////////////
+            ///     FUNCION QUE SETEA LOS DIVS CON LAS IMAGENES     ///
+            //////////////////////////////////////////////////////////
+
+                var canvas;
+
+                    function exportAndSaveCanvas(){
+
+                        var ifLGXPictureEmpty = ($("#txtCurrentCPEPicture").val() == undefined || $("#txtCurrentCPEPicture").val() == "")?true:false;
+
+                            console.log(ifLGXPictureEmpty);
+
+                                    if (ifLGXPictureEmpty) {
+                                        setearFotoCPE();
+
+                                        canvas = document.getElementById("canvas");
+
+                                            // Get the canvas screenshot as PNG
+                                                var screenshot = Canvas2Image.saveAsPNG(canvas, true);
+
+                                            // This is a little trick to get the SRC attribute from the generated <img> screenshot
+                                                canvas.parentNode.appendChild(screenshot);
+                                                screenshot.id = "canvasimage";      
+                                                type_plan = $("#type").val();
+                                                data = $('#canvasimage').attr('src');
+                                                code = <?php echo $id_information; ?>;
+                                        
+                                        
+                                            //alert(type_plan);
+                                    
+                                            canvas.parentNode.removeChild(screenshot);
+
+                                            // Send the screenshot to PHP to save it on the server
+                                                var url = 'include/export.php';
+
+                                                    $.ajax({ 
+                                                        type: "POST", 
+                                                        url: url,
+                                                        dataType: 'text',
+                                                        data: {
+                                                            base64data : data, codesend : code, type:type
+                                                        },
+                                                        success: function(data) {
+                                                            setearCanvasCPE();
+
+                                                                $("#dvPictureImage").fadeIn(100);
+                                                                $("#dvCanvaImage").fadeIn(100);
+                                                                $(".containerprueba").css("z-index","999999999999999");
+                                                                $(".text_select_image").css({ zIndex:"-999999",});
+
+                                                                    $("#TxtFileUploaded").val("yes");
+
+                                                                    $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
+
+                                                                    $(".literally").remove();    
+
+                                                                    $(".editor_imagenes").css({ 'display': "none" });
+
+                                                                    $("body").css({ 'overflow': "auto" });
+                                                            
+                                                                 
+                                                        }
+                                 
+                                                        
+                                                    });
+
+                                /// MANEJAR EL SETEO DE LA IMAGEN EN LOS LGX                      
+                                    }else{
+
+                                        var type_plan = $("#txtCurrentCPEPicture").val();
+
+                                            //VER CPE_LGX_PICTURE_MANAGEMENT para mas informacion 
+                                                setearFotoCPELGX(<?php echo $_GET['id_information']; ?>,type_plan);
+                                       
+                                        canvas = document.getElementById("canvas");
+
+                                            // Get the canvas screenshot as PNG
+                                                var screenshot = Canvas2Image.saveAsPNG(canvas, true);
+
+                                            // This is a little trick to get the SRC attribute from the generated <img> screenshot
+                                                canvas.parentNode.appendChild(screenshot);
+                                                screenshot.id = "canvasimage";      
+                                                data = $('#canvasimage').attr('src');
+                                                code = <?php echo $id_information; ?>;
+                                        
+                                        
+                                            //alert(type_plan);
+                                    
+                                            canvas.parentNode.removeChild(screenshot);
+
+
+                                            // Send the screenshot to PHP to save it on the server
+                                                var url = 'include/export.php';
+
+                                                    $.ajax({ 
+                                                        type: "POST", 
+                                                        url: url,
+                                                        dataType: 'text',
+                                                        data: {
+                                                            base64data : data, codesend : code, type:type_plan
+                                                        },
+                                                        success: function(data) {
+                                                            setearCanvasCPELGX(type);
+
+                                                                fadeInRespectiveLGXDivPhoto(type);
+                                                                fadeInRespectiveLGXDivCanva(type);
+
+                                                                $(".container_prueba_LGX").css("z-index","999999999999999");
+                                                                $(".text_select_image_LGX").css({ zIndex:"-999999",});
+                                                                
+                                                                    $("#TxtFileUploaded").val("yes");
+
+                                                                    $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
+
+                                                                    $(".literally").remove();    
+
+                                                                    $(".editor_imagenes").css({ 'display': "none" });
+
+                                                                    $("body").css({ 'overflow': "auto" });
+                                                            
+                                                                 
+                                                        }
+                                 
+                                                        
+                                                    });/* */
+
+
+                                    }/**/
+
+                    }
 
 
 </script>
@@ -318,7 +492,7 @@
 			</div>
 			
             <div class="div_title_ventana" name="ventana_lgx_info" style="display:block;" style="display:block;">
-				LGX INFO
+				LGX INFO 1
             
 			</div>
             
@@ -350,10 +524,7 @@
 
                 <div class="container_form_custormer_contact">
 
-                    <div class="center_form_custormer_contact" >
-                        <?php //include("include/cpe-forms/customer_contact_form.php"); ?>
-
-                    </div>
+                    <div class="center_form_custormer_contact"></div>
 
                 </div>
 
@@ -364,10 +535,7 @@
 
                 <div class="container_form_lgx_info">
 
-                    <div class="center_form_lgx_info" >
-                        <?php //include("include/cpe-forms/lgx_info_form.php"); ?>
-
-                    </div>
+                    <div class="center_form_lgx_info"></div>
 
                 </div>
 
@@ -378,10 +546,7 @@
 
                 <div class="container_lit_equip_info">
 
-                    <div class="center_lit_equip_info" >
-                        <?php //include("include/cpe-forms/lit_equip_info_form.php"); ?>
-
-                    </div>
+                    <div class="center_lit_equip_info"></div>
 
                 </div>
 

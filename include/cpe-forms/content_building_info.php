@@ -18,9 +18,9 @@
                             $fila_engineer_name = buscarEngineer($id_information,$conexion);
                
                     }else{
-                
                         $id_information = $_POST['id_information'];
                         $id_request = $_POST['id_request'];
+                        
 
                             $fila_information = buscarInfomation($id_information,$conexion);
                             $fila_property_manager = buscarManager($id_request,$conexion);
@@ -301,121 +301,6 @@
                             });
 
                 });
-
-        /////////////////////////////////////////////////////////////
-        //////////            SEGUNDO PASO              ////////////
-        ///////////////////////////////////////////////////////////
-
-            /////////////////////////////////////////////////////////////////////
-            ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
-            ///////////////////////////////////////////////////////////////////
-                function setearFotoCPE(){
-                    var type_ejecucion = "select_picture";
-
-                        $.ajax({ 
-                            type: "POST", 
-                            url: "include/cpe_photos_manager.php",
-                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
-                            success: function(data) {
-
-                                 var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
-
-                                $("#dvPictureImage").css("background-image",urlCodePicture);
-                              
-
-                            }
-
-                        });
-
-                }
-
-            /////////////////////////////////////////////////////////////////////
-            ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
-            ///////////////////////////////////////////////////////////////////
-
-                function setearCanvasCPE(){
-                    var type_ejecucion = "select_canva";
-
-                        $.ajax({ 
-                            type: "POST", 
-                            url: "include/cpe_photos_manager.php",
-                            data: {tipo_ejecucion:type_ejecucion,type: $("#type").val()<?php echo ",\nid_information: $id_information"; ?>},
-                            success: function(data) {
-                                $("#dvCanvaImage").css("background-image","url(archivos/temp/"+data.trim()+"");
-          
-                                     
-                            }
-
-
-                        });
-
-                }
-                  
-            ////////////////////////////////////////////////////////////
-            ///     FUNCION QUE SETEA LOS DIVS CON LAS IMAGENES     ///
-            //////////////////////////////////////////////////////////
-
-              var canvas;
-
-              function exportAndSaveCanvas()  {
-                    setearFotoCPE();
-            
-                  canvas = document.getElementById("canvas");
-
-                    // Get the canvas screenshot as PNG
-                        var screenshot = Canvas2Image.saveAsPNG(canvas, true);
-
-                    // This is a little trick to get the SRC attribute from the generated <img> screenshot
-                        canvas.parentNode.appendChild(screenshot);
-                        screenshot.id = "canvasimage";      
-                        type_plan = $("#type").val();
-                        data = $('#canvasimage').attr('src');
-                        code = <?php echo $id_information; ?>;
-                    
-                    
-                    //alert(type_plan);
-                    
-                    canvas.parentNode.removeChild(screenshot);
-
-
-                    // Send the screenshot to PHP to save it on the server
-                        var url = 'include/export.php';
-
-                            $.ajax({ 
-                                type: "POST", 
-                                url: url,
-                                dataType: 'text',
-                                data: {
-                                    base64data : data, codesend : code, type:type
-                                },
-                                success: function(data) {
-
-                                    setearCanvasCPE();
-                                    $("#dvPictureImage").fadeIn(100);
-                                    $("#dvCanvaImage").fadeIn(100);
-                                    $(".containerprueba").css("z-index","999999999999999");
-                                    $(".text_select_image").css({
-                                        zIndex:"-999999",
-                             
-                                    });
-                                        $("#TxtFileUploaded").val("yes");
-
-                                        $(".text_select_image").html("CLICK HERE TO CHANGE THE CURRENT IMAGE");
-
-                                        $(".literally").remove();    
-
-                                        $(".editor_imagenes").css({ 'display': "none" });
-
-                                        $("body").css({ 'overflow': "auto" });
-                                    
-                                         
-                                }
-         
-                                
-                            });
-
-
-               }
 
 
     $(document).ready(function() {

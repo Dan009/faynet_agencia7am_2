@@ -135,7 +135,7 @@
 
         }
         .container_info_building .name{
-            width: 121px;
+            width: 126px;
             right: 5px;
             position: relative;
 
@@ -476,6 +476,28 @@
             opacity: 0;
             top: -14px;
         }
+/*---------------------------------------------*/
+/*----   LGX  INFO CLASSES AND IDS  ------*/
+/*-------------------------------------------*/
+        #archivoCPELGXPhoto1,
+        #archivoCPELGXPhoto2,
+        #archivoCPELGXPhoto3{
+            position: absolute;
+            left: -17px;
+            width: 273px;
+            height: 250px;
+            cursor: pointer;
+            opacity: 0;
+            top: -31px;
+        }
+
+        .container_prueba_lgx_1,
+        .container_prueba_lgx_2,
+        .container_prueba_lgx_3{
+            display: inline-block;
+            width: 95%;
+
+        }
 
 /*---------------------------------------------*/
 /*----   LIT EQUIP INFO CLASSES AND IDS  ------*/
@@ -571,7 +593,7 @@
 
     }
 
-#btnPanelButton{
+#btnPanelButton1,#btnPanelButton2,#btnPanelButton3{
     width: 255px;
     padding: 10px;
     border: 1px solid #000;
@@ -605,7 +627,10 @@
 
 }
 
-.container_panel_photo{
+.container_panel_photo,
+.container_panel_photo1,
+.container_panel_photo2,
+.container_panel_photo3{
     width: 87%;
     padding: 15px;
     margin-top: 6px;
@@ -2151,6 +2176,7 @@ html,body{
     width: 95%;
 
 }
+
 .container_any_file{
     display: inline-block;
     width: 34%;
