@@ -45,6 +45,8 @@
         
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>js/mascaras/mascaras.js"></script>
         <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>/js/cpe_lgx_picture_management.js"></script>
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>/js/lgx_tab_creater.js"></script>
+        <script type="text/javascript" src="<?php echo "http://".$_SERVER['HTTP_HOST'].$directorio; ?>/js/lit_equip_picture_management.js"></script>
 		
 		 
 		<script>

@@ -41,6 +41,10 @@
     font-weight: bold;
 
 }
+input[type = text]:disabled{
+    background: #f1eded;
+
+}
 /*---------------------------------------------------------------------*/
 /*-----------------------       CPE FORM STYLES           -------------*/
 /*---------------------------------------------------------------------*/
@@ -49,7 +53,7 @@
 /*----          GENERAL ELEMENTS          ----*/
 /*-------------------------------------------*/
     .container_cpe_box{
-        border: 1px solid #000;
+        border: 2px solid #000;
 
     }
         .container_cpe_orange_box span:nth-child(1){
@@ -64,7 +68,7 @@
 
     .container_cpe_title_ventana{
         width: 100%;
-        height: 80px;
+        height: auto;
         float: left;
         border-bottom: 1px solid rgb(240,240,240);
     }
@@ -108,7 +112,7 @@
 
     }
     .container_cpe_service_info{
-        border: 1px solid #000;
+        border: 2px solid #000;
         margin: 0 auto; 
         height: 187px; 
 
@@ -121,12 +125,12 @@
             width:192px; 
 
         }
-        .container_cpe_input_text_inside .name:nth-child(1){
+        .container_cpe_input_inside .name:nth-child(1){
             width: 135px;
 
         }
         .container_cpe_input_text_inside .name:nth-child(3){
-            width: 215px;
+            width: 191px;
 
         }
         .container_info_building{
@@ -273,7 +277,7 @@
             }
 
         .container_cpe_box_working_hours_building_picture{
-            border: 1px solid #000;
+            border: 2px solid #000;
             height: 206px;
             margin: 0 auto;
             width: 100%;
@@ -384,7 +388,7 @@
             width: 100%;
             margin: 0 auto; 
             height: 511px; 
-            border: 1px solid #000;
+            border: 2px solid #000;
           
 
         }
@@ -448,6 +452,7 @@
         .text_select_image:hover {
             visibility: visible;
         }
+
         #dvPictureImage{
             width: 275px;
             height: 206px;
@@ -457,6 +462,19 @@
             background-size: 100% 100%;
 
         }
+		
+		.dvPictureImageFirstLGX,
+        .dvPictureImageSecondLGX,
+        .dvPictureImageThridLGX{
+            width: /*246px*/100%;
+            height: /*206px*/100%;
+            z-index: 9999;
+            position: relative;   
+            display: none;
+            background-size: 100% 100%;
+
+        }
+		
         #dvCanvaImage{
             width: 275px;
             height: 206px;
@@ -467,6 +485,20 @@
             background-size: 100% 100%;
 
         }
+		
+		.dvCanvaImageFirstLGX,
+        .dvCanvaImageSecondLGX,
+        .dvCanvaImageThridLGX{
+            width: 275px;
+            height: 206px;
+            position: relative;
+            z-index: 99999;
+            bottom: 206px;
+            display: none; 
+            background-size: 100% 100%;
+
+        }
+		
         #archivoCPEPhotos{
             position: absolute;
             left: -2px;
@@ -476,8 +508,9 @@
             opacity: 0;
             top: -14px;
         }
+
 /*---------------------------------------------*/
-/*----   LGX  INFO CLASSES AND IDS  ------*/
+/*----   LGX  INFO CLASSES AND IDS      ------*/
 /*-------------------------------------------*/
         #archivoCPELGXPhoto1,
         #archivoCPELGXPhoto2,
@@ -499,16 +532,77 @@
 
         }
 
+        .text_select_image_lgx{
+            display: none;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 7px 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 319%;
+            left: 74%;
+            margin-left: -60px;
+            width: 51%;
+
+        }
+
+            .text_select_image_lgx::after {
+                content: " ";
+                position: absolute;
+                top: 100%; /* At the bottom of the tooltip */
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: black transparent transparent transparent;
+
+            } 
+
+            .text_select_image_lgx:hover {
+                visibility: visible;
+
+            }
+
+        .container_bulkhead_total{
+            width: 56%;
+            float: right;
+            margin: 0 0 10px 0;
+        }
+
+            .container_bulkhead_total .name{
+                margin: 17px 37px 0 32px;
+               
+
+            }
+
+        .container_connector_type{
+            width: 44%;
+            float: left;
+            margin-top: 3px;
+            margin-bottom: 17px;
+
+        }
+
+            .container_connector_type .name{
+                width: 41%;
+                margin-right: 19%;
+                position: relative;
+                top: 13px;
+
+            }
+
 /*---------------------------------------------*/
-/*----   LIT EQUIP INFO CLASSES AND IDS  ------*/
+/*----   LIT EQUIP INFO CLASSES AND IDS  -----*/
 /*-------------------------------------------*/
 
-    /**/.container_pictures{
+    .container_pictures{
         height: 89px;
-        margin-top: 34px;
         position: relative;
         right: 24px;
         width: 901px;
+        float: right;
 
     }
         .container_pictures .container_panel_photos .container_center_panels .container_panel{
@@ -521,7 +615,7 @@
         }
 
         .container_pictures .container_panel_photos{
-            width: 104%;
+            width: 102%;
             height: 267px;
             float: left;
             position: relative;
@@ -529,145 +623,172 @@
             margin-top: 42px;
 
         }
-/*---------------------------------------------*/
-/*----      LGX INFO CLASSES AND IDS    ------*/
-/*-------------------------------------------*/
-    .container_bulkhead_total{
-        width: 56%;
-        float: right;
-        margin: 14px 0 10px 0;
-    }
 
-        .container_bulkhead_total .name{
-            margin: 0 7% 0 7%;
-           
-
-        }
-
-    .container_connector_type{
-        width: 44%;
-        float: left;
-        margin-top: 3px;
-
-    }
-        .container_connector_type .name{
-            width: 41%;
-            margin-right: 19%;
-            position: relative;
-            top: 13px;
-
-        }
-
-
-
-/*---------------------------------------------*/
-/*----      LIT EQUIP CLASSES AND IDS   ------*/
-/*-------------------------------------------*/
     .container_power_panel_photo1{
-         background: rgba(0, 0, 0, 0) url("../images/power_panel.jpg") no-repeat scroll 0 0 / 100% 100%;
-            float: left;
-            height: 271px;
-            width: 217px;
-    }
-    .container_power_panel_photo2{
-        width: 100%;
-        height: inherit;
-        float: left;   
+        width: 210px;
+        height: 272px;
+        float: left;
         background-size: 100% 100%;
 
     }
-    .container_power_panel_photo3{
-        width: 100%;
-        height: inherit;
+
+    .container_power_panel_photo2,
+    .container_power_panel_photo3, 
+    .container_cpe_room_panel_photo4{
+        width: 211px;
+        height: 272px;
         float: left;
         background-size: 100% 100%;
 
 
+    } 
+
+        .container_border_black_panel{
+            border: 1px solid #000;
+            margin-top: 13px;
+    
+        }
+
+    #btnPanelButton1,#btnPanelButton2,#btnPanelButton3{
+        width: 255px;
+        padding: 10px;
+        border: 1px solid #000;
+        margin-top: 7px;
+        text-align: center;
+        background-color: rgb(140, 205, 209);
+        cursor: pointer;
+
     }
-    .container_cpe_room_panel_photo{
+    #btnPowerPreferences{
+        background-color: rgba(255, 91, 74, 0.71);
+        padding: 11px;
+        border-radius: 6px;
+        width: 170px;
+        height: 20px;
+        float: right;
+        text-align: center;
+        margin-right: 38px;
+        transition: background-color linear 0.2s;
+        cursor: pointer;
+
+    }
+    .container_other_rack_size{
+        display: inline;
+        margin-right: 3%;
+
+    }
+    .container_panel_photos{
         width: 100%;
-        height: inherit;
+        height: 267px;
         float: left;
-        background-size: 100% 100%;
-
 
     }
 
-#btnPanelButton1,#btnPanelButton2,#btnPanelButton3{
-    width: 255px;
-    padding: 10px;
-    border: 1px solid #000;
-    margin-top: 7px;
-    text-align: center;
-    background-color: rgb(140, 205, 209);
-    cursor: pointer;
-
-}
-#btnPowerPreferences{
-    background-color: rgba(255, 91, 74, 0.71);
-    padding: 11px;
-    border-radius: 6px;
-    width: 170px;
-    height: 20px;
-    float: right;
-    text-align: center;
-    margin-right: 38px;
-    transition: background-color linear 0.2s;
-
-}
-.container_other_rack_size{
-    display: inline;
-    margin-right: 3%;
-
-}
-.container_panel_photos{
-    width: 100%;
-    height: 267px;
-    float: left;
-
-}
-
-.container_panel_photo,
-.container_panel_photo1,
-.container_panel_photo2,
-.container_panel_photo3{
-    width: 87%;
-    padding: 15px;
-    margin-top: 6px;
-    height: 228px;
-
-}
-.container_center_panels{
-    width: 98%;
-    margin: 0 auto;
-
-}
-.container_panel{
-    width: 31.3%;
-    height: 319px;
-    float: left;
-    margin-left: 12px;
-
-}
-
-.container_room_spec .container_cpe_black_box{
-    width: 93%;
-    float: left;
-    margin: 0px 0 10px 32px;
-
-}
-    .container_room_spec .container_cpe_black_box:nth-child(1){
-        padding: 5px 0 7px 0;
+    .container_panel_photo,
+    .container_panel_photo1,
+    .container_panel_photo2,
+    .container_panel_photo3{
+        width: 98%;
+        /*padding: 15px;*/
+        margin-top: 6px;
+        height: 250px;
 
     }
-    .container_room_spec .container_cpe_black_box:nth-child(3){
-        padding: 3px 0 6px 0;
+    .container_center_panels{
+        width: 98%;
+        margin: 0 auto;
 
     }
-#btnPowerPreferences:hover{
-    background-color: rgba(255, 91, 74, 0.96);
+    .container_panel{
+        width: 31.3%;
+        height: 319px;
+        float: left;
+        margin-left: 12px;
 
-}
+    }
+
+    .container_room_spec .container_cpe_black_box{
+        width: 93%;
+        float: left;
+        margin: 0px 0 10px 32px;
+
+    }
+        .container_room_spec .container_cpe_black_box:nth-child(1){
+            padding: 5px 0 7px 0;
+
+        }
+        .container_room_spec .container_cpe_black_box:nth-child(3){
+            padding: 3px 0 6px 0;
+
+        }
+    #btnPowerPreferences:hover{
+        background-color: rgba(255, 91, 74, 0.96);
+
+    }
+
+        /*---------------------------------------------*/
+        /*-------       PHOTO PANEL STYLES       -----*/
+        /*-------------------------------------------*/
+            #archivoCPEPanelPhoto,
+            #archivoCPEPanelPhoto2,
+            #archivoCPEPanelPhoto3,
+            #archivoCPERoom{
+                position: absolute;
+                width: 208px;
+                height: 262px;
+                cursor: pointer;
+                opacity: 0;
+                top: -18px;
+            }
+
+            .text_select_image_panel{
+                text-align: center;
+                font-size: 20px;
+                display: none;
+
+            }
+
+            .editor_imagenes_panel{
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0px;
+                background: #e6e6e6;
+                display: none;
+                z-index: 99;
+
+            }
+
+                .dvPictureImageFirstPanel,
+                .dvPictureImageSecondPanel,
+                .dvPictureImageThridPanel,
+                .dvPictureImageCPERoomPanel{
+                    width: 100%;
+                    height: 100%;
+                    z-index: 9999;
+                    position: relative;
+                    display: none;
+                    background-size: 100% 100%;
+
+                }
+
+                    .dvCanvaImageFirstPanel,
+                    .dvCanvaImageSecondPanel,
+                    .dvCanvaImageThridPanel,
+                    .dvCanvaImageCPERoomPanel{
+                        width: 100%;
+                        height: 100%;
+                        z-index: 99999;
+                        position: relative;
+                        display: none;
+                        background-size: 100% 100%;
+                        bottom: 273px;
+
+                    }
+
+/*---------------------------------------------*/
+/*----      END OF CPE FORM STYLES       -----*/
+/*-------------------------------------------*/
 
 .box_netcracker{
    border: 1px solid #000;

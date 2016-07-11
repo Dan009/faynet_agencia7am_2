@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2016 a las 13:42:16
+-- Tiempo de generación: 11-07-2016 a las 21:09:57
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -341,7 +341,14 @@ CREATE TABLE IF NOT EXISTS `cpe_building_info` (
   `id_request` int(11) NOT NULL,
   `service_type` char(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
+
+--
+-- Volcado de datos para la tabla `cpe_building_info`
+--
+
+INSERT INTO `cpe_building_info` (`id`, `region`, `project_manager`, `latitude`, `longitude`, `municipality`, `multi_tenant_req`, `rent_required`, `floor_plan_req`, `total_floors`, `start_time_am`, `end_time_pm`, `riser_management_company_req`, `filter_lit_equip_req`, `working_days_week`, `building_photo_code`, `id_information`, `id_request`, `service_type`) VALUES
+(64, '', '', '', '', '', 'no', 'no', 'no', 0, ':', ':', 'no', 'no', '', '1468251544-3', 1, 1, 'DARK');
 
 -- --------------------------------------------------------
 
@@ -369,10 +376,19 @@ CREATE TABLE IF NOT EXISTS `cpe_lgx_info` (
   `third_cpe_panel_photo_code` varchar(250) DEFAULT NULL,
   `first_panel_photo_inserted` set('yes','no') DEFAULT NULL,
   `second_cpe_panel_photo_inserted` set('yes','no') DEFAULT NULL,
-  `third_cpe_panel_photo_inserted` set('yes','no') NOT NULL,
+  `third_cpe_panel_photo_inserted` set('yes','no') DEFAULT NULL,
   `lgx_form_number` varchar(250) DEFAULT NULL,
+  `id_information` int(15) DEFAULT NULL,
+  `id_request` int(15) DEFAULT NULL,
   PRIMARY KEY (` id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Volcado de datos para la tabla `cpe_lgx_info`
+--
+
+INSERT INTO `cpe_lgx_info` (` id`, `lgx_floor_number`, `lgx_room_number`, `lgx_term_panel`, `lgx_term_panel_size`, `room_name_lgx_panel`, `panel_owned_by`, `dark_fiber_hand`, `rack_size`, `room_type`, `fusion_splice_only`, `connector_type`, `fiber_terminated_number`, `total_bulkhead_number`, `first_cpe_panel_photo_code`, `second_cpe_panel_photo_code`, `third_cpe_panel_photo_code`, `first_panel_photo_inserted`, `second_cpe_panel_photo_inserted`, `third_cpe_panel_photo_inserted`, `lgx_form_number`, `id_information`, `id_request`) VALUES
+(1, 'asfad', 0, '0', '0', 'sdfgsdfgsdfg', 'sdfgsfdg', 'yes', 33, 'private', 'no', '0', 34, 22, '1468242691-3', '1468242691-3', '1468242691-3', 'no', 'no', 'yes', '1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -638,6 +654,34 @@ CREATE TABLE IF NOT EXISTS `inside_plans` (
 INSERT INTO `inside_plans` (`id`, `service_number`, `assigned_company_site_survey_building`, `contact_site_survey_building`, `assigned_company_isp_eng_plans_building`, `assigned_company_eng_isp_plans_no_survey`, `assigned_company_site_survey_isp_as_built`, `contact_site_survey_isp_as_built`, `assigned_company_eng_isp_plans_isp_as_built`, `assigned_company_site_survey_passive_filter`, `contact_site_survey_passive_filter`, `assigned_company_eng_isp_plans_passive_filter`, `floor_site_survey_research_floor`, `assigned_company_site_survey_research_floor`, `scope_work_inside_plans`, `new_building`, `designerid`, `id_request`) VALUES
 (1, '', 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, '', 0, '', 'si', 0, '5'),
 (2, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '44', 2, '', '', 0, '25');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lit_equip_info`
+--
+
+CREATE TABLE IF NOT EXISTS `lit_equip_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `power_available_at_survey` enum('yes','no') DEFAULT NULL,
+  `power_info_comment` varchar(250) DEFAULT NULL,
+  `distance_in_feet_cpe_panel` varchar(50) DEFAULT NULL,
+  `power_type` enum('120 VAC','208/220/240 VAC') DEFAULT NULL,
+  `ac_amps_power` enum('15','20','30') DEFAULT NULL,
+  `receptable_type` char(30) DEFAULT NULL,
+  `rack_size` smallint(255) DEFAULT NULL,
+  `wall_space_available` char(10) DEFAULT NULL,
+  `building_feed` enum('yes','no') DEFAULT NULL,
+  `generator_feed` enum('yes','no') DEFAULT NULL,
+  `first_panel_inserted` enum('yes','no') DEFAULT NULL,
+  `second_panel_inserted` enum('yes','no') DEFAULT NULL,
+  `third_panel_inserted` enum('yes','no') DEFAULT NULL,
+  `cpe_room_photo_inserted` enum('yes','no') DEFAULT NULL,
+  `photo_code` char(30) DEFAULT NULL,
+  `id_information` int(11) DEFAULT NULL,
+  `id_request` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1090,19 +1134,23 @@ CREATE TABLE IF NOT EXISTS `temp` (
   `canvas` varchar(250) NOT NULL,
   `original_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `temp`
 --
 
 INSERT INTO `temp` (`id`, `file`, `date`, `code`, `type`, `canvas`, `original_name`) VALUES
-(2, 'file-1467384764.gif', '0000-00-00', '1', 'cpe_first_picture', '', 'backblue.gif'),
-(3, 'file-1467385093.gif', '0000-00-00', '1', 'cpe_second_picture', '', 'backblue.gif'),
-(4, 'file-1467315077.jpg', '0000-00-00', '1', 'cpe_third_picture', '', 'beautiful-green-hills-at-sunset-photo-by-steffen-egly.jpg'),
+(2, 'file-1468271093.jpg', '0000-00-00', '1', 'cpe_first_picture', 'canvas-14682710983.png', 'casa2.jpg'),
+(3, 'file-1468243044.jpg', '0000-00-00', '1', 'cpe_second_picture', 'canvas-14682430493.png', 'casa3.jpg'),
+(4, 'file-1468242745.jpg', '0000-00-00', '1', 'cpe_third_picture', 'canvas-14682427503.png', 'casa4.jpg'),
 (6, 'file-1467143116.png', '0000-00-00', '1467142964-2', 'inside_plan', '', 'Captura de pantalla 2016-05-05 a las 8.51.22 p.m..png'),
 (7, 'file-1467143271.pdf', '0000-00-00', '1467143162-2', 'inside_plan', '', 'Amazon.pdf'),
-(8, 'file-1467144183.jpg', '0000-00-00', '17', 'building_picture', 'canvas-14671442023.png', 'seguro_auto 2.jpg');
+(8, 'file-1467144183.jpg', '0000-00-00', '17', 'building_picture', 'canvas-14671442023.png', 'seguro_auto 2.jpg'),
+(9, 'file-1467899663.jpg', '0000-00-00', '1', 'building_picture', 'canvas-14682698253.png', 'casa5.jpg'),
+(10, 'file-1468271137.jpg', '0000-00-00', '1', 'cpe_panel_1', 'canvas-14682711403.png', 'casa3.jpg'),
+(11, 'file-1468270084.jpg', '0000-00-00', '1', 'cpe_panel_2', 'canvas-14682700933.png', 'casa3.jpg'),
+(12, 'file-1468269718.jpg', '0000-00-00', '1', 'cpe_panel_3', '', 'Free-Music-Wallpapers-HD-for-PC-55.jpg');
 
 -- --------------------------------------------------------
 

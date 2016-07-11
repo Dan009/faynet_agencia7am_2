@@ -111,7 +111,7 @@ $(document).ready(function(){
 		            }); 
 
 
-			    }else if (name_ventana == "ventana_lgx_info"){
+			    }else if (name_ventana == "ventana_lgx_info2"){
 
 			    	$.ajax({
 		                type: 'POST',
@@ -128,9 +128,26 @@ $(document).ready(function(){
 		                }
 
 		            }); 
+					
+					}else if (name_ventana == "ventana_lgx_info"){
 
+			    	$.ajax({
+		                type: 'POST',
+		                url: "http://"+hostname+ruta+"include/cpe-forms/lgx_info_form.php",
+		                data:{id_information:id_information,id_request:id_request},
+		                success: function(data) {    
+		                	//console.log(id_information+" "+id_request);
 
-			    }else if (name_ventana == "ventana_lit_equip_info"){
+							//$("#carga_ventana_load").append(data);
+							$(".center_form_lgx_info").html(data);
+							//$(".content_form").fadeOut(0);
+							$("#content_"+name_ventana).fadeIn(0);
+								
+		                }
+
+		            }); 
+					
+					}else if (name_ventana == "ventana_lit_equip_info"){
 
 			    	$.ajax({
 		                type: 'POST',
@@ -143,13 +160,37 @@ $(document).ready(function(){
 							$(".center_lit_equip_info").html(data);
 							//$(".content_form").fadeOut(0);
 							$("#content_"+name_ventana).fadeIn(0);
-
+							
 		                }
 
 		            }); 
 
 
 			    }
+				
+					if (name_ventana.length > 15 && name_ventana.length < 21){
+						
+						//console.log(name_ventana.split("_"));
+						/*alert("bu");*/
+						
+						
+				    	$.ajax({
+			                type: 'POST',
+			                url: "http://"+hostname+ruta+"include/cpe-forms/lgx_info_form.php",
+			                data:{id_information:id_information,id_request:id_request},
+			                success: function(data) {    
+			                	//console.log(id_information+" "+id_request);
+
+								//$("#carga_ventana_load").append(data);
+								$(".center_form_lgx_info").html(data);
+								//$(".content_form").fadeOut(0);
+								$("#content_"+name_ventana).fadeIn(0);
+									
+			                }
+
+			            }); 
+
+				    }
 
 		}
 
@@ -190,7 +231,7 @@ $(document).ready(function(){
 		
 		
 
-		$(".div_title_ventana").click(function(){
+		$(document).on('click','.div_title_ventana',function(){
 			
 			var id_content=$(this).attr("name");
 

@@ -114,7 +114,7 @@ $conexion= mysqli_connect($servidor,$usuario,$contrasena,$basededatos);
 
 				echo $fila_imagen['file'];
 
-	// BUSCAR LA IMAGEN QUE SE SOLICITA
+	// BUSCAR EL CANVA QUE SE SOLICITA
 		}else if($_POST['tipo_ejecucion'] == "select_canva"){
 
 			$consulta_imagen="SELECT canvas FROM temp WHERE code='".$_POST['id_information']."' AND type='".$_POST['type']."' ORDER BY id DESC LIMIT 1";

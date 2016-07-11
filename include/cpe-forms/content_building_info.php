@@ -304,7 +304,7 @@
 
 
     $(document).ready(function() {
-        $("#submit_request").on('click', function() {
+        /*$("#submit_request").on('click', function() {
 
            var FormData = $("#form_cpe_building_form").serialize();
 
@@ -316,7 +316,19 @@
                     
                     
                 });
-             
+
+        });*/
+
+        $("#submit_request").click(function() {
+
+           var FormData = $("#form_cpe_building_form").serialize();
+
+               $.post($("#form_cpe_building_form").attr("action"), FormData,
+                function(data) {
+                    $(".hola").append(data);
+
+                });
+
         });
       
     });/**/

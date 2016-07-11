@@ -9,27 +9,25 @@
             //////////PARA SUBIR ARCHIVOS GENERAL E INSIDE /////////////
             ///////////////////////////////////////////////////////////
          
-                function subirArchivosLGX(div_input_picture,information_id) {
+                function subirArchivoPanel(div_input_picture,information_id) {
 
-                    $(".containerprueba").css("z-index","0");
                     var type = $(div_input_picture).parent().parent().find("#type").val();
-                    contador++;
+                        contador++;
 
+                            /*var nombreArchivo = $("#nombre_archivo").val();
+                            var code = $("#code").val();
+                            var type = $("#type").val();
 
-                        /*var nombreArchivo = $("#nombre_archivo").val();
-                        var code = $("#code").val();
-                        var type = $("#type").val();
+                                $.ajax({
+                                    type: "POST",
+                                    url: "include/subir_archivo.php",
+                                    data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
+                                    success: function(data){
+                                        $(".temp").append(data);
 
-                            $.ajax({
-                                type: "POST",
-                                url: "include/subir_archivo.php",
-                                data: {nombre_archivo:nombreArchivo,code:code,type:type<?php if(isset($_GET['id_information'])){echo ",id_information: $id_information";} ?>},
-                                success: function(data){
-                                    $(".temp").append(data);
+                                    }
 
-                                }
-
-                            });*/
+                                });*/
             
                     $(div_input_picture).upload('include/cpe_photos_manager.php',
                     {
@@ -44,8 +42,12 @@
                         //Subida finalizada.
 
                             if (respuesta === 0) {
-                                mostrarRespuesta('El archivo NO se ha podido subir.', false);
-                                $("#nombre_archivo, #archivoCPEPhotos").val('');
+                                var idDivPanel = "#"+$(this).attr("id");
+
+                                        console.log(idDivPanel);
+
+                                    mostrarRespuesta('El archivo NO se ha podido subir.', false);
+                                    $("#nombre_archivo,"+idDivPanel+"").val('');
 
                             } else {
                                 var select_temp_type = "select_image";
@@ -59,7 +61,7 @@
 
                                         } ,
                                         function (data) {
-                                            $(".temp").append(data);
+                                            $(".temp_panel").append(data);
 
                                     });
 
@@ -68,14 +70,13 @@
                                 // });
                                 $(".hideme").css("left","3000000000000%");
 
-                                $(".editor_imagenes").fadeIn(200);
+                                $(".editor_imagenes_panel").fadeIn(200);
                                 mostrarRespuesta('Subido Correctamente.', true);
                                 mostrarArchivos();
                                 
                                 $.get("include/editor.php", function (data) {
-                                    $(".editor_imagenes_content").append(data);
+                                    $(".editor_imagenes_content_panel").append(data);
 									
-                                    
                                 });
 
 
@@ -84,15 +85,11 @@
                                 //window.stop();
                             }
                                 
-                        }, function(progreso, valor) {
-                            //Barra de progreso.
-                            $("#barra_de_progreso").val(valor);
-
                         });/**/
 
                         console.log(type);
                         
-                    $("#txtCurrentCPEPicture").val(type);
+                    $("#txtCurrentPanelPhoto").val(type);
 
                 }
 
@@ -102,16 +99,29 @@
 
                 $(document).ready(function() {
                     var id_information = $("#id_information").val();
-                    var id_request = $("#id_request").val();
+                    var id_request = $("#id_request").val();    
 
-                        $(document).on("change","#archivoCPELGXPhoto1,#archivoCPELGXPhoto2,#archivoCPELGXPhoto3",function(){
+                        $(document).on("change",
+                            "#archivoCPEPanelPhoto,#archivoCPEPanelPhoto2,#archivoCPEPanelPhoto3,#archivoCPERoom",
+                            function(){
                             /*$("#dvPictureImage").fadeOut(0);
                             $("#dvCanvaImage").fadeOut(0);*/
 
-                                $(this).parents(".container_prueba_lgx_1").css("z-index","-999999");
+                                $(this).parent().parent().css("z-index","-999999");
 
-								
-                            subirArchivosLGX(this,id_information);
+                                var panelDivs = ["archivoCPEPanelPhoto",
+                                "archivoCPEPanelPhoto2",
+                                "archivoCPEPanelPhoto3",
+                                "archivoCPERoom"];
+
+                                    $("#archivoCPEPanelPhoto,#archivoCPEPanelPhoto2,#archivoCPEPanelPhoto3,#archivoCPERoom")
+                                    .css("left","-30000%");
+
+                                        /*for (var i = 0; i < Things.length; i++) {
+                                            Things[i]
+                                        }*/
+
+                                subirArchivoPanel(this,id_information);
       
                                 /*
 
@@ -201,130 +211,120 @@
                 /////////////////////////////////////////////////////////////////////
                 ///    FUNCION QUE SETEA EL DIV CON LA FOTO QUE SE SELECCIONO    ///
                 ///////////////////////////////////////////////////////////////////
-                    function setRespectiveLGXDivPhoto(type,url){
 
-                            if (type == "cpe_first_picture") {
-                                $(".dvPictureImageFirstLGX").css("background-image",url);
-								
-								$(".dvPictureImageFirstLGX").css("z-index","-2");
-								$(".dvPictureImageSecondLGX").css("z-index","-2");
-								$(".dvPictureImageThridLGX").css("z-index","-2");
-								
-								$(".dvPictureImageFirstLGX").css("left","-200000px");
-								$(".dvPictureImageSecondLGX").css("left","-200000px");
-								$(".dvPictureImageThridLGX").css("left","-200000px");
+                    function fadeInRespectiveLGXDivPhotoPanel(type){
+                       
+                        if (type == "cpe_panel_1") {
+                            $(".dvPictureImageFirstPanel").fadeIn(100);
 
+                        }else if(type == "cpe_panel_2"){
+                            $(".dvPictureImageSecondPanel").fadeIn(100);
+                            
+                        }else if(type == "cpe_panel_3"){
+                            $(".dvPictureImageThridPanel").fadeIn(100);
 
-                            }else if(type == "cpe_second_picture"){
-                                $(".dvPictureImageSecondLGX").css("background-image",url);
-								
-								
-								$(".dvPictureImageFirstLGX").css("z-index","-2");
-								$(".dvPictureImageSecondLGX").css("z-index","-2");
-								$(".dvPictureImageThridLGX").css("z-index","-2");
-								
-								$(".dvPictureImageFirstLGX").css("left","-200000px");
-								$(".dvPictureImageSecondLGX").css("left","-200000px");
-								$(".dvPictureImageThridLGX").css("left","-200000px");
-								
-                            }else if(type == "cpe_third_picture"){
-                                $(".dvPictureImageThridLGX").css("background-image",url);
-								
-								
-								$(".dvPictureImageFirstLGX").css("z-index","-2");
-								$(".dvPictureImageSecondLGX").css("z-index","-2");
-								$(".dvPictureImageThridLGX").css("z-index","-2");
-								
-								$(".dvPictureImageFirstLGX").css("left","-200000px");
-								$(".dvPictureImageSecondLGX").css("left","-200000px");
-								$(".dvPictureImageThridLGX").css("left","-200000px");
+                        }else if(type == "cpe_room"){
+                            $(".dvPictureImageCPERoomPanel").fadeIn(100);
+
+                        }
+
+                    }  
+
+                        function setRespectiveLGXDivPhotoPanel(type,url){
+                            if (type == "cpe_panel_1") {
+                                $(".dvPictureImageFirstPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivPhotoPanel(type);
+
+                            }else if(type == "cpe_panel_2"){
+                                $(".dvPictureImageSecondPanel").css("background-image",url);
+    							     fadeInRespectiveLGXDivPhotoPanel(type);
+
+                            }else if(type == "cpe_panel_3"){
+                                $(".dvPictureImageThridPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivPhotoPanel(type);
+
+                            }else if(type == "cpe_room"){
+                                $(".dvPictureImageCPERoomPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivPhotoPanel(type);
 
                             }
-							
-								
-							$(".dvCanvaImageFirstLGX").css("z-index","-1");
-							$(".dvCanvaImageSecondLGX").css("z-index","-1");
-							$(".dvCanvaImageThridLGXLGX").css("z-index","-1");
-							
-								$(".dvPictureImageFirstLGX").css("z-index","-1");
-								$(".dvPictureImageSecondLGX").css("z-index","-1");
-								$(".dvPictureImageThridLGX").css("z-index","-1");
-								
-								$(".dvPictureImageFirstLGX").css("left","0px");
-								$(".dvPictureImageSecondLGX").css("left","0px");
-								$(".dvPictureImageThridLGX").css("left","0px");
-								
-								
+    								
 
-                    }
+                        }
 
-                        function setCPELGXPhoto(id_information,type){
+                            function setPanelPhoto(id_information,type){
 
-                            var type_ejecucion = "select_picture";
+                                var type_ejecucion = "select_picture";
 
-                                //console.log(id_information,type);
+                                    //console.log(id_information,type);
 
-                                $.ajax({ 
-                                    type: "POST", 
-                                    url: "include/cpe_photos_manager.php",
-                                    data: { tipo_ejecucion:type_ejecucion,type: type,id_information: id_information },
-                                    success: function(data) {
+                                    $.ajax({ 
+                                        type: "POST", 
+                                        url: "include/cpe_photos_manager.php",
+                                        data: { tipo_ejecucion:type_ejecucion,type: type,id_information: id_information },
+                                        success: function(data) {
 
-                                        var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
+                                            var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
 
-                                            setRespectiveLGXDivPhoto(type,urlCodePicture);
-                                      
-                                    }
+                                                setRespectiveLGXDivPhotoPanel(type,urlCodePicture);
+                                          
+                                        }
 
-                                });/**/
+                                    });/**/
 
-                        }     
-
-                            function fadeInRespectiveLGXDivPhoto(type){
-                                if (type == "cpe_first_picture") {
-									//alert("Entre 1");
-                                    $(".dvPictureImageFirstLGX").fadeIn(100);
-									
-
-                                }else if(type == "cpe_second_picture"){
-								//alert("Entre 2");
-                                    $(".dvPictureImageSecondLGX").fadeIn(100);
-									
-                                    
-                                }else if(type == "cpe_third_picture"){
-								//alert("Entre 3");
-                                    $(".dvPictureImageThridLGX").fadeIn(100);
-
-                                }
-
-
-                            }          
+                            }     
 
                 /////////////////////////////////////////////////////////////////////
                 ///    FUNCION QUE SETEA EL DIV CON EL CANVA QUE SE SELECCIONO   ///
                 ///////////////////////////////////////////////////////////////////
-                        function setRespectiveLGXDivCanva(type,url){
+                    function fadeInRespectiveLGXDivCanvaPanel(type){
 
-                            if (type == "cpe_first_picture") {
-                                $(".dvCanvaImageFirstLGX").css("background-image",url);
+                        console.log(type);
 
-                            }else if(type == "cpe_second_picture"){
-                                $(".dvCanvaImageSecondLGX").css("background-image",url);
-								
+                            if (type == "cpe_panel_1") {
+                                $(".dvCanvaImageFirstPanel").fadeIn(100);
+
+                            }else if(type == "cpe_panel_2"){
+                                $(".dvCanvaImageSecondPanel").fadeIn(100);
                                 
-                            }else if(type == "cpe_third_picture"){
+                            }else if(type == "cpe_panel_3"){
+                                $(".dvCanvaImageThridPanel").fadeIn(100);
+
+                            }else if(type == "cpe_room"){
+                                $(".dvCanvaImageCPERoomPanel").fadeIn(100);
+
+                            }
+        
+                    }
+
+                        function setRespectiveLGXDivCanvaPanel(type,url){
                                 console.log(type,url);
-                                $(".dvCanvaImageThridLGX").css("background-image",url);
+
+                            if (type == "cpe_panel_1") {
+                                $(".dvCanvaImageFirstPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivCanvaPanel(type);
+
+                            }else if(type == "cpe_panel_2"){
+                                $(".dvCanvaImageSecondPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivCanvaPanel(type);
+
+                            }else if(type == "cpe_panel_3"){
+                                $(".dvCanvaImageThridPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivCanvaPanel(type);
+
+                            }else if(type == "cpe_room"){
+                                $(".dvCanvaImageCPERoomPanel").css("background-image",url);
+                                    fadeInRespectiveLGXDivCanvaPanel(type);
 
                             }
 
 
                         }
 
-                            function setCanvasCPELGX(type,id_info){
+                            function setCanvasPanel(type,id_info){
                                 var type_ejecucion = "select_canva";
                                 
-                                        //console.log(type);
+                                        console.log(type,id_info);
 
                                     $.ajax({ 
                                         type: "POST", 
@@ -334,7 +334,7 @@
 
                                             var urlCodePicture = "url(archivos/temp/"+data.trim()+")";
 
-                                                setRespectiveLGXDivCanva(type,urlCodePicture);
+                                                setRespectiveLGXDivCanvaPanel(type,urlCodePicture);
                       
                                                  
                                         }
@@ -344,34 +344,5 @@
 
                             }
 
-                                function fadeInRespectiveLGXDivCanva(type){
-                                    if (type == "cpe_first_picture") {
-                                        $(".dvCanvaImageFirstLGX").fadeIn(100);
-										
-										
-                                    }else if(type == "cpe_second_picture"){
-									
-                                        $(".dvCanvaImageSecondLGX").fadeIn(100);
-										
-										
-                                        
-                                    }else if(type == "cpe_third_picture"){
-                                        $(".dvCanvaImageThridLGX").fadeIn(100);
-										
-										
+                              
 
-                                    }
-										
-										$(".hideme").css("left","0%");
-                                }     
-                      
-            /////////////////////////////////////////////////////////////////////
-            ///        FUNCION QUE DA LOS TOQUES FINALES AL CPE LGX          ///
-            ///////////////////////////////////////////////////////////////////
-
-                /**/function finalStepLGXPhotos(type){
-                    fadeInRespectiveLGXDivPhoto();
-                    fadeInRespectiveLGXDivCanva();
-
-                    console.log("Done !");
-                }
